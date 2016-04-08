@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns="http://www.springframework.org/schema/beans"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/task
+	   http://www.springframework.org/schema/task/spring-task-3.1.xsd">
+
+
+	<context:annotation-config />
+
+	<!-- 使用annotation 自动注册bean, 并保证@Required、@Autowired的属性被注入 -->
+	<context:component-scan
+		base-package="com.airshiplay.official.service,com.airshiplay.official.config">
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Service" />
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Repository" />
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Component" />
+	</context:component-scan>
+
+	<context:property-placeholder location="classpath:config.properties,classpath:ftp/ftpconfig.properties" />
+
+
+
+	<!-- 配置 JSR303 Bean Validator 定义 -->
+	<bean id="validator"
+		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
+	<import resource="mybatis.xml" />
+	<import resource="ftp/ftpd-typical.xml" />
+</beans>

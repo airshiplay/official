@@ -1,0 +1,48 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.airshiplay</groupId>
+		<artifactId>spring4</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<groupId>com.airshiplay</groupId>
+	<artifactId>official</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<modules>
+
+		<module>official-common</module>
+		<module>official-model</module>
+		<module>official-service</module>
+		<module>official-website</module>
+	</modules>
+	<dependencyManagement>
+		<dependencies>
+
+
+			<dependency>
+				<groupId>com.airshiplay</groupId>
+				<artifactId>official-common</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.airshiplay</groupId>
+				<artifactId>official-model</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.airshiplay</groupId>
+				<artifactId>official-service</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.airshiplay</groupId>
+				<artifactId>official-website</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+		</dependencies>
+
+	</dependencyManagement>
+</project>

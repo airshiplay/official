@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns="http://www.springframework.org/schema/beans"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/task
+	   http://www.springframework.org/schema/task/spring-task-3.1.xsd">
+	<bean id="log-filter" class="com.alibaba.druid.filter.logging.Log4jFilter">
+		<property name="resultSetLogEnabled" value="false" />
+		<property name="statementLogEnabled" value="false" />
+		<property name="statementExecutableSqlLogEnable" value="false" />
+		<property name="statementExecuteAfterLogEnabled" value="false" />
+		<property name="statementExecuteBatchAfterLogEnabled" value="false" />
+		<property name="statementExecuteQueryAfterLogEnabled" value="false" />
+		<property name="statementExecuteUpdateAfterLogEnabled" value="false" />
+		<property name="statementParameterClearLogEnable" value="false" />
+		<property name="statementParameterSetLogEnabled" value="false" />
+		<property name="dataSourceLogEnabled" value="false" />
+		<property name="connectionCloseAfterLogEnabled" value="false" />
+		<property name="connectionCommitAfterLogEnabled" value="false" />
+		<property name="connectionConnectAfterLogEnabled" value="false" />
+		<property name="connectionConnectBeforeLogEnabled" value="false" />
+		<property name="connectionLogEnabled" value="false" />
+		<property name="connectionRollbackAfterLogEnabled" value="false" />
+	</bean>
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		init-method="init" destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driverClass}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.user}" />
+		<property name="password" value="${jdbc.password}" />
+
+		<property name="filters" value="stat" />
+
+		<property name="maxActive" value="20" />
+		<property name="initialSize" value="1" />
+		<property name="maxWait" value="60000" />
+		<property name="minIdle" value="1" />
+
+		<property name="timeBetweenEvictionRunsMillis" value="60000" />
+		<property name="minEvictableIdleTimeMillis" value="300000" />
+		<property name="removeAbandoned" value="true" /> <!-- 打开removeAbandoned功能 -->
+		<property name="removeAbandonedTimeout" value="1800" /> <!-- 1800秒，也就是30分钟 -->
+		<property name="logAbandoned" value="true" /> <!-- 关闭abanded连接时输出错误日志 -->
+
+		<property name="validationQuery" value="SELECT 'x'" />
+		<property name="testWhileIdle" value="true" />
+		<property name="testOnBorrow" value="false" />
+		<property name="testOnReturn" value="false" />
+		<property name="proxyFilters">
+			<list>
+				<ref bean="log-filter" />
+			</list>
+		</property>
+	</bean>
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<!-- <property name="configLocation" value="/WEB-INF/mybatis-config.xml" 
+			/> -->
+		<!-- <property name="plugins"> <array> <bean class="com.isea533.mybatis.mapperhelper.MapperInterceptor"/> 
+			</array> </property> -->
+		<property name="plugins">
+			<array>
+				<bean class="com.github.pagehelper.PageHelper">
+					<property name="properties">
+						<value>
+							dialect=mysql
+							reasonable=true
+							pageSizeZero=true
+						</value>
+					</property>
+				</bean>
+				<bean class="com.airshiplay.mybtis.interceptor.CameHumpInterceptor" />
+			</array>
+		</property>
+	</bean>
+
+	<!-- mybatis mapper scanner -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.airshiplay.official.mybatis.mapper" />
+		<!-- optional unless there are multiple session factories defined -->
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+	</bean>
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate"
+		scope="prototype">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
+</beans>
