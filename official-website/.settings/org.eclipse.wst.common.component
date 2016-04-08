@@ -7,6 +7,12 @@
         <dependent-module archiveName="official-service-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/official-service/official-service">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="official-common-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/official-common/official-common">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="official-model-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/official-model/official-model">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="official-website"/>
         <property name="java-output-path" value="/official-website/target/classes"/>
     </wb-module>

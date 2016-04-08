@@ -17,6 +17,9 @@
 SET NAMES utf8;
 SET FOREIGN_KEY_CHECKS = 0;
 
+CREATE DATABASE IF NOT EXISTS official DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+use official;
+SET global max_sp_recursion_depth = 5;
 -- ----------------------------
 --  Table structure for `cfg_authority`
 -- ----------------------------
@@ -268,16 +271,6 @@ END
 delimiter ;
 
 -- ----------------------------
---  Procedure structure for `CREATE_CHILD_LIST`
--- ----------------------------
-DROP PROCEDURE IF EXISTS `CREATE_CHILD_LIST`;
-delimiter ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `CREATE_CHILD_LIST`(IN root_id INT,IN n_depth INT)
-BEGIN	DECLARE done INT DEFAULT 0;	DECLARE b INT;	DECLARE child CURSOR FOR SELECT id FROM t_areainfo WHERE parentId = root_id group by parentId ,LEVEL;	DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;	INSERT INTO tmp_list VALUES (NULL, root_id, n_depth);	OPEN child;	FETCH child INTO b;	WHILE done = 0 DO		CALL CREATE_CHILD_LIST(b,n_depth+1);		FETCH child INTO b;	END WHILE;	CLOSE child;END
- ;;
-delimiter ;
-
--- ----------------------------
 --  Procedure structure for `SHOW_CATALOG_TREE`
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `SHOW_CATALOG_TREE`;
@@ -301,58 +294,6 @@ end if;
  	SELECT tmp_list.*,of_catalog.* FROM tmp_list,of_catalog
  	WHERE tmp_list.id = of_catalog.id
  	ORDER BY tmp_list.sno;
-END
- ;;
-delimiter ;
-
--- ----------------------------
---  Procedure structure for `SHOW_CHILD_LIST`
--- ----------------------------
-DROP PROCEDURE IF EXISTS `SHOW_CHILD_LIST`;
-delimiter ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SHOW_CHILD_LIST`(IN root_id INT)
-BEGIN	CREATE TEMPORARY TABLE IF NOT EXISTS tmp_list(		sno INT AUTO_INCREMENT,		id INT,		depth INT,		PRIMARY KEY(sno)	);	DELETE FROM tmp_list;	CALL CREATE_CHILD_LIST(root_id,0);	SELECT tmp_list.*,t_areainfo.* FROM tmp_list,t_areainfo	WHERE tmp_list.id = t_areainfo.id	ORDER BY tmp_list.sno;END
- ;;
-delimiter ;
-
--- ----------------------------
---  Function structure for `queryChildrenAreaInfo`
--- ----------------------------
-DROP FUNCTION IF EXISTS `queryChildrenAreaInfo`;
-delimiter ;;
-CREATE DEFINER=`root`@`localhost` FUNCTION `queryChildrenAreaInfo`(areaId INT) RETURNS varchar(4000) CHARSET utf8 COLLATE utf8_bin
-BEGIN 
-DECLARE sTemp VARCHAR(512); 
-DECLARE sTempChd VARCHAR(512);
-SET sTemp = '$';
-SET sTempChd = cast(areaId as char);
-
-WHILE sTempChd is not NULL DO
-SET sTemp = CONCAT(sTemp,',',sTempChd);
-SELECT group_concat(id) INTO sTempChd FROM t_areainfo where FIND_IN_SET(parentId,sTempChd)>0;
-END WHILE;
-return sTemp;
-END
- ;;
-delimiter ;
-
--- ----------------------------
---  Function structure for `queryChildrenCatalogInfo`
--- ----------------------------
-DROP FUNCTION IF EXISTS `queryChildrenCatalogInfo`;
-delimiter ;;
-CREATE DEFINER=`root`@`localhost` FUNCTION `queryChildrenCatalogInfo`(catagid INT) RETURNS varchar(4000) CHARSET utf8 COLLATE utf8_bin
-BEGIN 
-DECLARE sTemp VARCHAR(512); 
-DECLARE sTempChd VARCHAR(512);
-SET sTemp = '$';
-SET sTempChd = cast(catagid as char);
-
-WHILE sTempChd is not NULL DO
-SET sTemp = CONCAT(sTemp,',',sTempChd);
-SELECT group_concat(id) INTO sTempChd FROM of_catalog where FIND_IN_SET(upid,sTempChd)>0;
-END WHILE;
-return sTemp;
 END
  ;;
 delimiter ;
