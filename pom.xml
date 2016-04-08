@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.airshiplay</groupId>
-		<artifactId>spring4</artifactId>
+		<artifactId>spring4-parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<groupId>com.airshiplay</groupId>
@@ -20,8 +20,6 @@
 	</modules>
 	<dependencyManagement>
 		<dependencies>
-
-
 			<dependency>
 				<groupId>com.airshiplay</groupId>
 				<artifactId>official-common</artifactId>

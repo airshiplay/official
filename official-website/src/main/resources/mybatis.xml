@@ -15,15 +15,15 @@
        http://www.springframework.org/schema/task
 	   http://www.springframework.org/schema/task/spring-task-3.1.xsd">
 	<bean id="log-filter" class="com.alibaba.druid.filter.logging.Log4jFilter">
-		<property name="resultSetLogEnabled" value="false" />
+		<property name="resultSetLogEnabled" value="true" />
 		<property name="statementLogEnabled" value="false" />
-		<property name="statementExecutableSqlLogEnable" value="false" />
+		<property name="statementExecutableSqlLogEnable" value="true" />
 		<property name="statementExecuteAfterLogEnabled" value="false" />
 		<property name="statementExecuteBatchAfterLogEnabled" value="false" />
 		<property name="statementExecuteQueryAfterLogEnabled" value="false" />
 		<property name="statementExecuteUpdateAfterLogEnabled" value="false" />
 		<property name="statementParameterClearLogEnable" value="false" />
-		<property name="statementParameterSetLogEnabled" value="false" />
+		<property name="statementParameterSetLogEnabled" value="true" />
 		<property name="dataSourceLogEnabled" value="false" />
 		<property name="connectionCloseAfterLogEnabled" value="false" />
 		<property name="connectionCommitAfterLogEnabled" value="false" />
