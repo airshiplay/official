@@ -814,73 +814,213 @@ public class CfgCompanyExample {
             return (Criteria) this;
         }
 
-        public Criteria andFaviconIsNull() {
-            addCriterion("favicon is null");
+        public Criteria andSiteFaviconIsNull() {
+            addCriterion("site_favicon is null");
             return (Criteria) this;
         }
 
-        public Criteria andFaviconIsNotNull() {
-            addCriterion("favicon is not null");
+        public Criteria andSiteFaviconIsNotNull() {
+            addCriterion("site_favicon is not null");
             return (Criteria) this;
         }
 
-        public Criteria andFaviconEqualTo(String value) {
-            addCriterion("favicon =", value, "favicon");
+        public Criteria andSiteFaviconEqualTo(String value) {
+            addCriterion("site_favicon =", value, "siteFavicon");
             return (Criteria) this;
         }
 
-        public Criteria andFaviconNotEqualTo(String value) {
-            addCriterion("favicon <>", value, "favicon");
+        public Criteria andSiteFaviconNotEqualTo(String value) {
+            addCriterion("site_favicon <>", value, "siteFavicon");
             return (Criteria) this;
         }
 
-        public Criteria andFaviconGreaterThan(String value) {
-            addCriterion("favicon >", value, "favicon");
+        public Criteria andSiteFaviconGreaterThan(String value) {
+            addCriterion("site_favicon >", value, "siteFavicon");
             return (Criteria) this;
         }
 
-        public Criteria andFaviconGreaterThanOrEqualTo(String value) {
-            addCriterion("favicon >=", value, "favicon");
+        public Criteria andSiteFaviconGreaterThanOrEqualTo(String value) {
+            addCriterion("site_favicon >=", value, "siteFavicon");
             return (Criteria) this;
         }
 
-        public Criteria andFaviconLessThan(String value) {
-            addCriterion("favicon <", value, "favicon");
+        public Criteria andSiteFaviconLessThan(String value) {
+            addCriterion("site_favicon <", value, "siteFavicon");
             return (Criteria) this;
         }
 
-        public Criteria andFaviconLessThanOrEqualTo(String value) {
-            addCriterion("favicon <=", value, "favicon");
+        public Criteria andSiteFaviconLessThanOrEqualTo(String value) {
+            addCriterion("site_favicon <=", value, "siteFavicon");
             return (Criteria) this;
         }
 
-        public Criteria andFaviconLike(String value) {
-            addCriterion("favicon like", value, "favicon");
+        public Criteria andSiteFaviconLike(String value) {
+            addCriterion("site_favicon like", value, "siteFavicon");
             return (Criteria) this;
         }
 
-        public Criteria andFaviconNotLike(String value) {
-            addCriterion("favicon not like", value, "favicon");
+        public Criteria andSiteFaviconNotLike(String value) {
+            addCriterion("site_favicon not like", value, "siteFavicon");
             return (Criteria) this;
         }
 
-        public Criteria andFaviconIn(List<String> values) {
-            addCriterion("favicon in", values, "favicon");
+        public Criteria andSiteFaviconIn(List<String> values) {
+            addCriterion("site_favicon in", values, "siteFavicon");
             return (Criteria) this;
         }
 
-        public Criteria andFaviconNotIn(List<String> values) {
-            addCriterion("favicon not in", values, "favicon");
+        public Criteria andSiteFaviconNotIn(List<String> values) {
+            addCriterion("site_favicon not in", values, "siteFavicon");
             return (Criteria) this;
         }
 
-        public Criteria andFaviconBetween(String value1, String value2) {
-            addCriterion("favicon between", value1, value2, "favicon");
+        public Criteria andSiteFaviconBetween(String value1, String value2) {
+            addCriterion("site_favicon between", value1, value2, "siteFavicon");
             return (Criteria) this;
         }
 
-        public Criteria andFaviconNotBetween(String value1, String value2) {
-            addCriterion("favicon not between", value1, value2, "favicon");
+        public Criteria andSiteFaviconNotBetween(String value1, String value2) {
+            addCriterion("site_favicon not between", value1, value2, "siteFavicon");
+            return (Criteria) this;
+        }
+
+        public Criteria andSiteIcpIsNull() {
+            addCriterion("site_icp is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSiteIcpIsNotNull() {
+            addCriterion("site_icp is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSiteIcpEqualTo(String value) {
+            addCriterion("site_icp =", value, "siteIcp");
+            return (Criteria) this;
+        }
+
+        public Criteria andSiteIcpNotEqualTo(String value) {
+            addCriterion("site_icp <>", value, "siteIcp");
+            return (Criteria) this;
+        }
+
+        public Criteria andSiteIcpGreaterThan(String value) {
+            addCriterion("site_icp >", value, "siteIcp");
+            return (Criteria) this;
+        }
+
+        public Criteria andSiteIcpGreaterThanOrEqualTo(String value) {
+            addCriterion("site_icp >=", value, "siteIcp");
+            return (Criteria) this;
+        }
+
+        public Criteria andSiteIcpLessThan(String value) {
+            addCriterion("site_icp <", value, "siteIcp");
+            return (Criteria) this;
+        }
+
+        public Criteria andSiteIcpLessThanOrEqualTo(String value) {
+            addCriterion("site_icp <=", value, "siteIcp");
+            return (Criteria) this;
+        }
+
+        public Criteria andSiteIcpLike(String value) {
+            addCriterion("site_icp like", value, "siteIcp");
+            return (Criteria) this;
+        }
+
+        public Criteria andSiteIcpNotLike(String value) {
+            addCriterion("site_icp not like", value, "siteIcp");
+            return (Criteria) this;
+        }
+
+        public Criteria andSiteIcpIn(List<String> values) {
+            addCriterion("site_icp in", values, "siteIcp");
+            return (Criteria) this;
+        }
+
+        public Criteria andSiteIcpNotIn(List<String> values) {
+            addCriterion("site_icp not in", values, "siteIcp");
+            return (Criteria) this;
+        }
+
+        public Criteria andSiteIcpBetween(String value1, String value2) {
+            addCriterion("site_icp between", value1, value2, "siteIcp");
+            return (Criteria) this;
+        }
+
+        public Criteria andSiteIcpNotBetween(String value1, String value2) {
+            addCriterion("site_icp not between", value1, value2, "siteIcp");
+            return (Criteria) this;
+        }
+
+        public Criteria andSiteDomainIsNull() {
+            addCriterion("site_domain is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSiteDomainIsNotNull() {
+            addCriterion("site_domain is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSiteDomainEqualTo(String value) {
+            addCriterion("site_domain =", value, "siteDomain");
+            return (Criteria) this;
+        }
+
+        public Criteria andSiteDomainNotEqualTo(String value) {
+            addCriterion("site_domain <>", value, "siteDomain");
+            return (Criteria) this;
+        }
+
+        public Criteria andSiteDomainGreaterThan(String value) {
+            addCriterion("site_domain >", value, "siteDomain");
+            return (Criteria) this;
+        }
+
+        public Criteria andSiteDomainGreaterThanOrEqualTo(String value) {
+            addCriterion("site_domain >=", value, "siteDomain");
+            return (Criteria) this;
+        }
+
+        public Criteria andSiteDomainLessThan(String value) {
+            addCriterion("site_domain <", value, "siteDomain");
+            return (Criteria) this;
+        }
+
+        public Criteria andSiteDomainLessThanOrEqualTo(String value) {
+            addCriterion("site_domain <=", value, "siteDomain");
+            return (Criteria) this;
+        }
+
+        public Criteria andSiteDomainLike(String value) {
+            addCriterion("site_domain like", value, "siteDomain");
+            return (Criteria) this;
+        }
+
+        public Criteria andSiteDomainNotLike(String value) {
+            addCriterion("site_domain not like", value, "siteDomain");
+            return (Criteria) this;
+        }
+
+        public Criteria andSiteDomainIn(List<String> values) {
+            addCriterion("site_domain in", values, "siteDomain");
+            return (Criteria) this;
+        }
+
+        public Criteria andSiteDomainNotIn(List<String> values) {
+            addCriterion("site_domain not in", values, "siteDomain");
+            return (Criteria) this;
+        }
+
+        public Criteria andSiteDomainBetween(String value1, String value2) {
+            addCriterion("site_domain between", value1, value2, "siteDomain");
+            return (Criteria) this;
+        }
+
+        public Criteria andSiteDomainNotBetween(String value1, String value2) {
+            addCriterion("site_domain not between", value1, value2, "siteDomain");
             return (Criteria) this;
         }
     }

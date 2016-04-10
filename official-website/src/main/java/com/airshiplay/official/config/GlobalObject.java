@@ -37,7 +37,9 @@ public class GlobalObject {
 			company = companyService.getCompany();
 			navbar = indexService.getCatalogs();
 		} catch (ServiceException e) {
-			logger.error("index", e);
+			logger.error("GlobalObject", e);
+		}catch (Exception e) {
+			logger.error("GlobalObject", e);
 		}
 	}
 

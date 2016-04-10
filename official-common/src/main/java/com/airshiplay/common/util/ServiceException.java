@@ -1,4 +1,4 @@
-package com.airshiplay.util;
+package com.airshiplay.common.util;
 
 /**
  * 服务异常

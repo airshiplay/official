@@ -19,6 +19,8 @@ SET FOREIGN_KEY_CHECKS = 0;
 
 CREATE DATABASE IF NOT EXISTS official DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
 use official;
+GRANT ALL PRIVILEGES ON official.* to official_app@'%' IDENTIFIED BY 'official_app' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
 SET global max_sp_recursion_depth = 5;
 -- ----------------------------
 --  Table structure for `cfg_authority`
@@ -65,7 +67,9 @@ CREATE TABLE `cfg_company` (
   `meta_keyword` varchar(512) DEFAULT NULL,
   `meta_description` varchar(512) DEFAULT NULL,
   `meta_author` varchar(45) DEFAULT NULL,
-  `favicon` varchar(512) DEFAULT NULL COMMENT '网站-favicon.ico',
+  `site_favicon` varchar(512) DEFAULT NULL COMMENT '网站-favicon.ico',
+  `site_icp` varchar(45) DEFAULT NULL,
+  `site_domain` varchar(45) DEFAULT NULL COMMENT '网站域名',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='公司信息配置';
 
@@ -73,7 +77,7 @@ CREATE TABLE `cfg_company` (
 --  Records of `cfg_company`
 -- ----------------------------
 BEGIN;
-INSERT INTO `cfg_company` VALUES ('1', '北京阳光欣晴健康管理有限责任公司', '北京中关村融科', '010-1222', '100000', '阳光欣晴', '阳光随访，阳光APP', '阳光随访是什么', 'Lightheart Co., Ltd.', 'http://www.baidu.com/favicon.ico');
+INSERT INTO `cfg_company` VALUES ('1', '北京阳光欣晴健康管理有限责任公司', '北京中关村融科', '010-1222', '100000', '阳光欣晴', '阳光随访，阳光APP', '阳光随访是什么', 'Lightheart Co., Ltd.', 'http://www.baidu.com/favicon.ico', null, null);
 COMMIT;
 
 -- ----------------------------
@@ -114,6 +118,7 @@ CREATE TABLE `cfg_role_authority` (
 DROP TABLE IF EXISTS `cfg_user`;
 CREATE TABLE `cfg_user` (
   `id` bigint(20) NOT NULL,
+  `nickname` varchar(45) DEFAULT NULL,
   `username` varchar(45) NOT NULL,
   `email` varchar(45) DEFAULT NULL,
   `mobile` varchar(45) DEFAULT NULL,
@@ -131,7 +136,7 @@ CREATE TABLE `cfg_user` (
 --  Records of `cfg_user`
 -- ----------------------------
 BEGIN;
-INSERT INTO `cfg_user` VALUES ('1', 'superadmin', 'admin@admin', null, '111', '1111', '2016-04-08 09:44:27', null, '0', null, null);
+INSERT INTO `cfg_user` VALUES ('1', null, 'superadmin', 'admin@admin', null, 'b7fb5f77d7c3efd9358ea1c55bb74734', '0000', '2016-04-08 09:44:27', null, '0', null, null);
 COMMIT;
 
 -- ----------------------------
