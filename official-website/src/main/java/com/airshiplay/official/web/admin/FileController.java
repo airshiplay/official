@@ -43,7 +43,7 @@ public class FileController {
 
 	@RequestMapping(value = "/upload", produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody Object uploadfile(
-			@RequestParam("files") MultipartFile[] files,
+			@RequestParam("file") MultipartFile[] files,
 			@RequestHeader(required = false, value = "User-Agent") String userAgent,
 			@RequestHeader(required = false, value = "Authorization") String authorization,
 			HttpServletRequest request) throws IOException {
