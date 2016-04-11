@@ -31,12 +31,12 @@
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="<%=fullUrl%>">Home</a></li>
+					<li class="active"><a href="<%=contextPath%>">Home</a></li>
 					<c:forEach items="${navbar}" var="nav">
 						<c:choose>
 							<c:when test="${nav.level==1}">
 								<c:if test="${nav.subNavbar==null}">
-									<li><a href="<%=fullUrl%>/catalog/${nav.type}/${nav.id}">${nav.catalogName }
+									<li><a href="<%=contextPath%>/catalog/${nav.type}/${nav.id}">${nav.catalogName }
 									</a></li>
 								</c:if>
 								<!-- 含有子目录 -->
@@ -47,7 +47,7 @@
 											class="caret"></span></a>
 										<ul class="dropdown-menu">
 											<c:forEach items="${nav.subNavbar}" var="subnav">
-												<li><a href="<%=fullUrl%>/catalog/${subnav.urlPath}/${subnav.id}">${subnav.catalogName }</a></li>
+												<li><a href="<%=contextPath%>/catalog/${subnav.urlPath}/${subnav.id}">${subnav.catalogName }</a></li>
 											</c:forEach>
 										</ul></li>
 								</c:if>

@@ -43,7 +43,7 @@
               <ul class="nav side-menu">
                 <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu" style="display: none">
-                    <li><a href="<%=fullUrl%>/admin/home">Dashboard</a>
+                    <li><a href="<%=contextPath%>/admin/home">Dashboard</a>
                     </li>
                     <li><a href="index2.html">Dashboard2</a>
                     </li>
@@ -53,11 +53,11 @@
                 </li>
                 <li><a><i class="fa fa-edit"></i>系统配置 <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu" style="display: none">
-                    <li><a href="<%=fullUrl%>/admin/config/company">公司信息配置</a>
+                    <li><a href="<%=contextPath%>/admin/config/company">公司信息配置</a>
                     </li>
-                    <li><a href="<%=fullUrl%>/admin/config/site">网站导航配置</a>
+                    <li><a href="<%=contextPath%>/admin/config/site">网站导航配置</a>
                     </li>
-                    <li><a href="<%=fullUrl%>/admin/config/banner">滚动轮播广告配置</a>
+                    <li><a href="<%=contextPath%>/admin/config/banner">滚动轮播广告配置</a>
                     </li>
                     <li><a href="form_wizards.html">Form Wizard</a>
                     </li>
@@ -69,7 +69,7 @@
                 </li>
                 <li><a><i class="fa fa-desktop"></i>系统管理<span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu" style="display: none">
-                    <li><a href="<%=fullUrl%>/admin/system/usermanage">用户管理</a>
+                    <li><a href="<%=contextPath%>/admin/system/usermanage">用户管理</a>
                     </li>
                     <li><a href="media_gallery.html">角色管理</a>
                     </li>

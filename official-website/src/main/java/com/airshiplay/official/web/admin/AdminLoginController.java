@@ -48,10 +48,10 @@ public class AdminLoginController extends BaseController {
 					.getAttribute(SessionConstants.SESSION_LATEST_URL);
 			if (location != null && !location.equals("")) {
 				session.removeAttribute(SessionConstants.SESSION_LATEST_URL);
-				response.sendRedirect((String) location);
+				return "redirect:"+((String) location);
 			}
 			return "redirect:/admin/home";
-		} catch (ServiceException | IOException e) {
+		} catch (ServiceException e) {
 			e.printStackTrace();
 		}
 		return "/admin/login";

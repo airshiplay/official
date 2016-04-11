@@ -20,17 +20,17 @@
 
   <!-- Bootstrap core CSS -->
 
-  <link href="<%=fullUrl %>/resources/admin/css/bootstrap.min.css" rel="stylesheet">
+  <link href="<%=contextPath%>/resources/admin/css/bootstrap.min.css" rel="stylesheet">
 
-  <link href="<%=fullUrl %>/resources/admin/fonts/css/font-awesome.min.css" rel="stylesheet">
-  <link href="<%=fullUrl %>/resources/admin/css/animate.min.css" rel="stylesheet">
+  <link href="<%=contextPath%>/resources/admin/fonts/css/font-awesome.min.css" rel="stylesheet">
+  <link href="<%=contextPath%>/resources/admin/css/animate.min.css" rel="stylesheet">
 
   <!-- Custom styling plus plugins -->
-  <link href="<%=fullUrl %>/resources/admin/css/custom.css" rel="stylesheet">
-  <link href="<%=fullUrl %>/resources/admin/css/icheck/flat/green.css" rel="stylesheet">
+  <link href="<%=contextPath%>/resources/admin/css/custom.css" rel="stylesheet">
+  <link href="<%=contextPath%>/resources/admin/css/icheck/flat/green.css" rel="stylesheet">
 
 
-  <script src="<%=fullUrl %>/resources/admin/js/jquery.min.js"></script>
+  <script src="<%=contextPath%>/resources/admin/js/jquery.min.js"></script>
 
   <!--[if lt IE 9]>
         <script src="../assets/js/ie8-responsive-file-warning.js"></script>
@@ -124,7 +124,7 @@
     </div>
   </div>
     <!-- form validation -->
-  <script type="text/javascript" src="<%=fullUrl %>/resources/admin/js/parsley/parsley.min.js"></script>
+  <script type="text/javascript" src="<%=contextPath%>/resources/admin/js/parsley/parsley.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			/* $.listen('parsley:field:validate', function() {

@@ -19,19 +19,19 @@
 
   <!-- Bootstrap core CSS -->
 
-  <link href="<%=fullUrl %>/resources/admin/css/bootstrap.min.css" rel="stylesheet">
+  <link href="<%=contextPath%>/resources/admin/css/bootstrap.min.css" rel="stylesheet">
 
-  <link href="<%=fullUrl %>/resources/admin/fonts/css/font-awesome.min.css" rel="stylesheet">
-  <link href="<%=fullUrl %>/resources/admin/css/animate.min.css" rel="stylesheet">
+  <link href="<%=contextPath%>/resources/admin/fonts/css/font-awesome.min.css" rel="stylesheet">
+  <link href="<%=contextPath%>/resources/admin/css/animate.min.css" rel="stylesheet">
 
   <!-- Custom styling plus plugins -->
-  <link href="<%=fullUrl %>/resources/admin/css/custom.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="<%=fullUrl %>/resources/admin/css/maps/jquery-jvectormap-2.0.3.css" />
-  <link href="<%=fullUrl %>/resources/admin/css/icheck/flat/green.css" rel="stylesheet" />
-  <link href="<%=fullUrl %>/resources/admin/css/floatexamples.css" rel="stylesheet" type="text/css" />
+  <link href="<%=contextPath%>/resources/admin/css/custom.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="<%=contextPath%>/resources/admin/css/maps/jquery-jvectormap-2.0.3.css" />
+  <link href="<%=contextPath%>/resources/admin/css/icheck/flat/green.css" rel="stylesheet" />
+  <link href="<%=contextPath%>/resources/admin/css/floatexamples.css" rel="stylesheet" type="text/css" />
 
-  <script src="<%=fullUrl %>/resources/admin/js/jquery.min.js"></script>
-  <script src="<%=fullUrl %>/resources/admin/js/nprogress.js"></script>
+  <script src="<%=contextPath%>/resources/admin/js/jquery.min.js"></script>
+  <script src="<%=contextPath%>/resources/admin/js/nprogress.js"></script>
 
   <!--[if lt IE 9]>
         <script src="../assets/js/ie8-responsive-file-warning.js"></script>
@@ -812,35 +812,35 @@
     <div id="notif-group" class="tabbed_notifications"></div>
   </div>
 
-  <script src="<%=fullUrl %>/resources/admin/js/bootstrap.min.js"></script>
+  <script src="<%=contextPath%>/resources/admin/js/bootstrap.min.js"></script>
 
   <!-- gauge js -->
-  <script type="text/javascript" src="<%=fullUrl %>/resources/admin/js/gauge/gauge.min.js"></script>
-  <script type="text/javascript" src="<%=fullUrl %>/resources/admin/js/gauge/gauge_demo.js"></script>
+  <script type="text/javascript" src="<%=contextPath%>/resources/admin/js/gauge/gauge.min.js"></script>
+  <script type="text/javascript" src="<%=contextPath%>/resources/admin/js/gauge/gauge_demo.js"></script>
   <!-- bootstrap progress js -->
-  <script src="<%=fullUrl %>/resources/admin/js/progressbar/bootstrap-progressbar.min.js"></script>
-  <script src="<%=fullUrl %>/resources/admin/js/nicescroll/jquery.nicescroll.min.js"></script>
+  <script src="<%=contextPath%>/resources/admin/js/progressbar/bootstrap-progressbar.min.js"></script>
+  <script src="<%=contextPath%>/resources/admin/js/nicescroll/jquery.nicescroll.min.js"></script>
   <!-- icheck -->
-  <script src="<%=fullUrl %>/resources/admin/js/icheck/icheck.min.js"></script>
+  <script src="<%=contextPath%>/resources/admin/js/icheck/icheck.min.js"></script>
   <!-- daterangepicker -->
-  <script type="text/javascript" src="<%=fullUrl %>/resources/admin/js/moment/moment.min.js"></script>
-  <script type="text/javascript" src="<%=fullUrl %>/resources/admin/js/datepicker/daterangepicker.js"></script>
+  <script type="text/javascript" src="<%=contextPath%>/resources/admin/js/moment/moment.min.js"></script>
+  <script type="text/javascript" src="<%=contextPath%>/resources/admin/js/datepicker/daterangepicker.js"></script>
   <!-- chart js -->
-  <script src="<%=fullUrl %>/resources/admin/js/chartjs/chart.min.js"></script>
+  <script src="<%=contextPath%>/resources/admin/js/chartjs/chart.min.js"></script>
 
-  <script src="<%=fullUrl %>/resources/admin/js/custom.js"></script>
+  <script src="<%=contextPath%>/resources/admin/js/custom.js"></script>
 
   <!-- flot js -->
-  <!--[if lte IE 8]><script type="text/javascript" src="<%=fullUrl %>/resources/admin/js/excanvas.min.js"></script><![endif]-->
-  <script type="text/javascript" src="<%=fullUrl %>/resources/admin/js/flot/jquery.flot.js"></script>
-  <script type="text/javascript" src="<%=fullUrl %>/resources/admin/js/flot/jquery.flot.pie.js"></script>
-  <script type="text/javascript" src="<%=fullUrl %>/resources/admin/js/flot/jquery.flot.orderBars.js"></script>
-  <script type="text/javascript" src="<%=fullUrl %>/resources/admin/js/flot/jquery.flot.time.min.js"></script>
-  <script type="text/javascript" src="<%=fullUrl %>/resources/admin/js/flot/date.js"></script>
-  <script type="text/javascript" src="<%=fullUrl %>/resources/admin/js/flot/jquery.flot.spline.js"></script>
-  <script type="text/javascript" src="<%=fullUrl %>/resources/admin/js/flot/jquery.flot.stack.js"></script>
-  <script type="text/javascript" src="<%=fullUrl %>/resources/admin/js/flot/curvedLines.js"></script>
-  <script type="text/javascript" src="<%=fullUrl %>/resources/admin/js/flot/jquery.flot.resize.js"></script>
+  <!--[if lte IE 8]><script type="text/javascript" src="<%=contextPath%>/resources/admin/js/excanvas.min.js"></script><![endif]-->
+  <script type="text/javascript" src="<%=contextPath%>/resources/admin/js/flot/jquery.flot.js"></script>
+  <script type="text/javascript" src="<%=contextPath%>/resources/admin/js/flot/jquery.flot.pie.js"></script>
+  <script type="text/javascript" src="<%=contextPath%>/resources/admin/js/flot/jquery.flot.orderBars.js"></script>
+  <script type="text/javascript" src="<%=contextPath%>/resources/admin/js/flot/jquery.flot.time.min.js"></script>
+  <script type="text/javascript" src="<%=contextPath%>/resources/admin/js/flot/date.js"></script>
+  <script type="text/javascript" src="<%=contextPath%>/resources/admin/js/flot/jquery.flot.spline.js"></script>
+  <script type="text/javascript" src="<%=contextPath%>/resources/admin/js/flot/jquery.flot.stack.js"></script>
+  <script type="text/javascript" src="<%=contextPath%>/resources/admin/js/flot/curvedLines.js"></script>
+  <script type="text/javascript" src="<%=contextPath%>/resources/admin/js/flot/jquery.flot.resize.js"></script>
   <script>
     $(document).ready(function() {
       // [17, 74, 6, 39, 20, 85, 7]
@@ -919,12 +919,12 @@
   </script>
 
   <!-- worldmap -->
-  <script type="text/javascript" src="<%=fullUrl %>/resources/admin/js/maps/jquery-jvectormap-2.0.3.min.js"></script>
-  <script type="text/javascript" src="<%=fullUrl %>/resources/admin/js/maps/gdp-data.js"></script>
-  <script type="text/javascript" src="<%=fullUrl %>/resources/admin/js/maps/jquery-jvectormap-world-mill-en.js"></script>
-  <script type="text/javascript" src="<%=fullUrl %>/resources/admin/js/maps/jquery-jvectormap-us-aea-en.js"></script>
+  <script type="text/javascript" src="<%=contextPath%>/resources/admin/js/maps/jquery-jvectormap-2.0.3.min.js"></script>
+  <script type="text/javascript" src="<%=contextPath%>/resources/admin/js/maps/gdp-data.js"></script>
+  <script type="text/javascript" src="<%=contextPath%>/resources/admin/js/maps/jquery-jvectormap-world-mill-en.js"></script>
+  <script type="text/javascript" src="<%=contextPath%>/resources/admin/js/maps/jquery-jvectormap-us-aea-en.js"></script>
   <!-- pace -->
-  <script src="<%=fullUrl %>/resources/admin/js/pace/pace.min.js"></script>
+  <script src="<%=contextPath%>/resources/admin/js/pace/pace.min.js"></script>
   <script>
     $(function() {
       $('#world-map-gdp').vectorMap({
@@ -945,7 +945,7 @@
     });
   </script>
   <!-- skycons -->
-  <script src="<%=fullUrl %>/resources/admin/js/skycons/skycons.min.js"></script>
+  <script src="<%=contextPath%>/resources/admin/js/skycons/skycons.min.js"></script>
   <script>
     var icons = new Skycons({
         "color": "#73879C"
