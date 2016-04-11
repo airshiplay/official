@@ -16,7 +16,12 @@ public class DataTable<T> {
 		this.recordsFiltered = pageInfo.getPageNum();
 		this.draw = 3;
 	}
-
+	public DataTable(List<T> all) {
+		this.data = all;
+		this.recordsTotal = all.size();
+		this.recordsFiltered = 1;
+		this.draw = 1;
+	}
 	public int getDraw() {
 		return draw;
 	}

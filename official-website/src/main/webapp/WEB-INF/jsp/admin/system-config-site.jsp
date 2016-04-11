@@ -10,13 +10,12 @@
 <html lang="en">
 
 <head>
+  <title>${company.siteTitle}后台管理平台</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <!-- Meta, title, CSS, favicons, etc. -->
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <title>后台管理平台</title>
 
   <!-- Bootstrap core CSS -->
 
@@ -63,7 +62,7 @@
           <div class="page-title">
             <div class="title_left">
               <h3>
-                    Users
+                    网站导航配置
                     <small>
                         Some examples to get you started
                     </small>
@@ -114,10 +113,10 @@
                     <thead>
                       <tr>
                       	<th>序号</th>
-                        <th>用户名</th>
-                        <th>邮箱</th>
-                        <th>昵称</th>
-                        <th>登录日期</th>
+                        <th>名称</th>
+                        <th>级别</th>
+                        <th>顺序</th>
+                        <th>状态</th>
                         <th>操作</th>
                       </tr>
                     </thead>
@@ -218,13 +217,20 @@
             $('#datatable').dataTable({
             	"processing": true,
                 "serverSide": true,
-                "ajax" : "user/list/ajax",
+                "ajax" : "site/nav/ajax",
                 "columns": [
                   {"data": "id", "bSortable": false},
-                  {"data": "username"},
-                  {"data": "email"},
-                  {"data": "nickname"},
-                  {"data": "latestLoginTime"}
+                  {"data": "catalogName"},
+                  {"data": "level"},
+                  {"data": "seq"},
+                  {"data": "status",render: function ( data, type, row ) {
+                	  if(data==1){
+                		  return "审核中";
+                	  }else if(data==2){
+                		  return "生效";
+                	  }
+                      return "未知状态"+data;
+                  }}
                 ],
                 "columnDefs": [
                   {

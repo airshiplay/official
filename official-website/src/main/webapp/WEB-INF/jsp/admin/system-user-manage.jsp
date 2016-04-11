@@ -10,13 +10,12 @@
 <html lang="en">
 
 <head>
+  <title>${company.siteTitle}后台管理平台</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <!-- Meta, title, CSS, favicons, etc. -->
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <title>后台管理平台</title>
 
   <!-- Bootstrap core CSS -->
 
@@ -63,7 +62,7 @@
           <div class="page-title">
             <div class="title_left">
               <h3>
-                    Users
+                    用户管理
                     <small>
                         Some examples to get you started
                     </small>

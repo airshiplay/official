@@ -1,6 +1,9 @@
 package com.airshiplay.official.web.admin;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +35,8 @@ public class AdminLoginController extends BaseController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String loginPost(String username, String password, String captcha,
-			HttpServletRequest request, Model model) {
+			HttpServletRequest request, HttpServletResponse response,
+			Model model) {
 		String ip = null;
 		CfgUser user;
 		try {
@@ -40,8 +44,14 @@ public class AdminLoginController extends BaseController {
 			HttpSession session = request.getSession();
 			session.setAttribute("online", true);
 			session.setAttribute(SessionConstants.SESSION_USER, user);
+			Object location = session
+					.getAttribute(SessionConstants.SESSION_LATEST_URL);
+			if (location != null && !location.equals("")) {
+				session.removeAttribute(SessionConstants.SESSION_LATEST_URL);
+				response.sendRedirect((String) location);
+			}
 			return "redirect:/admin/home";
-		} catch (ServiceException e) {
+		} catch (ServiceException | IOException e) {
 			e.printStackTrace();
 		}
 		return "/admin/login";

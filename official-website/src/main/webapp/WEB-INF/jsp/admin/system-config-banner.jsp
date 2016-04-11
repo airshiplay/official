@@ -50,18 +50,25 @@
 
 <body class="nav-md">
 
-	<div class="container body">
-		<div class="main_container">
-			<jsp:include page="../template/admin/navbar.jsp" />
-			<!-- page content -->
-			<div class="right_col" role="main">
+  <div class="container body">
 
-<div class="">
 
+    <div class="main_container">
+
+      <jsp:include page="../template/admin/navbar.jsp"/> 
+      <!-- page content -->
+      <div class="right_col" role="main">
+        <div class="">
           <div class="page-title">
             <div class="title_left">
-              <h3>公司信息配置</h3>
+              <h3>
+                    轮播广告配置
+                    <small>
+                        Some examples to get you started
+                    </small>
+                </h3>
             </div>
+
             <div class="title_right">
               <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                 <div class="input-group">
@@ -74,78 +81,15 @@
             </div>
           </div>
           <div class="clearfix"></div>
+
           <div class="row">
+
             <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="x_panel">
                 <div class="x_title">
-                  <h2>公司信息配置 <small>different form elements</small></h2>
+                  <h2>Default Example <small>Users</small></h2>
                   <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                    </li>
-                    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                      <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">修改公司信息</a>
-                        </li>
-                        <li><a href="#">Settings 2</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li><a class="close-link"><i class="fa fa-close"></i></a>
-                    </li>
-                  </ul>
-                  <div class="clearfix"></div>
-                </div>
-                <div class="x_content">
-                  <br />
-                  <div id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
-
-                    <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">公司名称
-                      </label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12" value="${company.name }">
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">公司地址
-                      </label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="last-name" name="last-name" required="required" disabled="disabled" class="form-control col-md-7 col-xs-12 disable" value="${company.address}">
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">公司电话</label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name" value="${company.tel}">
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">公司邮编</label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name" value="${company.zipcode}">
-                      </div>
-                    </div>
-
-                    <div class="ln_solid"></div>
-                    <div class="form-group">
-                      <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                        <button type="submit" class="btn btn-primary">Cancel</button>
-                        <button type="submit" class="btn btn-success">Submit</button>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- 网站配置 -->
-                        <div class="col-md-12 col-sm-12 col-xs-12">
-              <div class="x_panel">
-                <div class="x_title">
-                  <h2>网站信息配置 <small>different form elements</small></h2>
-                  <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    <li><a href="#"><i class="fa fa-chevron-up"></i></a>
                     </li>
                     <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
@@ -156,84 +100,45 @@
                         </li>
                       </ul>
                     </li>
-                    <li><a class="close-link"><i class="fa fa-close"></i></a>
+                    <li><a href="#"><i class="fa fa-close"></i></a>
                     </li>
                   </ul>
                   <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                  <br />
-                  <div id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                  <p class="text-muted font-13 m-b-30">
+                    
+                  </p>
+                  <table id="datatable" class="table table-striped table-bordered">
+                    <thead>
+                      <tr>
+                      	<th>序号</th>
+                        <th>用户名</th>
+                        <th>邮箱</th>
+                        <th>昵称</th>
+                        <th>登录日期</th>
+                        <th>操作</th>
+                      </tr>
+                    </thead>
 
-                    <div class="form-group">
-                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">网站名称</label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name" value="${company.siteTitle}">
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">网站关键字</label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name" value="${company.metaKeyword}">
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">网站描述</label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name" value="${company.metaDescription}">
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">网站作者</label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name" value="${company.metaAuthor}">
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">网站ICP备案</label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name" value="${company.siteIcp}">
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">网站域名</label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="siteDomain" value="${company.siteDomain}">
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">网站favicon</label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
-                        <img type="text" name="siteFavicon" src="${company.siteFavicon}">
-                      </div>
-                    </div>
-
-                    <div class="ln_solid"></div>
-                    <div class="form-group">
-                      <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                        <button type="submit" class="btn btn-primary">Cancel</button>
-                        <button type="submit" class="btn btn-success">Submit</button>
-                      </div>
-                    </div>
-
-                  </div>
+                  </table>
                 </div>
               </div>
             </div>
+
+                </div>
+              </div>
+              <!-- footer content -->
+             <jsp:include page="../template/admin/footer.jsp"/> 
+              <!-- /footer content -->
+
+            </div>
+            <!-- /page content -->
           </div>
-		</div>
 
+        </div>
 
-				<!-- footer content -->
-				<jsp:include page="../template/admin/footer.jsp" />
-				<!-- /footer content -->
-
-			</div>
-			<!-- /page content -->
-		</div>
-	</div>
-
-	<div id="custom_notifications" class="custom-notifications dsp_none">
+        <div id="custom_notifications" class="custom-notifications dsp_none">
           <ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group">
           </ul>
           <div class="clearfix"></div>
@@ -312,13 +217,23 @@
             $('#datatable').dataTable({
             	"processing": true,
                 "serverSide": true,
-                "ajax" : "user/list/ajax",
+                "ajax" : "<%=fullUrl%>/admin/config/site/banner/ajax",
                 "columns": [
                   {"data": "id", "bSortable": false},
-                  {"data": "username"},
-                  {"data": "email"},
-                  {"data": "nickname"},
-                  {"data": "latestLoginTime"}
+                  {"data": "title"},
+                  {"data": "desc"},
+                  {"data": "imageUrl",
+                	  render:function(data){
+                	  return "<img src=\""+data+ "\" style=\"width:180px;\" >";
+                  }},
+                  {"data": "status",render: function ( data, type, row ) {
+                	  if(data==1){
+                		  return "审核中";
+                	  }else if(data==2){
+                		  return "生效";
+                	  }
+                      return "未知状态"+data;
+                  }}
                 ],
                 "columnDefs": [
                   {

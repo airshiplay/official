@@ -10,7 +10,7 @@
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/page" prefix="page" %>
 <html>
 <head>
-<title>官网</title>
+<title>${company.siteTitle}</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,8 +19,6 @@
 <meta name="author" content="${company.metaAuthor}">
 <meta name="keyword" content="${company.metaKeyword}">
 <link rel="icon" href="${company.siteFavicon}">
-
-<title>${company.siteTitle}</title>
 
 <!-- Bootstrap core CSS -->
 <link href="<%=fullUrl%>/resources/bootstrap/css/bootstrap.min.css"
@@ -51,36 +49,24 @@
 	<div class="container">
 	<div id="myCarousel" class="carousel slide">
 		<ol class="carousel-indicators">
-			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+		<c:forEach items="${banners}"   var="banner" varStatus="status">
+		<li data-target="#myCarousel" data-slide-to="${ status.index}" <c:if test="${ status.index==0}">class="active"</c:if>></li>
+		</c:forEach>
+			<!-- <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 			<li data-target="#myCarousel" data-slide-to="1"></li>
-			<li data-target="#myCarousel" data-slide-to="2"></li>
+			<li data-target="#myCarousel" data-slide-to="2"></li> -->
 		</ol>
 		<!-- Carousel items -->
 		<div class="carousel-inner">
-			<div class="active item">
-				<img
-					src="http://bootstrap.kinghack.com/assets/img/bootstrap-mdo-sfmoma-01.jpg"
-					alt="">
-			</div>
-
-			<div class="item">
-				<img
-					src="http://bootstrap.kinghack.com/assets/img/bootstrap-mdo-sfmoma-02.jpg"
-					alt="">
-			</div>
-
-			<div class="item">
-				<img
-					src="http://bootstrap.kinghack.com/assets/img/bootstrap-mdo-sfmoma-03.jpg"
-					alt="">
-				<div class="carousel-caption">
-					<h4>Third Thumbnail label</h4>
-					<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-						Donec id elit non mi porta gravida at eget metus. Nullam id dolor
-						id nibh ultricies vehicula ut id elit.</p>
-				</div>
-			</div>
-
+				<c:forEach items="${banners}"   var="banner" varStatus="status">
+					<div class=" <c:if test="${ status.index==0}">active</c:if>  item">
+						<img src="${banner.imageUrl }" alt="">
+						<div class="carousel-caption">
+							<h4>${banner.title }</h4>
+							<p>${banner.desc }</p>
+						</div>
+					</div>
+				</c:forEach>
 		</div>
 		<!-- Carousel nav -->
 		<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>

@@ -146,13 +146,18 @@ DROP TABLE IF EXISTS `of_banner`;
 CREATE TABLE `of_banner` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `title` varchar(45) DEFAULT NULL,
-  `desc` varchar(512) DEFAULT NULL,
+  `desc_` varchar(512) DEFAULT NULL,
+  `image_url` varchar(512) DEFAULT NULL,
   `url` varchar(512) DEFAULT NULL,
+  `seq` int(11) DEFAULT NULL COMMENT '显示顺序',
   `create_time` datetime DEFAULT NULL,
   `update_time` datetime DEFAULT NULL,
-  `status` int(11) DEFAULT NULL COMMENT '1、创建审核中；2生效',
+  `status_` int(11) DEFAULT NULL COMMENT '1、创建审核中；2生效',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='首页轮播广告条';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='首页轮播广告条';
+BEGIN;
+INSERT INTO `of_banner` VALUES ('1', 'Title', null, 'http://bootstrap.kinghack.com/assets/img/bootstrap-mdo-sfmoma-01.jpg', null, null, null, null, '2'), ('2', 'hello City', null, 'http://bootstrap.kinghack.com/assets/img/bootstrap-mdo-sfmoma-02.jpg', null, null, null, null, '2'), ('3', 'Third Thumbnail label', 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.', 'http://bootstrap.kinghack.com/assets/img/bootstrap-mdo-sfmoma-03.jpg', null, null, null, null, '2');
+COMMIT;
 
 -- ----------------------------
 --  Table structure for `of_catalog`
@@ -175,7 +180,7 @@ CREATE TABLE `of_catalog` (
 --  Records of `of_catalog`
 -- ----------------------------
 BEGIN;
-INSERT INTO `of_catalog` VALUES ('1', '111', null, '1', '1', '0', null, '1', null), ('2', '111-2', null, '2', '1', '1', 'detail', '2', null), ('3', '111-1', null, '1', '1', '1', 'detail', '2', null), ('4', '222', null, '2', '1', '0', null, '1', null), ('5', '222-1', null, '1', '1', '4', 'detail', '2', null), ('6', '222-2', null, '2', '1', '4', 'detail', '2', null), ('7', '555', null, '5', '1', '0', 'list', '1', 'mall'), ('8', '444', null, '4', '1', '0', null, '1', 'about_us'), ('9', '444-1', null, '1', '1', '8', 'detail', '2', 'company_intro'), ('10', '444-2', null, '2', '1', '8', 'detail', '2', 'company_culture'), ('11', '444-3', null, '3', '1', '8', 'detail', '2', 'contact'), ('12', '111-3', null, '3', '2', '1', null, '2', null), ('13', '333', null, '3', '1', '0', null, '1', null), ('14', '444-1-1', null, '1', '1', '9', null, '3', null), ('15', '444-2-1', null, '1', '1', '10', null, '3', null), ('16', '444-1-2', null, '2', '1', '9', null, '3', null);
+INSERT INTO `of_catalog` VALUES ('1', '111', null, '1', '2', '0', null, '1', null), ('2', '111-2', null, '2', '2', '1', 'detail', '2', null), ('3', '111-1', null, '1', '2', '1', 'detail', '2', null), ('4', '222', null, '2', '2', '0', null, '1', null), ('5', '222-1', null, '1', '2', '4', 'detail', '2', null), ('6', '222-2', null, '2', '2', '4', 'detail', '2', null), ('7', '555', null, '5', '2', '0', 'list', '1', 'mall'), ('8', '444', null, '4', '2', '0', null, '1', 'about_us'), ('9', '444-1', null, '1', '2', '8', 'detail', '2', 'company_intro'), ('10', '444-2', null, '2', '2', '8', 'detail', '2', 'company_culture'), ('11', '444-3', null, '3', '2', '8', 'detail', '2', 'contact'), ('12', '111-3', null, '3', '1', '1', null, '2', null), ('13', '333', null, '3', '2', '0', null, '1', null), ('14', '444-1-1', null, '1', '2', '9', null, '3', null), ('15', '444-2-1', null, '1', '2', '10', null, '3', null), ('16', '444-1-2', null, '2', '2', '9', null, '3', null);
 COMMIT;
 
 -- ----------------------------

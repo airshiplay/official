@@ -326,72 +326,142 @@ public class OfBannerExample {
         }
 
         public Criteria andDescIsNull() {
-            addCriterion("desc is null");
+            addCriterion("desc_ is null");
             return (Criteria) this;
         }
 
         public Criteria andDescIsNotNull() {
-            addCriterion("desc is not null");
+            addCriterion("desc_ is not null");
             return (Criteria) this;
         }
 
         public Criteria andDescEqualTo(String value) {
-            addCriterion("desc =", value, "desc");
+            addCriterion("desc_ =", value, "desc");
             return (Criteria) this;
         }
 
         public Criteria andDescNotEqualTo(String value) {
-            addCriterion("desc <>", value, "desc");
+            addCriterion("desc_ <>", value, "desc");
             return (Criteria) this;
         }
 
         public Criteria andDescGreaterThan(String value) {
-            addCriterion("desc >", value, "desc");
+            addCriterion("desc_ >", value, "desc");
             return (Criteria) this;
         }
 
         public Criteria andDescGreaterThanOrEqualTo(String value) {
-            addCriterion("desc >=", value, "desc");
+            addCriterion("desc_ >=", value, "desc");
             return (Criteria) this;
         }
 
         public Criteria andDescLessThan(String value) {
-            addCriterion("desc <", value, "desc");
+            addCriterion("desc_ <", value, "desc");
             return (Criteria) this;
         }
 
         public Criteria andDescLessThanOrEqualTo(String value) {
-            addCriterion("desc <=", value, "desc");
+            addCriterion("desc_ <=", value, "desc");
             return (Criteria) this;
         }
 
         public Criteria andDescLike(String value) {
-            addCriterion("desc like", value, "desc");
+            addCriterion("desc_ like", value, "desc");
             return (Criteria) this;
         }
 
         public Criteria andDescNotLike(String value) {
-            addCriterion("desc not like", value, "desc");
+            addCriterion("desc_ not like", value, "desc");
             return (Criteria) this;
         }
 
         public Criteria andDescIn(List<String> values) {
-            addCriterion("desc in", values, "desc");
+            addCriterion("desc_ in", values, "desc");
             return (Criteria) this;
         }
 
         public Criteria andDescNotIn(List<String> values) {
-            addCriterion("desc not in", values, "desc");
+            addCriterion("desc_ not in", values, "desc");
             return (Criteria) this;
         }
 
         public Criteria andDescBetween(String value1, String value2) {
-            addCriterion("desc between", value1, value2, "desc");
+            addCriterion("desc_ between", value1, value2, "desc");
             return (Criteria) this;
         }
 
         public Criteria andDescNotBetween(String value1, String value2) {
-            addCriterion("desc not between", value1, value2, "desc");
+            addCriterion("desc_ not between", value1, value2, "desc");
+            return (Criteria) this;
+        }
+
+        public Criteria andImageUrlIsNull() {
+            addCriterion("image_url is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andImageUrlIsNotNull() {
+            addCriterion("image_url is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andImageUrlEqualTo(String value) {
+            addCriterion("image_url =", value, "imageUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andImageUrlNotEqualTo(String value) {
+            addCriterion("image_url <>", value, "imageUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andImageUrlGreaterThan(String value) {
+            addCriterion("image_url >", value, "imageUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andImageUrlGreaterThanOrEqualTo(String value) {
+            addCriterion("image_url >=", value, "imageUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andImageUrlLessThan(String value) {
+            addCriterion("image_url <", value, "imageUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andImageUrlLessThanOrEqualTo(String value) {
+            addCriterion("image_url <=", value, "imageUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andImageUrlLike(String value) {
+            addCriterion("image_url like", value, "imageUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andImageUrlNotLike(String value) {
+            addCriterion("image_url not like", value, "imageUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andImageUrlIn(List<String> values) {
+            addCriterion("image_url in", values, "imageUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andImageUrlNotIn(List<String> values) {
+            addCriterion("image_url not in", values, "imageUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andImageUrlBetween(String value1, String value2) {
+            addCriterion("image_url between", value1, value2, "imageUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andImageUrlNotBetween(String value1, String value2) {
+            addCriterion("image_url not between", value1, value2, "imageUrl");
             return (Criteria) this;
         }
 
@@ -462,6 +532,66 @@ public class OfBannerExample {
 
         public Criteria andUrlNotBetween(String value1, String value2) {
             addCriterion("url not between", value1, value2, "url");
+            return (Criteria) this;
+        }
+
+        public Criteria andSeqIsNull() {
+            addCriterion("seq is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSeqIsNotNull() {
+            addCriterion("seq is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSeqEqualTo(Integer value) {
+            addCriterion("seq =", value, "seq");
+            return (Criteria) this;
+        }
+
+        public Criteria andSeqNotEqualTo(Integer value) {
+            addCriterion("seq <>", value, "seq");
+            return (Criteria) this;
+        }
+
+        public Criteria andSeqGreaterThan(Integer value) {
+            addCriterion("seq >", value, "seq");
+            return (Criteria) this;
+        }
+
+        public Criteria andSeqGreaterThanOrEqualTo(Integer value) {
+            addCriterion("seq >=", value, "seq");
+            return (Criteria) this;
+        }
+
+        public Criteria andSeqLessThan(Integer value) {
+            addCriterion("seq <", value, "seq");
+            return (Criteria) this;
+        }
+
+        public Criteria andSeqLessThanOrEqualTo(Integer value) {
+            addCriterion("seq <=", value, "seq");
+            return (Criteria) this;
+        }
+
+        public Criteria andSeqIn(List<Integer> values) {
+            addCriterion("seq in", values, "seq");
+            return (Criteria) this;
+        }
+
+        public Criteria andSeqNotIn(List<Integer> values) {
+            addCriterion("seq not in", values, "seq");
+            return (Criteria) this;
+        }
+
+        public Criteria andSeqBetween(Integer value1, Integer value2) {
+            addCriterion("seq between", value1, value2, "seq");
+            return (Criteria) this;
+        }
+
+        public Criteria andSeqNotBetween(Integer value1, Integer value2) {
+            addCriterion("seq not between", value1, value2, "seq");
             return (Criteria) this;
         }
 
@@ -586,62 +716,62 @@ public class OfBannerExample {
         }
 
         public Criteria andStatusIsNull() {
-            addCriterion("status is null");
+            addCriterion("status_ is null");
             return (Criteria) this;
         }
 
         public Criteria andStatusIsNotNull() {
-            addCriterion("status is not null");
+            addCriterion("status_ is not null");
             return (Criteria) this;
         }
 
         public Criteria andStatusEqualTo(Integer value) {
-            addCriterion("status =", value, "status");
+            addCriterion("status_ =", value, "status");
             return (Criteria) this;
         }
 
         public Criteria andStatusNotEqualTo(Integer value) {
-            addCriterion("status <>", value, "status");
+            addCriterion("status_ <>", value, "status");
             return (Criteria) this;
         }
 
         public Criteria andStatusGreaterThan(Integer value) {
-            addCriterion("status >", value, "status");
+            addCriterion("status_ >", value, "status");
             return (Criteria) this;
         }
 
         public Criteria andStatusGreaterThanOrEqualTo(Integer value) {
-            addCriterion("status >=", value, "status");
+            addCriterion("status_ >=", value, "status");
             return (Criteria) this;
         }
 
         public Criteria andStatusLessThan(Integer value) {
-            addCriterion("status <", value, "status");
+            addCriterion("status_ <", value, "status");
             return (Criteria) this;
         }
 
         public Criteria andStatusLessThanOrEqualTo(Integer value) {
-            addCriterion("status <=", value, "status");
+            addCriterion("status_ <=", value, "status");
             return (Criteria) this;
         }
 
         public Criteria andStatusIn(List<Integer> values) {
-            addCriterion("status in", values, "status");
+            addCriterion("status_ in", values, "status");
             return (Criteria) this;
         }
 
         public Criteria andStatusNotIn(List<Integer> values) {
-            addCriterion("status not in", values, "status");
+            addCriterion("status_ not in", values, "status");
             return (Criteria) this;
         }
 
         public Criteria andStatusBetween(Integer value1, Integer value2) {
-            addCriterion("status between", value1, value2, "status");
+            addCriterion("status_ between", value1, value2, "status");
             return (Criteria) this;
         }
 
         public Criteria andStatusNotBetween(Integer value1, Integer value2) {
-            addCriterion("status not between", value1, value2, "status");
+            addCriterion("status_ not between", value1, value2, "status");
             return (Criteria) this;
         }
     }

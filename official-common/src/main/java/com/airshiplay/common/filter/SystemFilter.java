@@ -30,7 +30,7 @@ public class SystemFilter implements Filter {
 		if (!req.getRequestURL().toString().contains("/admin/login")
 				&& (session == null || session
 						.getAttribute(SessionConstants.SESSION_USER) == null)) {
-			
+			session.setAttribute(SessionConstants.SESSION_LATEST_URL, req.getRequestURL().toString());
 			resp.sendRedirect(req.getContextPath()+"/admin/login");
 		} else {
 			chain.doFilter(request, response);

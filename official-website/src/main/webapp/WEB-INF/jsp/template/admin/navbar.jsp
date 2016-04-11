@@ -55,9 +55,9 @@
                   <ul class="nav child_menu" style="display: none">
                     <li><a href="<%=fullUrl%>/admin/config/company">公司信息配置</a>
                     </li>
-                    <li><a href="form_advanced.html">Advanced Components</a>
+                    <li><a href="<%=fullUrl%>/admin/config/site">网站导航配置</a>
                     </li>
-                    <li><a href="form_validation.html">Form Validation</a>
+                    <li><a href="<%=fullUrl%>/admin/config/banner">滚动轮播广告配置</a>
                     </li>
                     <li><a href="form_wizards.html">Form Wizard</a>
                     </li>

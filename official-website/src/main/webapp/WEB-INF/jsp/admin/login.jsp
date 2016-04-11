@@ -22,7 +22,7 @@
 
   <link href="<%=fullUrl %>/resources/admin/css/bootstrap.min.css" rel="stylesheet">
 
-  <link href="fonts/css/font-awesome.min.css" rel="stylesheet">
+  <link href="<%=fullUrl %>/resources/admin/fonts/css/font-awesome.min.css" rel="stylesheet">
   <link href="<%=fullUrl %>/resources/admin/css/animate.min.css" rel="stylesheet">
 
   <!-- Custom styling plus plugins -->
