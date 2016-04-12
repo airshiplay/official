@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import com.airshiplay.official.mybatis.mapper.CfgAuthorityMapper;
 import com.airshiplay.official.mybatis.mapper.CfgRoleMapper;
 import com.airshiplay.official.mybatis.mapper.CfgUserMapper;
+import com.airshiplay.official.mybatis.mapper.custom.CustomCfgAuthorityMapper;
+import com.airshiplay.official.mybatis.mapper.custom.CustomCfgRoleMapper;
 import com.airshiplay.official.mybatis.model.CfgAuthority;
 import com.airshiplay.official.mybatis.model.CfgAuthorityExample;
 import com.airshiplay.official.mybatis.model.CfgRole;
@@ -17,6 +19,9 @@ import com.airshiplay.official.mybatis.model.CfgRoleExample;
 import com.airshiplay.official.mybatis.model.CfgUser;
 import com.airshiplay.official.mybatis.model.CfgUserExample;
 import com.airshiplay.official.service.UserService;
+import com.airshiplay.official.service.model.ServiceRole;
+import com.airshiplay.official.service.model.ServiceUser;
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.google.protobuf.ServiceException;
@@ -29,6 +34,10 @@ public class UserServiceImpl implements UserService {
 	CfgRoleMapper cfgRoleMapper;
 	@Autowired
 	CfgAuthorityMapper cfgAuthorityMapper;
+	@Autowired
+	CustomCfgRoleMapper customCfgRoleMapper;
+	@Autowired
+	CustomCfgAuthorityMapper customCfgAuthorityMapper;
 
 	@Override
 	public CfgUser createUser(Long regUid, String username, String mobile,
@@ -153,18 +162,40 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public PageInfo<CfgUser> getUsers(int pageNum, int pageSize) {
+	public PageInfo<ServiceUser> getUsers(int pageNum, int pageSize) {
 		PageHelper.startPage(pageNum, pageSize);
 		List<CfgUser> list = cfgUserMapper
 				.selectByExample(new CfgUserExample());
-		return new PageInfo<CfgUser>(list);
+		Page<ServiceUser> result = new Page<ServiceUser>();
+		for (CfgUser user : list) {
+			ServiceUser ur = new ServiceUser(user);
+			List<CfgRole> roles = customCfgRoleMapper.getRolesByUid(user
+					.getId());
+			ur.setRoles(roles);
+			result.add(ur);
+		}
+		result.setPageNum(((Page<CfgUser>) list).getPageNum());
+		result.setPageSize(((Page<CfgUser>) list).getPageSize());
+		result.setTotal(((Page<CfgUser>) list).getTotal());
+		return new PageInfo<ServiceUser>(result);
 	}
 
 	@Override
-	public PageInfo<CfgRole> getRoles(int pageNum, int pageSize) {
+	public PageInfo<ServiceRole> getRoles(int pageNum, int pageSize) {
 		PageHelper.startPage(pageNum, pageSize);
-		return new PageInfo<CfgRole>(
-				cfgRoleMapper.selectByExample(new CfgRoleExample()));
+		List<CfgRole> list = cfgRoleMapper
+				.selectByExample(new CfgRoleExample());
+		Page<ServiceRole> result = new Page<ServiceRole>();
+		for (CfgRole role : list) {
+			ServiceRole ur = new ServiceRole(role);
+			List<CfgAuthority> authorities = customCfgAuthorityMapper
+					.getAuthoritiesByRoleId(role.getId());
+			ur.setAuthorities(authorities);
+			result.add(ur);
+		}
+		result.setPageNum(((Page<CfgRole>) list).getPageNum());
+		result.setPageSize(((Page<CfgRole>) list).getPageSize());
+		result.setTotal(((Page<CfgRole>) list).getTotal());
+		return new PageInfo<ServiceRole>(result);
 	}
-
 }

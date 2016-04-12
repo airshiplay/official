@@ -27,4 +27,11 @@ public class CompanyServiceImpl implements CompanyService {
 		return list.get(0);
 	}
 
+	@Override
+	public CfgCompany updateCompany(CfgCompany company) {
+		companyMapper.updateByPrimaryKeySelective(company);
+		company=companyMapper.selectByPrimaryKey(company.getId());
+		return company;
+	}
+
 }

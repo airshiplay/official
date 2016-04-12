@@ -16,7 +16,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <link rel="icon" href="${company.siteFavicon}">
   <!-- Bootstrap core CSS -->
 
   <link href="<%=contextPath%>/resources/admin/css/bootstrap.min.css" rel="stylesheet">
@@ -100,6 +100,7 @@
                         </li>
                       </ul>
                     </li>
+                    <li><a href="#"  data-toggle="modal" data-target="#companyModal" ><i class="fa fa-plus"></i></a>
                     <li><a href="#"><i class="fa fa-close"></i></a>
                     </li>
                   </ul>
@@ -116,6 +117,7 @@
                         <th>用户名</th>
                         <th>邮箱</th>
                         <th>昵称</th>
+                        <th>角色</th>
                         <th>登录日期</th>
                         <th>操作</th>
                       </tr>
@@ -179,79 +181,46 @@
 
         <!-- pace -->
         <script src="<%=contextPath%>/resources/admin/js/pace/pace.min.js"></script>
-        <script>
-          var handleDataTableButtons = function() {
-              "use strict";
-              0 !== $("#datatable-buttons").length && $("#datatable-buttons").DataTable({
-                dom: "Bfrtip",
-                buttons: [{
-                  extend: "copy",
-                  className: "btn-sm"
-                }, {
-                  extend: "csv",
-                  className: "btn-sm"
-                }, {
-                  extend: "excel",
-                  className: "btn-sm"
-                }, {
-                  extend: "pdf",
-                  className: "btn-sm"
-                }, {
-                  extend: "print",
-                  className: "btn-sm"
-                }],
-                responsive: !0
-              })
-            },
-            TableManageButtons = function() {
-              "use strict";
-              return {
-                init: function() {
-                  handleDataTableButtons()
-                }
-              }
-            }();
-        </script>
-        <script type="text/javascript">
-          $(document).ready(function() {
-            $('#datatable').dataTable({
-            	"processing": true,
-                "serverSide": true,
-                "ajax" : "user/list/ajax",
-                "columns": [
-                  {"data": "id", "bSortable": false},
-                  {"data": "username"},
-                  {"data": "email"},
-                  {"data": "nickname"},
-                  {"data": "latestLoginTime"}
-                ],
-                "columnDefs": [
-                  {
-                    "targets": [5],
-                    "data": "id",
-                    "render": function(data, type, full) {
-                      return "<a href='/update?id=" + data + "'>Update</a>";
-                    }
-                  }
-                ]
-            });
-           /*  $('#datatable-keytable').DataTable({
-              keys: true
-            });
-            $('#datatable-responsive').DataTable();
-            $('#datatable-scroller').DataTable({
-              ajax: "js/datatables/json/scroller-demo.json",
-              deferRender: true,
-              scrollY: 380,
-              scrollCollapse: true,
-              scroller: true
-            });
-            var table = $('#datatable-fixed-header').DataTable({
-              fixedHeader: true
-            }); */
-          });
-          TableManageButtons.init();
-        </script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#datatable').dataTable({
+				"processing" : true,
+				"serverSide" : true,
+				"ajax" : "user/list/ajax",
+				"columns" : [ {
+					"data" : "id",
+					"bSortable" : false
+				}, {
+					"data" : "username"
+				}, {
+					"data" : "email"
+				}, {
+					"data" : "nickname"
+				}, {
+					"data" : "roles",
+					render : function(data, type, row) {
+						var result="";
+						for (var i = 0; i < row.roles.length; i++) {
+							if(i!=0)
+								result = result +",";
+							result = result + row.roles[i].roleName;
+						}
+						return result;
+					}
+				}, {
+					"data" : "latestLoginTime"
+				} ],
+				"columnDefs" : [ {
+					"targets" : [ 6 ],
+					"data" : "id",
+					"render" : function(data, type, full) {
+						return "<a href='/update?id=" + data + "'>Update</a>";
+					}
+				} ]
+			});
+
+		});
+	</script>
 
 
 </body>

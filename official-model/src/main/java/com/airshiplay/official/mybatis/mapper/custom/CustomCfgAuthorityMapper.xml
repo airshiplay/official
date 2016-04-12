@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.airshiplay.official.mybatis.mapper.custom.CustomCfgAuthorityMapper">
+	<resultMap id="BaseResultMap"
+		type="com.airshiplay.official.mybatis.model.CfgAuthority"
+		extends="com.airshiplay.official.mybatis.mapper.CfgAuthorityMapper.BaseResultMap">
+	</resultMap>
+
+	<select id="getAuthoritiesByRoleId" parameterType="long"
+		resultMap="BaseResultMap">
+		SELECT *FROM cfg_authority auth
+		LEFT JOIN cfg_role_authority rauth ON rauth.authority_id=auth.id
+		WHERE rauth.role_id=#{roleId}
+	</select>
+
+</mapper>

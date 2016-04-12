@@ -7,12 +7,13 @@
 		extends="com.airshiplay.official.mybatis.mapper.OfCatalogMapper.BaseResultMap"></resultMap>
 	<select id="getCatalogs" resultType="hashmap">
 		SELECT ca.*,ca.catalog_name
-		as catalogName,ca.url_path as urlPathFROM
+		as catalogName,ca.url_path as urlPath FROM
 		of_catalog ca ORDER
 		BY seq
 	</select>
 
 	<select id="getCatalogTree" parameterType="long" resultMap="BaseResultMap">
-		call SHOW_CATALOG_TREE(#{cataid},#{status});
+		call
+		SHOW_CATALOG_TREE(#{cataid},#{status});
 	</select>
 </mapper>

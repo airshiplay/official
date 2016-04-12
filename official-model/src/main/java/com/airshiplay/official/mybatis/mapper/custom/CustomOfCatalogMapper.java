@@ -14,7 +14,7 @@ public interface CustomOfCatalogMapper {
 	 * 
 	 * @param cataid
 	 * @param status
-	 *            null 所有；不为null，按照条件查询
+	 *            null 所有；不为null，按照条件查询；1审核；2生效
 	 * @return
 	 */
 	public List<OfCatalog> getCatalogTree(

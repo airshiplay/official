@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.airshiplay.official.mybatis.mapper.custom.CustomCfgRoleMapper">
+	<resultMap type="com.airshiplay.official.mybatis.model.CfgRole"
+		id="BaseResultMap"
+		extends="com.airshiplay.official.mybatis.mapper.CfgRoleMapper.BaseResultMap"></resultMap>
+
+	<select id="getRolesByUid" parameterType="long" resultMap="BaseResultMap">
+		SELECT *FROM cfg_role role
+		LEFT JOIN cfg_user_role urole on urole.role_id=role.id
+		WHERE urole.uid=#{uid}
+	</select>
+
+
+</mapper>

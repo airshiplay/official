@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.airshiplay.official.config.ConfigInfo;
 import com.airshiplay.official.web.model.ResultMessage;
@@ -46,11 +47,11 @@ public class FileController {
 			@RequestParam("file") MultipartFile[] files,
 			@RequestHeader(required = false, value = "User-Agent") String userAgent,
 			@RequestHeader(required = false, value = "Authorization") String authorization,
-			HttpServletRequest request) throws IOException {
+			MultipartHttpServletRequest request) throws IOException {
 		String objectKey = request.getParameter("objectkey");
 		List<String> list = new ArrayList<String>();
 		for (MultipartFile file : files) {
-			if (file.isEmpty()) {
+			if (file.isEmpty()) {request.getFileMap();
 				System.out.println("文件未上传");
 			} else {
 				String fileDir = configInfo.getFileSaveDir().getFile()

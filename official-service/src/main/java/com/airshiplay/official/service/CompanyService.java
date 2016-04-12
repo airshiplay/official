@@ -5,4 +5,6 @@ import com.google.protobuf.ServiceException;
 
 public interface CompanyService {
 	public CfgCompany getCompany() throws ServiceException;
+
+	public CfgCompany updateCompany(CfgCompany company);
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.airshiplay.common.constants.SessionConstants;
+import com.airshiplay.common.util.IpUtil;
 import com.airshiplay.official.mybatis.model.CfgUser;
 import com.airshiplay.official.service.UserService;
 import com.airshiplay.official.web.BaseController;
@@ -37,7 +38,7 @@ public class AdminLoginController extends BaseController {
 	public String loginPost(String username, String password, String captcha,
 			HttpServletRequest request, HttpServletResponse response,
 			Model model) {
-		String ip = null;
+		String ip = IpUtil.getIpAddr(request);
 		CfgUser user;
 		try {
 			user = userService.loginUser("superadmin", password, ip);

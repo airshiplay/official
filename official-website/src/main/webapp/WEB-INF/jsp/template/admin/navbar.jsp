@@ -71,7 +71,7 @@
                   <ul class="nav child_menu" style="display: none">
                     <li><a href="<%=contextPath%>/admin/system/usermanage">用户管理</a>
                     </li>
-                    <li><a href="media_gallery.html">角色管理</a>
+                    <li><a href="<%=contextPath%>/admin/system/rolemanage"">角色管理</a>
                     </li>
                     <li><a href="typography.html">Typography</a>
                     </li>

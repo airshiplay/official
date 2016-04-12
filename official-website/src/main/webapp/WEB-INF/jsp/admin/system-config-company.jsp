@@ -16,7 +16,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <link rel="icon" href="${company.siteFavicon}">
   <!-- Bootstrap core CSS -->
 
   <link href="<%=contextPath%>/resources/admin/css/bootstrap.min.css" rel="stylesheet">
@@ -82,15 +82,7 @@
                   <ul class="nav navbar-right panel_toolbox">
                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                     </li>
-                    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                      <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">修改公司信息</a>
-                        </li>
-                        <li><a href="#">Settings 2</a>
-                        </li>
-                      </ul>
-                    </li>
+                    <li><a href="#" data-toggle="modal" data-target="#companyModal" ><i class="fa fa-edit"></i></a>
                     <li><a class="close-link"><i class="fa fa-close"></i></a>
                     </li>
                   </ul>
@@ -104,7 +96,7 @@
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">公司名称
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12" value="${company.name }">
+                        <input type="text" id="first-name" required="required" disabled="disabled" class="form-control col-md-7 col-xs-12" value="${company.name }">
                       </div>
                     </div>
                     <div class="form-group">
@@ -117,23 +109,23 @@
                     <div class="form-group">
                       <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">公司电话</label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name" value="${company.tel}">
+                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" disabled="disabled" name="middle-name" value="${company.tel}">
                       </div>
                     </div>
                     <div class="form-group">
                       <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">公司邮编</label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name" value="${company.zipcode}">
+                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" disabled="disabled" name="middle-name" value="${company.zipcode}">
                       </div>
                     </div>
 
-                    <div class="ln_solid"></div>
+                    <!-- <div class="ln_solid"></div>
                     <div class="form-group">
                       <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                         <button type="submit" class="btn btn-primary">Cancel</button>
                         <button type="submit" class="btn btn-success">Submit</button>
                       </div>
-                    </div>
+                    </div> -->
 
                   </div>
                 </div>
@@ -147,15 +139,7 @@
                   <ul class="nav navbar-right panel_toolbox">
                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                     </li>
-                    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                      <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Settings 1</a>
-                        </li>
-                        <li><a href="#">Settings 2</a>
-                        </li>
-                      </ul>
-                    </li>
+                     <li><a href="#" data-toggle="modal" data-target="#siteModal" ><i class="fa fa-edit"></i></a>
                     <li><a class="close-link"><i class="fa fa-close"></i></a>
                     </li>
                   </ul>
@@ -168,37 +152,37 @@
                     <div class="form-group">
                       <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">网站名称</label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name" value="${company.siteTitle}">
+                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" disabled="disabled" name="middle-name" value="${company.siteTitle}">
                       </div>
                     </div>
                     <div class="form-group">
                       <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">网站关键字</label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name" value="${company.metaKeyword}">
+                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" disabled="disabled" name="middle-name" value="${company.metaKeyword}">
                       </div>
                     </div>
                     <div class="form-group">
                       <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">网站描述</label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name" value="${company.metaDescription}">
+                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" disabled="disabled" name="middle-name" value="${company.metaDescription}">
                       </div>
                     </div>
                     <div class="form-group">
                       <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">网站作者</label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name" value="${company.metaAuthor}">
+                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" disabled="disabled" name="middle-name" value="${company.metaAuthor}">
                       </div>
                     </div>
                     <div class="form-group">
                       <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">网站ICP备案</label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name" value="${company.siteIcp}">
+                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" disabled="disabled" name="middle-name" value="${company.siteIcp}">
                       </div>
                     </div>
                     <div class="form-group">
                       <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">网站域名</label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="siteDomain" value="${company.siteDomain}">
+                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" disabled="disabled" name="siteDomain" value="${company.siteDomain}">
                       </div>
                     </div>
                     <div class="form-group">
@@ -208,13 +192,13 @@
                       </div>
                     </div>
 
-                    <div class="ln_solid"></div>
+                    <!-- <div class="ln_solid"></div>
                     <div class="form-group">
                       <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                         <button type="submit" class="btn btn-primary">Cancel</button>
                         <button type="submit" class="btn btn-success">Submit</button>
                       </div>
-                    </div>
+                    </div> -->
 
                   </div>
                 </div>
@@ -240,6 +224,117 @@
           <div id="notif-group" class="tabbed_notifications"></div>
         </div>
 
+<div class="modal fade" id="companyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">修改公司信息</h4>
+      </div>
+      <div class="modal-body">
+        <form id="companyForm" data-parsley-validate class="form-horizontal form-label-left" method="post">
+           <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">公司名称
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="name" required="required" name="name" class="form-control col-md-7 col-xs-12" value="${company.name }">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">公司地址
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="address"  name="address" required="required" class="form-control col-md-7 col-xs-12 disable" value="${company.address}">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="tel" class="control-label col-md-3 col-sm-3 col-xs-12">公司电话</label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input id="tel" class="form-control col-md-7 col-xs-12" required="required" type="text" name="tel" value="${company.tel}">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="zipcode" class="control-label col-md-3 col-sm-3 col-xs-12">公司邮编</label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input id="zipcode" class="form-control col-md-7 col-xs-12" required="required" type="text" name="zipcode" value="${company.zipcode}">
+                      </div>
+                    </div>
+                    <input type="hidden"  name="id" value="${company.id}"/>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary submit" onclick="companyForm.submit();">保存</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="siteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">修改网站信息</h4>
+      </div>
+      <div class="modal-body">
+        <form id="siteForm" data-parsley-validate class="form-horizontal form-label-left" method="post">
+                    <div class="form-group">
+                      <label for="siteTitle" class="control-label col-md-3 col-sm-3 col-xs-12">网站名称</label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input id="siteTitle" class="form-control col-md-7 col-xs-12" type="text" name="siteTitle" value="${company.siteTitle}">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="metaKeyword" class="control-label col-md-3 col-sm-3 col-xs-12">网站关键字</label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input id="metaKeyword" class="form-control col-md-7 col-xs-12" type="text" name="metaKeyword" value="${company.metaKeyword}">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="metaDescription" class="control-label col-md-3 col-sm-3 col-xs-12">网站描述</label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input id="metaDescription" class="form-control col-md-7 col-xs-12" type="text" name="metaDescription" value="${company.metaDescription}">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="metaAuthor" class="control-label col-md-3 col-sm-3 col-xs-12">网站作者</label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input id="metaAuthor" class="form-control col-md-7 col-xs-12" type="text" name="metaAuthor" value="${company.metaAuthor}">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="siteIcp" class="control-label col-md-3 col-sm-3 col-xs-12">网站ICP备案</label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input id="siteIcp" class="form-control col-md-7 col-xs-12" type="text" name="siteIcp" value="${company.siteIcp}">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="siteDomain" class="control-label col-md-3 col-sm-3 col-xs-12">网站域名</label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input id="siteDomain" class="form-control col-md-7 col-xs-12" type="text" name="siteDomain" value="${company.siteDomain}">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">网站favicon</label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                      	<div id="my-dropzone" class="form-control col-md-7 col-xs-12" style="padding-top:0px;padding-bottom:0px;">
+                        	<img id="site-favicon" type="text" src="${company.siteFavicon}" style="height:32px"/>
+                        	<input type="hidden"  name="siteFavicon" value="${company.siteFavicon}"/>
+                        </div>
+                      </div>
+                    </div>
+                    <input type="hidden"  name="id" value="${company.id}"/>
+        </form>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="siteForm.submit();">保存</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
         <script src="<%=contextPath%>/resources/admin/js/bootstrap.min.js"></script>
 
         <!-- bootstrap progress js -->
@@ -272,80 +367,29 @@
         <script src="<%=contextPath%>/resources/admin/js/datatables/dataTables.scroller.min.js"></script>
 
 
+  		<!-- dropzone -->
+  		<script src="<%=contextPath%>/resources/admin/js/dropzone/dropzone.js"></script>
         <!-- pace -->
         <script src="<%=contextPath%>/resources/admin/js/pace/pace.min.js"></script>
-        <script>
-          var handleDataTableButtons = function() {
-              "use strict";
-              0 !== $("#datatable-buttons").length && $("#datatable-buttons").DataTable({
-                dom: "Bfrtip",
-                buttons: [{
-                  extend: "copy",
-                  className: "btn-sm"
-                }, {
-                  extend: "csv",
-                  className: "btn-sm"
-                }, {
-                  extend: "excel",
-                  className: "btn-sm"
-                }, {
-                  extend: "pdf",
-                  className: "btn-sm"
-                }, {
-                  extend: "print",
-                  className: "btn-sm"
-                }],
-                responsive: !0
-              })
-            },
-            TableManageButtons = function() {
-              "use strict";
-              return {
-                init: function() {
-                  handleDataTableButtons()
-                }
-              }
-            }();
-        </script>
         <script type="text/javascript">
+          var contextPath ="<%=contextPath%>";
           $(document).ready(function() {
-            $('#datatable').dataTable({
-            	"processing": true,
-                "serverSide": true,
-                "ajax" : "user/list/ajax",
-                "columns": [
-                  {"data": "id", "bSortable": false},
-                  {"data": "username"},
-                  {"data": "email"},
-                  {"data": "nickname"},
-                  {"data": "latestLoginTime"}
-                ],
-                "columnDefs": [
-                  {
-                    "targets": [5],
-                    "data": "id",
-                    "render": function(data, type, full) {
-                      return "<a href='/update?id=" + data + "'>Update</a>";
-                    }
-                  }
-                ]
+            var myDropzone = new Dropzone("#my-dropzone",{ url: "<%=contextPath %>/file/upload"});
+            myDropzone.on("addedfile", function(file) {
+              /* Maybe display some more file information on your page */
             });
-           /*  $('#datatable-keytable').DataTable({
-              keys: true
-            });
-            $('#datatable-responsive').DataTable();
-            $('#datatable-scroller').DataTable({
-              ajax: "js/datatables/json/scroller-demo.json",
-              deferRender: true,
-              scrollY: 380,
-              scrollCollapse: true,
-              scroller: true
-            });
-            var table = $('#datatable-fixed-header').DataTable({
-              fixedHeader: true
-            }); */
+            myDropzone.on("sending", function(file, xhr, formData) {
+            	  // Will send the filesize along with the file as POST data.
+            	  formData.append("filesize", file.size);
+            	});
+            myDropzone.on("complete", function(file) {
+            	  myDropzone.removeFile(file);
+            	 var result= jQuery.parseJSON(file.xhr.responseText);
+            	 var imgUrl =contextPath+"/"+result.content[0];
+            	 $("#site-favicon").attr('src',imgUrl);
+            	 $("#my-dropzone input").val(imgUrl);
+            	});
           });
-          TableManageButtons.init();
         </script>
 
 

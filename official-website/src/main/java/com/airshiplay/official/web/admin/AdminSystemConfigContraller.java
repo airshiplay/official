@@ -2,10 +2,14 @@ package com.airshiplay.official.web.admin;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -22,6 +26,8 @@ import com.google.protobuf.ServiceException;
 @Controller
 @RequestMapping("/admin/config")
 public class AdminSystemConfigContraller extends BaseController {
+	private final static Logger logger = LoggerFactory
+			.getLogger(AdminSystemConfigContraller.class);
 	@Autowired
 	CompanyService companyService;
 	@Autowired
@@ -33,9 +39,18 @@ public class AdminSystemConfigContraller extends BaseController {
 			CfgCompany company = companyService.getCompany();
 			model.addAttribute("company", company);
 		} catch (ServiceException e) {
-			e.printStackTrace();
+			logger.error("", e);
 		}
 
+		return "admin/system-config-company";
+	}
+
+	@RequestMapping(value = "/company", method = RequestMethod.POST)
+	public String companyPost(@ModelAttribute CfgCompany companyForm,
+	/** @ModelAttribute CfgCompany siteForm, */
+	Model model) {
+		CfgCompany company = companyService.updateCompany(companyForm);
+		model.addAttribute("company", company);
 		return "admin/system-config-company";
 	}
 
