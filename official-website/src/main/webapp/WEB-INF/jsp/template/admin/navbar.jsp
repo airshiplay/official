@@ -59,7 +59,7 @@
                     </li>
                     <li><a href="<%=contextPath%>/admin/config/banner">滚动轮播广告配置</a>
                     </li>
-                    <li><a href="form_wizards.html">Form Wizard</a>
+                    <li><a href="<%=contextPath%>/admin/config/tags">标签配置</a>
                     </li>
                     <li><a href="form_upload.html">Form Upload</a>
                     </li>

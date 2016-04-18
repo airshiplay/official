@@ -9,7 +9,7 @@
 	<select id="getRolesByUid" parameterType="long" resultMap="BaseResultMap">
 		SELECT *FROM cfg_role role
 		LEFT JOIN cfg_user_role urole on urole.role_id=role.id
-		WHERE urole.uid=#{uid}
+		WHERE urole.uid=#{uid} AND urole.status=2
 	</select>
 
 

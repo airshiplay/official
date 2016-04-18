@@ -2,16 +2,27 @@ package com.airshiplay.official.web.model;
 
 public class ResultMessage<T> {
 	private T content;
-	private int resultCode;
-	private String resultMessage;
+	private int resultcode;
+	private String resultmsg;
 
-	public ResultMessage() {
-		this.resultCode = 200;
+	public ResultMessage(int resultCode, String resultMessage) {
+		this.resultcode = resultCode;
+		this.resultmsg = resultMessage;
+	}
+
+	public static <T> ResultMessage<T> fail(String msg) {
+		ResultMessage<T> result = new ResultMessage<T>(500, msg);
+		return result;
+	}
+
+	public static <T> ResultMessage<T> success(String msg) {
+		ResultMessage<T> result = new ResultMessage<T>(200, msg);
+		return result;
 	}
 
 	public ResultMessage(T t) {
 		this.content = t;
-		this.resultCode = 200;
+		this.resultcode = 200;
 	}
 
 	public T getContent() {
@@ -22,20 +33,20 @@ public class ResultMessage<T> {
 		this.content = content;
 	}
 
-	public int getResultCode() {
-		return resultCode;
+	public int getResultcode() {
+		return resultcode;
 	}
 
-	public void setResultCode(int resultCode) {
-		this.resultCode = resultCode;
+	public void setResultcode(int resultCode) {
+		this.resultcode = resultCode;
 	}
 
-	public String getResultMessage() {
-		return resultMessage;
+	public String getResultmsg() {
+		return resultmsg;
 	}
 
-	public void setResultMessage(String resultMessage) {
-		this.resultMessage = resultMessage;
+	public void setResultmsg(String resultMessage) {
+		this.resultmsg = resultMessage;
 	}
 
 }

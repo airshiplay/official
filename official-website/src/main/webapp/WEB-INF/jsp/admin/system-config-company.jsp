@@ -139,7 +139,7 @@
                   <ul class="nav navbar-right panel_toolbox">
                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                     </li>
-                     <li><a href="#" data-toggle="modal" data-target="#siteModal" ><i class="fa fa-edit"></i></a>
+                     <li><a href="#" data-toggle="modal" data-whatever="${company.siteFavicon}" data-target="#siteModal" ><i class="fa fa-edit"></i></a>
                     <li><a class="close-link"><i class="fa fa-close"></i></a>
                     </li>
                   </ul>
@@ -388,7 +388,20 @@
             	 var imgUrl =contextPath+"/"+result.content[0];
             	 $("#site-favicon").attr('src',imgUrl);
             	 $("#my-dropzone input").val(imgUrl);
+            });
+            
+            $('#siteModal').on('show.bs.modal', function (event) {
+            	  var button = $(event.relatedTarget) // Button that triggered the modal
+            	  var imgUrl = button.data('whatever') // Extract info from data-* attributes
+            	  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            	  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            	  var modal = $(this)
+            	  $("#my-dropzone input").val(imgUrl);
+            	  modal.find("#site-favicon").attr('src',imgUrl);
+            	  //modal.find('.modal-title').text('New message to ' + recipient)
+            	  //modal.find('.modal-body input').val(recipient)
             	});
+            	
           });
         </script>
 

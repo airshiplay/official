@@ -1,16 +1,18 @@
 package com.airshiplay.official.web.admin;
 
-import java.io.IOException;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.airshiplay.common.constants.SessionConstants;
@@ -18,12 +20,16 @@ import com.airshiplay.common.util.IpUtil;
 import com.airshiplay.official.mybatis.model.CfgUser;
 import com.airshiplay.official.service.UserService;
 import com.airshiplay.official.web.BaseController;
+import com.airshiplay.official.web.model.ReqLogin;
+import com.airshiplay.official.web.model.ResultMessage;
+import com.airshiplay.official.web.model.WebUser;
 import com.google.protobuf.ServiceException;
 import com.octo.captcha.service.image.ImageCaptchaService;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminLoginController extends BaseController {
+	private static final Logger logger = LoggerFactory.getLogger(AdminLoginController.class);
 	@Autowired
 	private ImageCaptchaService imageCaptchaService;
 	@Autowired
@@ -31,31 +37,31 @@ public class AdminLoginController extends BaseController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public void login() {
-
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String loginPost(String username, String password, String captcha,
-			HttpServletRequest request, HttpServletResponse response,
-			Model model) {
+	public @ResponseBody ResultMessage<Object> loginPost(
+			@RequestBody ReqLogin login, HttpServletRequest request,
+			HttpServletResponse response, Model model) {
 		String ip = IpUtil.getIpAddr(request);
 		CfgUser user;
 		try {
-			user = userService.loginUser("superadmin", password, ip);
+			user = userService.loginUser(login.getUsername(), login.getPassword(), ip);
 			HttpSession session = request.getSession();
 			session.setAttribute("online", true);
 			session.setAttribute(SessionConstants.SESSION_USER, user);
 			Object location = session
 					.getAttribute(SessionConstants.SESSION_LATEST_URL);
 			if (location != null && !location.equals("")) {
+				session.removeAttribute(SessionConstants.SESSION_LATEST_Servlet_Path);
 				session.removeAttribute(SessionConstants.SESSION_LATEST_URL);
-				return "redirect:"+((String) location);
+				return new ResultMessage<Object>(new WebUser(user).setRedirectUrl(location.toString()));
 			}
-			return "redirect:/admin/home";
+			return new ResultMessage<Object>(user);
 		} catch (ServiceException e) {
-			e.printStackTrace();
+			logger.error(e.getMessage(), e);
+			return ResultMessage.fail(e.getMessage());
 		}
-		return "/admin/login";
 	}
 
 	@RequestMapping(value = "/doLogin", method = RequestMethod.POST)

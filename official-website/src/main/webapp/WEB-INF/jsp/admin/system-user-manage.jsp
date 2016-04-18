@@ -32,9 +32,10 @@
   <link href="<%=contextPath%>/resources/admin/js/datatables/fixedHeader.bootstrap.min.css" rel="stylesheet" type="text/css" />
   <link href="<%=contextPath%>/resources/admin/js/datatables/responsive.bootstrap.min.css" rel="stylesheet" type="text/css" />
   <link href="<%=contextPath%>/resources/admin/js/datatables/scroller.bootstrap.min.css" rel="stylesheet" type="text/css" />
-
+  <link href="<%=contextPath%>/resources/admin/css/multiselect/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />
+  <link href="<%=contextPath%>/resources/admin/js/toastr/toastr.min.css" rel="stylesheet" type="text/css" />
   <script src="<%=contextPath%>/resources/admin/js/jquery.min.js"></script>
-
+  <script src="<%=contextPath%>/resources/admin/js/jquery.cookie.js"></script>
   <!--[if lt IE 9]>
         <script src="../assets/js/ie8-responsive-file-warning.js"></script>
         <![endif]-->
@@ -100,7 +101,7 @@
                         </li>
                       </ul>
                     </li>
-                    <li><a href="#"  data-toggle="modal" data-target="#companyModal" ><i class="fa fa-plus"></i></a>
+                    <li><a href="#"  data-toggle="modal" data-target="#userModal" ><i class="fa fa-plus"></i></a>
                     <li><a href="#"><i class="fa fa-close"></i></a>
                     </li>
                   </ul>
@@ -146,7 +147,58 @@
           <div class="clearfix"></div>
           <div id="notif-group" class="tabbed_notifications"></div>
         </div>
-
+<div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">新建修改用户</h4>
+      </div>
+      <div class="modal-body">
+        <form id="companyForm" data-parsley-validate class="form-horizontal form-label-left" method="post">
+           <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">用户名
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="username" required="required" name="username" class="form-control col-md-7 col-xs-12" value="">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">用户昵称
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="nickname"  name="nickname" required="required" class="form-control col-md-7 col-xs-12 disable" value="">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="tel" class="control-label col-md-3 col-sm-3 col-xs-12">用户邮箱</label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input id="email" class="form-control col-md-7 col-xs-12" required="required" type="text" name="email" value="">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="tel" class="control-label col-md-3 col-sm-3 col-xs-12">密码</label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input id="password" class="form-control col-md-7 col-xs-12" required="required" type="text" name="password">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="zipcode" class="control-label col-md-3 col-sm-3 col-xs-12">角色选择</label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <select id="roles" class= "form-control" ><!-- multiple="multiple" -->
+                        </select>
+                      </div>
+                    </div>
+                    <input type="hidden" id="id" name="id" value=""/>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" id="submit" class="btn btn-primary submit" onclick="updateUser();">保存</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
         <script src="<%=contextPath%>/resources/admin/js/bootstrap.min.js"></script>
 
         <!-- bootstrap progress js -->
@@ -177,51 +229,14 @@
         <script src="<%=contextPath%>/resources/admin/js/datatables/dataTables.responsive.min.js"></script>
         <script src="<%=contextPath%>/resources/admin/js/datatables/responsive.bootstrap.min.js"></script>
         <script src="<%=contextPath%>/resources/admin/js/datatables/dataTables.scroller.min.js"></script>
+        <script src="<%=contextPath%>/resources/admin/js/multiselect/bootstrap-multiselect.js"></script>
 
+        <script src="<%=contextPath%>/resources/admin/js/toastr/toastr.min.js"></script>
 
         <!-- pace -->
         <script src="<%=contextPath%>/resources/admin/js/pace/pace.min.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#datatable').dataTable({
-				"processing" : true,
-				"serverSide" : true,
-				"ajax" : "user/list/ajax",
-				"columns" : [ {
-					"data" : "id",
-					"bSortable" : false
-				}, {
-					"data" : "username"
-				}, {
-					"data" : "email"
-				}, {
-					"data" : "nickname"
-				}, {
-					"data" : "roles",
-					render : function(data, type, row) {
-						var result="";
-						for (var i = 0; i < row.roles.length; i++) {
-							if(i!=0)
-								result = result +",";
-							result = result + row.roles[i].roleName;
-						}
-						return result;
-					}
-				}, {
-					"data" : "latestLoginTime"
-				} ],
-				"columnDefs" : [ {
-					"targets" : [ 6 ],
-					"data" : "id",
-					"render" : function(data, type, full) {
-						return "<a href='/update?id=" + data + "'>Update</a>";
-					}
-				} ]
-			});
-
-		});
-	</script>
-
+        <script src="<%=contextPath%>/resources/admin/js/official/official-common.js"></script>
+        <script src="<%=contextPath%>/resources/admin/js/official/official-user.js"></script>
 
 </body>
 

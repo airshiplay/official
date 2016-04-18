@@ -20,5 +20,6 @@ public class ConfigInfo {
 	public void setFileSaveDir(Resource fileSavePath) {
 		this.fileSaveDir = fileSavePath;
 	}
-
+	
+	
 }

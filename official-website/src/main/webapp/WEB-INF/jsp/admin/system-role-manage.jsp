@@ -179,11 +179,14 @@
         <!-- pace -->
         <script src="<%=contextPath%>/resources/admin/js/pace/pace.min.js"></script>
         <script type="text/javascript">
+          var contextPath ="<%=contextPath%>";
           $(document).ready(function() {
             $('#datatable').dataTable({
             	"processing": true,
                 "serverSide": true,
+                "ordering":false,
                 "ajax" : "role/list/ajax",
+                "language": { "url": contextPath+"/resources/admin/js/datatables/language/zh_CN.lang" } ,
                 "columns": [
                   {"data": "id", "bSortable": false},
                   {"data": "roleName"},

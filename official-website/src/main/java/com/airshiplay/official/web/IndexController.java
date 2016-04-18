@@ -18,7 +18,7 @@ public class IndexController extends BaseController {
 	@Autowired
 	private IndexService indexService;
 
-	@RequestMapping("/")
+	@RequestMapping(value = { "/", "/index", "index.jsp" })
 	public String index(Model model) {
 		List<OfBanner> banners = indexService.getBanners();
 		model.addAttribute("banners", banners);

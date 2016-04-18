@@ -4,12 +4,14 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.airshiplay.official.mybatis.mapper.CfgAuthorityMapper;
 import com.airshiplay.official.mybatis.mapper.CfgRoleMapper;
 import com.airshiplay.official.mybatis.mapper.CfgUserMapper;
+import com.airshiplay.official.mybatis.mapper.CfgUserRoleMapper;
 import com.airshiplay.official.mybatis.mapper.custom.CustomCfgAuthorityMapper;
 import com.airshiplay.official.mybatis.mapper.custom.CustomCfgRoleMapper;
 import com.airshiplay.official.mybatis.model.CfgAuthority;
@@ -18,6 +20,8 @@ import com.airshiplay.official.mybatis.model.CfgRole;
 import com.airshiplay.official.mybatis.model.CfgRoleExample;
 import com.airshiplay.official.mybatis.model.CfgUser;
 import com.airshiplay.official.mybatis.model.CfgUserExample;
+import com.airshiplay.official.mybatis.model.CfgUserRole;
+import com.airshiplay.official.mybatis.model.CfgUserRoleExample;
 import com.airshiplay.official.service.UserService;
 import com.airshiplay.official.service.model.ServiceRole;
 import com.airshiplay.official.service.model.ServiceUser;
@@ -38,6 +42,8 @@ public class UserServiceImpl implements UserService {
 	CustomCfgRoleMapper customCfgRoleMapper;
 	@Autowired
 	CustomCfgAuthorityMapper customCfgAuthorityMapper;
+	@Autowired
+	CfgUserRoleMapper cfgUserRoleMapper;
 
 	@Override
 	public CfgUser createUser(Long regUid, String username, String mobile,
@@ -80,17 +86,15 @@ public class UserServiceImpl implements UserService {
 			if (user.getPassword().equals(
 					org.apache.commons.codec.digest.DigestUtils.md5Hex(password
 							+ user.getSalt()))) {
-				user.setPassword(null);
-				user.setSalt(null);
-				CfgUser updateUser = new CfgUser();
-				updateUser.setId(user.getId());
-				updateUser.setLatestLoginTime(new Date());
-				updateUser.setLatestLoginIp(ip);
+				user.setLatestLoginTime(new Date());
+				user.setLatestLoginIp(ip);
 				cfgUserMapper.updateByPrimaryKeySelective(user);
 			} else {
 				throw new ServiceException("密码错误");
 			}
 		}
+		user.setPassword(null);
+		user.setSalt(null);
 		return user;
 	}
 
@@ -197,5 +201,84 @@ public class UserServiceImpl implements UserService {
 		result.setPageSize(((Page<CfgRole>) list).getPageSize());
 		result.setTotal(((Page<CfgRole>) list).getTotal());
 		return new PageInfo<ServiceRole>(result);
+	}
+
+	@Override
+	public List<CfgRole> getRoles() {
+		List<CfgRole> list = cfgRoleMapper
+				.selectByExample(new CfgRoleExample());
+		return list;
+	}
+
+	@Override
+	public ServiceUser mergeUser(Long id, String username, String email,
+			String mobile, String nickname, String password,
+			List<CfgRole> roles, String regIp, Long regUid)
+			throws ServiceException {
+		if (id == null) {
+			CfgUserExample example = new CfgUserExample();
+			example.createCriteria().andUsernameEqualTo(username);
+			List<CfgUser> findUsers = cfgUserMapper.selectByExample(example);
+			if (findUsers.isEmpty()) {
+				CfgUser record = new CfgUser();
+				record.setCreateTime(new Date());
+				record.setEmail(email);
+				record.setMobile(mobile);
+				record.setNickname(nickname);
+				record.setUsername(username);
+				record.setRegIp(regIp);
+				record.setRegUid(regUid);
+				String salt = RandomStringUtils.randomNumeric(4);
+				record.setSalt(salt);
+				record.setPassword(org.apache.commons.codec.digest.DigestUtils
+						.md5Hex(password + salt));
+				cfgUserMapper.insert(record);
+				for (CfgRole role : roles) {
+					CfgUserRole cfgUserRole = new CfgUserRole();
+					cfgUserRole.setUid(record.getId());
+					cfgUserRole.setRoleId(role.getId());
+					cfgUserRole.setCreateTime(new Date());
+					cfgUserRole.setStatus(2);
+					cfgUserRoleMapper.insert(cfgUserRole);
+				}
+				return new ServiceUser(record).setRoles(roles);
+			} else {
+				throw new ServiceException("用户名" + username + "已存在");
+			}
+
+		} else {
+			CfgUser findUsers = cfgUserMapper.selectByPrimaryKey(id);
+			if (findUsers == null || !findUsers.getUsername().equals(username)) {
+				throw new ServiceException("用户名不存在");
+			} else {
+				findUsers.setUsername(username);
+				findUsers.setEmail(email);
+				findUsers.setMobile(mobile);
+				findUsers.setNickname(nickname);
+				if (!StringUtils.isEmpty(password)) {
+					String salt = RandomStringUtils.randomNumeric(4);
+					findUsers.setSalt(salt);
+					findUsers
+							.setPassword(org.apache.commons.codec.digest.DigestUtils
+									.md5Hex(password + salt));
+				}
+				cfgUserMapper.updateByPrimaryKey(findUsers);
+				CfgUserRoleExample example = new CfgUserRoleExample();
+				example.createCriteria().andUidEqualTo(findUsers.getId());
+//						.andStatusEqualTo(2);
+				CfgUserRole record = new CfgUserRole();
+				record.setStatus(1);
+				cfgUserRoleMapper.updateByExampleSelective(record, example);
+				for (CfgRole role : roles) {
+					CfgUserRole cfgUserRole = new CfgUserRole();
+					cfgUserRole.setUid(findUsers.getId());
+					cfgUserRole.setRoleId(role.getId());
+					cfgUserRole.setCreateTime(new Date());
+					cfgUserRole.setStatus(2);
+					cfgUserRoleMapper.insert(cfgUserRole);
+				}
+				return new ServiceUser(findUsers);
+			}
+		}
 	}
 }

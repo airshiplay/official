@@ -213,11 +213,14 @@
             }();
         </script>
         <script type="text/javascript">
+        var contextPath ="<%=contextPath%>";
           $(document).ready(function() {
             $('#datatable').dataTable({
             	"processing": true,
                 "serverSide": true,
+                "ordering":false,
                 "ajax" : "<%=fullUrl%>/admin/config/site/banner/ajax",
+                "language": { "url": contextPath+"/resources/admin/js/datatables/language/zh_CN.lang" } ,
                 "columns": [
                   {"data": "id", "bSortable": false},
                   {"data": "title"},
@@ -245,20 +248,6 @@
                   }
                 ]
             });
-           /*  $('#datatable-keytable').DataTable({
-              keys: true
-            });
-            $('#datatable-responsive').DataTable();
-            $('#datatable-scroller').DataTable({
-              ajax: "js/datatables/json/scroller-demo.json",
-              deferRender: true,
-              scrollY: 380,
-              scrollCollapse: true,
-              scroller: true
-            });
-            var table = $('#datatable-fixed-header').DataTable({
-              fixedHeader: true
-            }); */
           });
           TableManageButtons.init();
         </script>

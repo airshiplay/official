@@ -1,5 +1,7 @@
 package com.airshiplay.official.service;
 
+import java.util.List;
+
 import com.airshiplay.official.mybatis.model.CfgAuthority;
 import com.airshiplay.official.mybatis.model.CfgRole;
 import com.airshiplay.official.mybatis.model.CfgUser;
@@ -32,15 +34,25 @@ public interface UserService {
 	public CfgUser resetPassword(String username, String password)
 			throws ServiceException;
 
-	public CfgRole createRole(String roleName,String desc) throws ServiceException;
+	public CfgRole createRole(String roleName, String desc)
+			throws ServiceException;
 
-	public CfgRole updateRole(Long id,String roleName,String desc) throws ServiceException;
+	public CfgRole updateRole(Long id, String roleName, String desc)
+			throws ServiceException;
 
-	public CfgAuthority createAuthority(String authorityName,String desc) throws ServiceException;
+	public CfgAuthority createAuthority(String authorityName, String desc)
+			throws ServiceException;
 
 	public PageInfo<CfgAuthority> getAuthoritys(int pageNum, int pageSize);
 
 	public PageInfo<ServiceUser> getUsers(int pageNum, int pageSize);
 
 	public PageInfo<ServiceRole> getRoles(int pageNum, int pageSize);
+
+	public List<CfgRole> getRoles();
+
+	public ServiceUser mergeUser(Long id, String username, String email,
+			String mobile, String nickname, String password,
+			List<CfgRole> roles, String ip, Long regUid)
+			throws ServiceException;
 }

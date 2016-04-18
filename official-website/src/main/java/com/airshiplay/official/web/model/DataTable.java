@@ -7,14 +7,14 @@ import com.github.pagehelper.PageInfo;
 public class DataTable<T> {
 	private int draw;
 	private long recordsTotal;
-	private int recordsFiltered;
+	private long recordsFiltered;
 	private List<T> data;
 
-	public DataTable(PageInfo<T> pageInfo) {
+	public DataTable(PageInfo<T> pageInfo,int draw) {
 		this.data = pageInfo.getList();
-		this.recordsTotal = pageInfo.getTotal();
-		this.recordsFiltered = pageInfo.getPageNum();
-		this.draw = 3;
+		this.recordsTotal = pageInfo.getSize();
+		this.recordsFiltered = pageInfo.getTotal();
+		this.draw = draw;
 	}
 	public DataTable(List<T> all) {
 		this.data = all;
@@ -38,11 +38,11 @@ public class DataTable<T> {
 		this.recordsTotal = recordsTotal;
 	}
 
-	public int getRecordsFiltered() {
+	public long getRecordsFiltered() {
 		return recordsFiltered;
 	}
 
-	public void setRecordsFiltered(int recordsFiltered) {
+	public void setRecordsFiltered(long recordsFiltered) {
 		this.recordsFiltered = recordsFiltered;
 	}
 

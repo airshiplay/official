@@ -10,6 +10,9 @@ import com.airshiplay.official.mybatis.model.CfgUser;
 public class ServiceUser extends CfgUser {
 	private List<CfgRole> roles;
 
+	public ServiceUser() {
+	}
+
 	public ServiceUser(CfgUser user) {
 		BeanUtils.copyProperties(user, this);
 	}
@@ -18,7 +21,8 @@ public class ServiceUser extends CfgUser {
 		return roles;
 	}
 
-	public void setRoles(List<CfgRole> roles) {
+	public ServiceUser setRoles(List<CfgRole> roles) {
 		this.roles = roles;
+		return this;
 	}
 }

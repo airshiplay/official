@@ -38,6 +38,6 @@ public class IpBaseStationLBController {
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		}
-		return new ResultMessage<Object>();
+		return  ResultMessage.success("");
 	}
 }

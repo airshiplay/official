@@ -29,6 +29,7 @@
   <link href="<%=contextPath%>/resources/admin/css/custom.css" rel="stylesheet">
   <link href="<%=contextPath%>/resources/admin/css/icheck/flat/green.css" rel="stylesheet">
 
+  <link href="<%=contextPath%>/resources/admin/js/toastr/toastr.min.css" rel="stylesheet" type="text/css" />
 
   <script src="<%=contextPath%>/resources/admin/js/jquery.min.js"></script>
 
@@ -63,10 +64,13 @@
               <input id="password" type="password" name="password"  class="form-control" placeholder="Password" required="required" />
             </div>
             <div>
-             <button type="submit" class="btn btn-default">Log in</button>
+             <button id="login_id" type="button" class="btn btn-default" data-loading-text="Loading..."  onclick="loginUser()" >Log in</button>
               <!-- <a class="btn btn-default submit" href="index.html">Log in</a> -->
               <a class="reset_pass" href="#">Lost your password?</a>
+               <a href="/thirdaccount/qq/login" onclick='toLogin()'>QQ</a>
+             
             </div>
+            
             <div class="clearfix"></div>
             <div class="separator">
 
@@ -100,7 +104,7 @@
               <input id="password" type="password" class="form-control" placeholder="Password" required="" />
             </div>
             <div>
-              <a class="btn btn-default submit" href="index.html">Submit</a>
+              <a class="btn btn-default submit" href="index.html" >Submit</a>
             </div>
             <div class="clearfix"></div>
             <div class="separator">
@@ -124,32 +128,16 @@
     </div>
   </div>
     <!-- form validation -->
+    
+        <script src="<%=contextPath%>/resources/admin/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="<%=contextPath%>/resources/admin/js/parsley/parsley.min.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			/* $.listen('parsley:field:validate', function() {
-				validateFront();
-			}); */
-			/* $('#loginForm .btn').on('click', function() {
-				$('#loginForm').parsley().validate();
-				validateFront();
-				if (true === $('#loginForm').parsley().isValid()) {
-					//alert("");
-				}else{
-					
-				}
-			}); */
-			/* var validateFront = function() {
-				if (true === $('#loginForm').parsley().isValid()) {
-					$('.bs-callout-info').removeClass('hidden');
-					$('.bs-callout-warning').addClass('hidden');
-				} else {
-					$('.bs-callout-info').addClass('hidden');
-					$('.bs-callout-warning').removeClass('hidden');
-				}
-			}; */
-		});
-	</script>
+     <script type="text/javascript" src="<%=contextPath%>/resources/admin/js/cryptojs/components/core-min.js"></script>
+   <script type="text/javascript" src="<%=contextPath%>/resources/admin/js/cryptojs/rollups/md5.js"></script>
+        <script src="<%=contextPath%>/resources/admin/js/toastr/toastr.min.js"></script>
+   <script type="text/javascript" src="<%=contextPath%>/resources/admin/js/official/official-common.js"></script>
+   <script type="text/javascript" src="<%=contextPath%>/resources/admin/js/official/official-login.js"></script>
+	<script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc.js"></script>
+
 </body>
 
 </html>
