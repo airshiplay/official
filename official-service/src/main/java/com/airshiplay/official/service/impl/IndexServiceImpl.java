@@ -17,6 +17,7 @@ import com.airshiplay.official.mybatis.model.OfCatalog;
 import com.airshiplay.official.mybatis.model.OfCatalogExample;
 import com.airshiplay.official.service.IndexService;
 import com.airshiplay.official.service.model.Navbar;
+import com.google.common.base.Optional;
 
 @Service("indexService")
 public class IndexServiceImpl implements IndexService {
@@ -37,7 +38,7 @@ public class IndexServiceImpl implements IndexService {
 	}
 
 	@Override
-	public List<Navbar> getCatalogs() {
+	public List<Navbar> storedProcedureCatalogs() {
 		List<OfCatalog> list = customOfCatalogMapper.getCatalogTree(0, 2l);
 		List<Navbar> result = new ArrayList<Navbar>();
 		for (int i = 0; i < list.size(); i++) {
@@ -59,12 +60,12 @@ public class IndexServiceImpl implements IndexService {
 	}
 
 	@Override
-	public List<OfBanner> getBanners() {
+	public Optional<List<OfBanner>> getBanners() {
 		OfBannerExample example = new OfBannerExample();
 		example.createCriteria().andStatusEqualTo(2);
 		example.setOrderByClause("seq");
 		List<OfBanner> list = ofBannerMapper.selectByExample(example);
-		return list;
+		return Optional.of(list);
 	}
 
 }

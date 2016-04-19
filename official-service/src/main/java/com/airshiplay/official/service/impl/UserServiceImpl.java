@@ -1,5 +1,6 @@
 package com.airshiplay.official.service.impl;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -8,12 +9,15 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.airshiplay.official.mybatis.mapper.CfgAccessTokenMapper;
 import com.airshiplay.official.mybatis.mapper.CfgAuthorityMapper;
 import com.airshiplay.official.mybatis.mapper.CfgRoleMapper;
 import com.airshiplay.official.mybatis.mapper.CfgUserMapper;
 import com.airshiplay.official.mybatis.mapper.CfgUserRoleMapper;
 import com.airshiplay.official.mybatis.mapper.custom.CustomCfgAuthorityMapper;
 import com.airshiplay.official.mybatis.mapper.custom.CustomCfgRoleMapper;
+import com.airshiplay.official.mybatis.model.CfgAccessToken;
+import com.airshiplay.official.mybatis.model.CfgAccessTokenExample;
 import com.airshiplay.official.mybatis.model.CfgAuthority;
 import com.airshiplay.official.mybatis.model.CfgAuthorityExample;
 import com.airshiplay.official.mybatis.model.CfgRole;
@@ -23,6 +27,7 @@ import com.airshiplay.official.mybatis.model.CfgUserExample;
 import com.airshiplay.official.mybatis.model.CfgUserRole;
 import com.airshiplay.official.mybatis.model.CfgUserRoleExample;
 import com.airshiplay.official.service.UserService;
+import com.airshiplay.official.service.model.ServiceAccessToken;
 import com.airshiplay.official.service.model.ServiceRole;
 import com.airshiplay.official.service.model.ServiceUser;
 import com.github.pagehelper.Page;
@@ -44,6 +49,8 @@ public class UserServiceImpl implements UserService {
 	CustomCfgAuthorityMapper customCfgAuthorityMapper;
 	@Autowired
 	CfgUserRoleMapper cfgUserRoleMapper;
+	@Autowired
+	CfgAccessTokenMapper cfgAccessTokenMapper;
 
 	@Override
 	public CfgUser createUser(Long regUid, String username, String mobile,
@@ -73,8 +80,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public CfgUser loginUser(String username, String password, String ip)
-			throws ServiceException {
+	public ServiceUser loginUser(String username, String password, String ip,
+			String display) throws ServiceException {
 		CfgUserExample example = new CfgUserExample();
 		example.createCriteria().andUsernameEqualTo(username);
 		List<CfgUser> list = cfgUserMapper.selectByExample(example);
@@ -95,7 +102,41 @@ public class UserServiceImpl implements UserService {
 		}
 		user.setPassword(null);
 		user.setSalt(null);
-		return user;
+		CfgAccessTokenExample exam = new CfgAccessTokenExample();
+		exam.createCriteria().andUidEqualTo(user.getId());
+		List<CfgAccessToken> listAcc = cfgAccessTokenMapper
+				.selectByExample(exam);
+		CfgAccessToken acccessToken;
+		if (listAcc.isEmpty()) {
+			acccessToken = generatorAccessToken(user.getId(), display);
+			cfgAccessTokenMapper.insert(acccessToken);
+		} else {
+			acccessToken = listAcc.get(0);
+			if ((acccessToken.getExpires().getTime()) < new Date().getTime()) {
+				acccessToken.setStatus(1);
+				cfgAccessTokenMapper.updateByPrimaryKey(acccessToken);
+				acccessToken = generatorAccessToken(user.getId(), display);
+				cfgAccessTokenMapper.insert(acccessToken);
+			}
+		}
+		CfgUserRoleExample examp = new CfgUserRoleExample();
+		examp.createCriteria().andUidEqualTo(user.getId()).andStatusEqualTo(2);
+		List<CfgRole> roles = customCfgRoleMapper.getRolesByUid(user.getId());
+		return new ServiceUser(user).setAccessToken(acccessToken).setRoles(
+				roles);
+	}
+
+	private CfgAccessToken generatorAccessToken(Long uid, String display) {
+		CfgAccessToken acccessToken = new CfgAccessToken();
+		acccessToken.setAccessToken(RandomStringUtils.randomAlphanumeric(64));
+		acccessToken.setUid(uid);
+		java.util.Calendar c = Calendar.getInstance();
+		acccessToken.setCreateTime(c.getTime());
+		c.add(Calendar.DATE, 7);
+		acccessToken.setExpires(c.getTime());
+		acccessToken.setDisplay(display);
+		acccessToken.setStatus(2);
+		return acccessToken;
 	}
 
 	@Override
@@ -265,7 +306,7 @@ public class UserServiceImpl implements UserService {
 				cfgUserMapper.updateByPrimaryKey(findUsers);
 				CfgUserRoleExample example = new CfgUserRoleExample();
 				example.createCriteria().andUidEqualTo(findUsers.getId());
-//						.andStatusEqualTo(2);
+				// .andStatusEqualTo(2);
 				CfgUserRole record = new CfgUserRole();
 				record.setStatus(1);
 				cfgUserRoleMapper.updateByExampleSelective(record, example);

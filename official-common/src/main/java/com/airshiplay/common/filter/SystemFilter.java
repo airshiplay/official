@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import com.airshiplay.common.constants.SessionConstants;
 
 public class SystemFilter implements Filter {
+
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
 
@@ -27,15 +28,31 @@ public class SystemFilter implements Filter {
 		HttpServletResponse resp = (HttpServletResponse) response;
 		req.getRequestURL();
 		HttpSession session = req.getSession();
+
 		if (!req.getRequestURL().toString().contains("/admin/login")
 				&& (session == null || session
 						.getAttribute(SessionConstants.SESSION_USER) == null)) {
-			session.setAttribute(SessionConstants.SESSION_LATEST_Servlet_Path,req.getServletPath());
-			session.setAttribute(SessionConstants.SESSION_LATEST_URL, req.getRequestURL().toString());
-			resp.sendRedirect(req.getContextPath()+"/admin/login");
+			String contentType = req.getHeader("Content-Type");
+			String url = req.getRequestURL().toString();
+			if ("application/json".equals(contentType)) {
+				resp.setHeader("Content-Type", "application/json;charset=UTF-8");
+				resp.getOutputStream().write(
+						redirectJSON(req.getContextPath() + "/admin/login").getBytes("utf-8"));
+				resp.getOutputStream().flush();
+				resp.getOutputStream().close();
+			} else {
+				session.setAttribute(SessionConstants.SESSION_LATEST_Servlet_Path,
+						req.getServletPath());
+				session.setAttribute(SessionConstants.SESSION_LATEST_URL, url);
+				resp.sendRedirect(req.getContextPath() + "/admin/login");
+			}
 		} else {
 			chain.doFilter(request, response);
 		}
+	}
+
+	private String redirectJSON(String redirectUrl) {
+		return "{\"resultcode\": 302,\"resultmsg\": \"跳转，需要登录\",\"redirectUrl\": \"" + redirectUrl + "\"}";
 	}
 
 	@Override

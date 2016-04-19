@@ -1,9 +1,11 @@
 var roles;
+accessToken=getAccessToken();
 $.ajax({
 	url : contextPath+'/admin/system/user/role/list/ajax',
 	type : 'POST',
 	crossDomain : true,
 	headers : {
+		'Authorization': 'Bearer ' + accessToken,
 		'Content-Type' : 'application/json'
 	},
 	data : JSON.stringify("{}"),
@@ -145,7 +147,9 @@ function updateUser(rowid) {
 				 }else{
 					 toastr["success"]("修改用户成功！");
 				 }
-			} else {
+			}else if (respData.resultcode == 302) {
+				OfficialCommon.disPatcher.openPage(respData.redirectUrl);
+			}  else {
 				 toastr["error"](respData.resultmsg);
 			}
 

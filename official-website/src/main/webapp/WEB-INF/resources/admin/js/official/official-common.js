@@ -38,7 +38,9 @@ function setAccessToken(accessToken) {
 		expires : date
 	});
 }
-
+function setCusername(username) {
+	return $.cookie('cuserName' + getCookieNameSufix(),username);
+}
 // 获取url参数
 function getQueryString(name) {
 	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");

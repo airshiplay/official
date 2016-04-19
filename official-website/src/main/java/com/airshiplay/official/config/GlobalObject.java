@@ -35,7 +35,7 @@ public class GlobalObject {
 	public void initData() {
 		try {
 			company = companyService.getCompany();
-			navbar = indexService.getCatalogs();
+			navbar = indexService.storedProcedureCatalogs();
 		} catch (ServiceException e) {
 			logger.error("GlobalObject", e);
 		}catch (Exception e) {

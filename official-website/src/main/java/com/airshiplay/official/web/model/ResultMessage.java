@@ -1,9 +1,13 @@
 package com.airshiplay.official.web.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ResultMessage<T> {
 	private T content;
 	private int resultcode;
 	private String resultmsg;
+	private String redirectUrl;
 
 	public ResultMessage(int resultCode, String resultMessage) {
 		this.resultcode = resultCode;
@@ -17,6 +21,12 @@ public class ResultMessage<T> {
 
 	public static <T> ResultMessage<T> success(String msg) {
 		ResultMessage<T> result = new ResultMessage<T>(200, msg);
+		return result;
+	}
+
+	public static <T> ResultMessage<T> redirectUrl(String redirectUrl) {
+		ResultMessage<T> result = new ResultMessage<T>(302, null);
+		result.setRedirectUrl(redirectUrl);
 		return result;
 	}
 
@@ -47,6 +57,14 @@ public class ResultMessage<T> {
 
 	public void setResultmsg(String resultMessage) {
 		this.resultmsg = resultMessage;
+	}
+
+	public String getRedirectUrl() {
+		return redirectUrl;
+	}
+
+	public void setRedirectUrl(String redirectUrl) {
+		this.redirectUrl = redirectUrl;
 	}
 
 }

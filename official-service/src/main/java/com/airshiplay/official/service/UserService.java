@@ -26,7 +26,7 @@ public interface UserService {
 			String email, String regIp, String password)
 			throws ServiceException;
 
-	public CfgUser loginUser(String username, String password, String ip)
+	public ServiceUser loginUser(String username, String password, String ip, String display)
 			throws ServiceException;
 
 	public CfgUser updateUser(CfgUser u) throws ServiceException;

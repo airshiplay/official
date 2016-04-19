@@ -14,7 +14,7 @@
 		<property name="endingDelimiter" value="`" />
 		<!-- 不去除自动生成的注释 否则每次加字段都要删掉4个相关文件后重新生成 -->
 
-		<commentGenerator>
+		<commentGenerator type="org.mybatis.generator.internal.AirCommonGenerator">
 			<!-- 是否取消注释 -->
 			<property name="suppressAllComments" value="false" />
 			<!-- 是否生成注释代时间戳 -->

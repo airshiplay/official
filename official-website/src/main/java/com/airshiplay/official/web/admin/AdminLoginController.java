@@ -19,6 +19,7 @@ import com.airshiplay.common.constants.SessionConstants;
 import com.airshiplay.common.util.IpUtil;
 import com.airshiplay.official.mybatis.model.CfgUser;
 import com.airshiplay.official.service.UserService;
+import com.airshiplay.official.service.model.ServiceUser;
 import com.airshiplay.official.web.BaseController;
 import com.airshiplay.official.web.model.ReqLogin;
 import com.airshiplay.official.web.model.ResultMessage;
@@ -44,9 +45,9 @@ public class AdminLoginController extends BaseController {
 			@RequestBody ReqLogin login, HttpServletRequest request,
 			HttpServletResponse response, Model model) {
 		String ip = IpUtil.getIpAddr(request);
-		CfgUser user;
+		ServiceUser user;
 		try {
-			user = userService.loginUser(login.getUsername(), login.getPassword(), ip);
+			user = userService.loginUser(login.getUsername(), login.getPassword(), ip,login.getDisplay());
 			HttpSession session = request.getSession();
 			session.setAttribute("online", true);
 			session.setAttribute(SessionConstants.SESSION_USER, user);

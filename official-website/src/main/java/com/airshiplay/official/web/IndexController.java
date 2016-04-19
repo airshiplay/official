@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.airshiplay.official.mybatis.model.OfBanner;
 import com.airshiplay.official.service.IndexService;
+import com.google.common.base.Optional;
 
 @Controller
 public class IndexController extends BaseController {
@@ -20,8 +21,8 @@ public class IndexController extends BaseController {
 
 	@RequestMapping(value = { "/", "/index", "index.jsp" })
 	public String index(Model model) {
-		List<OfBanner> banners = indexService.getBanners();
-		model.addAttribute("banners", banners);
+		Optional<List<OfBanner>> banners = indexService.getBanners();
+		model.addAttribute("banners", banners.get());
 		return "index";
 	}
 }

@@ -18,7 +18,7 @@
 
 	<aop:config>
 		<aop:pointcut id="appService"
-			expression="execution(* com.certusnet.medical.api..*Service*.*(..))" />
+			expression="execution(* com.airshiplay.official.service..*Service*.*(..))" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="appService" />
 	</aop:config>
 

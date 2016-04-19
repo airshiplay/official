@@ -4,7 +4,7 @@ public class ReqLogin {
 	private String username;
 	private String password;
 	private String captcha;
-
+	private String display;
 	public String getUsername() {
 		return username;
 	}
@@ -27,6 +27,14 @@ public class ReqLogin {
 
 	public void setCaptcha(String captcha) {
 		this.captcha = captcha;
+	}
+
+	public String getDisplay() {
+		return display;
+	}
+
+	public void setDisplay(String display) {
+		this.display = display;
 	}
 
 }

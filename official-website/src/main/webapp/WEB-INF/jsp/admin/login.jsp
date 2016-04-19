@@ -32,6 +32,7 @@
   <link href="<%=contextPath%>/resources/admin/js/toastr/toastr.min.css" rel="stylesheet" type="text/css" />
 
   <script src="<%=contextPath%>/resources/admin/js/jquery.min.js"></script>
+  <script src="<%=contextPath%>/resources/admin/js/jquery.cookie.js"></script>
 
   <!--[if lt IE 9]>
         <script src="../assets/js/ie8-responsive-file-warning.js"></script>
