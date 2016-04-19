@@ -199,6 +199,28 @@
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+<div class="modal fade" id="delUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+    <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal"
+			aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		<h4 class="modal-title" id="exampleModalLabel"> <c:if test="${cfgTag==null }">删除标签</c:if> <c:if test="${cfgTag!=null }">修改标签</c:if></h4>
+	</div>
+	<div class="modal-body">
+		确认删除此标签？
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		<button id="deltag_id" type="button" class="btn btn-primary submit" data-loading-text="Loading..."
+			onclick="delTag()">删除</button>
+	</div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
         <script src="<%=contextPath%>/resources/admin/js/bootstrap.min.js"></script>
 
         <!-- bootstrap progress js -->

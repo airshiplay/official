@@ -60,9 +60,11 @@ $(document).ready(function() {
 					"data" : "id",
 					"render" : function(data, type, row, meta) {
 						var edit="<a href=# class=\"btn btn-info btn-xs\" data-toggle=\"modal\" data-row=\""+meta.row+"\" data-target=\"#userModal\" ><i class=\"fa fa-pencil\"></i> Edit </a>";
-                    	var del="<a href=# class=\"btn btn-danger btn-xs\"  data-toggle=\"modal\" data-row=\""+meta.row+"\" data-target=\"#userModal\" ><i class=\"fa fa-trash-o\"></i> Delete </a>";
-						if(row.id==1){
+                    	var del="<a href=# class=\"btn btn-danger btn-xs\"  data-toggle=\"modal\" data-id=\""+row.id+"\" data-row=\""+meta.row+"\" data-target=\"#delUserModal\" ><i class=\"fa fa-trash-o\"></i> Delete </a>";
+						if(row.id==1&&row.username==getCusername()){
 							return edit;
+						}else if(row.id==1&&row.username!=getCusername()){
+							return "";
 						}else if(row.username==getCusername()){
 							return edit;
 						}
@@ -160,3 +162,25 @@ function updateUser(rowid) {
 	});
 
 }
+function delUser(id) {
+	var $btn = $("#deltag_id").button('loading')
+	$.ajax({
+		url:contextPath+'/admin/config/tags/del/ajax',
+		async:true,
+		contentType: "application/json; charset=utf-8",
+		dataType:'json',
+		type:'POST',
+		data:JSON.stringify({id:id}),
+		success:function(data , textStatus){
+			 $('#tagsDelModal').modal('hide');
+			 $btn.button('reset');
+			 toastr["success"]("删除成功！");
+			 $('#datatable').DataTable().ajax.reload();
+		},
+		error: function(jqXHR , textStatus , errorThrown){
+	          $('#tagsDelModal').modal('hide')
+	          $btn.button('reset');
+	          toastr["error"]("删除失败")
+	    },
+	});
+};

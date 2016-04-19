@@ -8,12 +8,17 @@
 	<!-- <classPathEntry location=""/> -->
 	<properties resource="generator/generatorConfig.properties" />
 	<!-- need classPathEntry when using eclipse plugin generator -->
-	<!-- <classPathEntry location="${jdbc.driver.jar}" /> -->
+	<!-- <classPathEntry location="${jdbc.driver.jar}" /> MyBatis3Simple-->
 	<context id="MysqlTables" targetRuntime="MyBatis3">
 		<property name="beginningDelimiter" value="`" />
 		<property name="endingDelimiter" value="`" />
-		<!-- 不去除自动生成的注释 否则每次加字段都要删掉4个相关文件后重新生成 -->
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin" >
+			<property name="suppressJavaInterface" value="false"/>
+		</plugin>
+		<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"></plugin>
+		<plugin type="org.mybatis.generator.plugins.ToStringPlugin"></plugin>
 
+		<!-- 不去除自动生成的注释 否则每次加字段都要删掉4个相关文件后重新生成 -->
 		<commentGenerator type="org.mybatis.generator.internal.AirCommonGenerator">
 			<!-- 是否取消注释 -->
 			<property name="suppressAllComments" value="false" />
@@ -52,7 +57,6 @@
 			targetProject="src/main/java">
 			<property name="enableSubPackages" value="false" />
 		</javaClientGenerator>
-
 		<!-- 实体名请严格按照表名来，按表名排序 -->
 		<table schema="${jdbc.username}" tableName="%">
 			<!-- <property name="ignoreQualifiersAtRuntime" value="true" /> -->

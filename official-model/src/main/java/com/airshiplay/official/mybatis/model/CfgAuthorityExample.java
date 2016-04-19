@@ -240,63 +240,63 @@ public class CfgAuthorityExample {
             return (Criteria) this;
         }
 
-        public Criteria andPatientIdIsNull() {
-            addCriterion("patient_id is null");
+        public Criteria andUpIdIsNull() {
+            addCriterion("up_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andPatientIdIsNotNull() {
-            addCriterion("patient_id is not null");
+        public Criteria andUpIdIsNotNull() {
+            addCriterion("up_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPatientIdEqualTo(Long value) {
-            addCriterion("patient_id =", value, "patientId");
+        public Criteria andUpIdEqualTo(Long value) {
+            addCriterion("up_id =", value, "upId");
             return (Criteria) this;
         }
 
-        public Criteria andPatientIdNotEqualTo(Long value) {
-            addCriterion("patient_id <>", value, "patientId");
+        public Criteria andUpIdNotEqualTo(Long value) {
+            addCriterion("up_id <>", value, "upId");
             return (Criteria) this;
         }
 
-        public Criteria andPatientIdGreaterThan(Long value) {
-            addCriterion("patient_id >", value, "patientId");
+        public Criteria andUpIdGreaterThan(Long value) {
+            addCriterion("up_id >", value, "upId");
             return (Criteria) this;
         }
 
-        public Criteria andPatientIdGreaterThanOrEqualTo(Long value) {
-            addCriterion("patient_id >=", value, "patientId");
+        public Criteria andUpIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("up_id >=", value, "upId");
             return (Criteria) this;
         }
 
-        public Criteria andPatientIdLessThan(Long value) {
-            addCriterion("patient_id <", value, "patientId");
+        public Criteria andUpIdLessThan(Long value) {
+            addCriterion("up_id <", value, "upId");
             return (Criteria) this;
         }
 
-        public Criteria andPatientIdLessThanOrEqualTo(Long value) {
-            addCriterion("patient_id <=", value, "patientId");
+        public Criteria andUpIdLessThanOrEqualTo(Long value) {
+            addCriterion("up_id <=", value, "upId");
             return (Criteria) this;
         }
 
-        public Criteria andPatientIdIn(List<Long> values) {
-            addCriterion("patient_id in", values, "patientId");
+        public Criteria andUpIdIn(List<Long> values) {
+            addCriterion("up_id in", values, "upId");
             return (Criteria) this;
         }
 
-        public Criteria andPatientIdNotIn(List<Long> values) {
-            addCriterion("patient_id not in", values, "patientId");
+        public Criteria andUpIdNotIn(List<Long> values) {
+            addCriterion("up_id not in", values, "upId");
             return (Criteria) this;
         }
 
-        public Criteria andPatientIdBetween(Long value1, Long value2) {
-            addCriterion("patient_id between", value1, value2, "patientId");
+        public Criteria andUpIdBetween(Long value1, Long value2) {
+            addCriterion("up_id between", value1, value2, "upId");
             return (Criteria) this;
         }
 
-        public Criteria andPatientIdNotBetween(Long value1, Long value2) {
-            addCriterion("patient_id not between", value1, value2, "patientId");
+        public Criteria andUpIdNotBetween(Long value1, Long value2) {
+            addCriterion("up_id not between", value1, value2, "upId");
             return (Criteria) this;
         }
 
@@ -367,6 +367,76 @@ public class CfgAuthorityExample {
 
         public Criteria andAuthorityNameNotBetween(String value1, String value2) {
             addCriterion("authority_name not between", value1, value2, "authorityName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthorityUrlIsNull() {
+            addCriterion("authority_url is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthorityUrlIsNotNull() {
+            addCriterion("authority_url is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthorityUrlEqualTo(String value) {
+            addCriterion("authority_url =", value, "authorityUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthorityUrlNotEqualTo(String value) {
+            addCriterion("authority_url <>", value, "authorityUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthorityUrlGreaterThan(String value) {
+            addCriterion("authority_url >", value, "authorityUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthorityUrlGreaterThanOrEqualTo(String value) {
+            addCriterion("authority_url >=", value, "authorityUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthorityUrlLessThan(String value) {
+            addCriterion("authority_url <", value, "authorityUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthorityUrlLessThanOrEqualTo(String value) {
+            addCriterion("authority_url <=", value, "authorityUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthorityUrlLike(String value) {
+            addCriterion("authority_url like", value, "authorityUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthorityUrlNotLike(String value) {
+            addCriterion("authority_url not like", value, "authorityUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthorityUrlIn(List<String> values) {
+            addCriterion("authority_url in", values, "authorityUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthorityUrlNotIn(List<String> values) {
+            addCriterion("authority_url not in", values, "authorityUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthorityUrlBetween(String value1, String value2) {
+            addCriterion("authority_url between", value1, value2, "authorityUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthorityUrlNotBetween(String value1, String value2) {
+            addCriterion("authority_url not between", value1, value2, "authorityUrl");
             return (Criteria) this;
         }
 

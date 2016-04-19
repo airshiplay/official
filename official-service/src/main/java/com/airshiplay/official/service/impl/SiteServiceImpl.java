@@ -30,7 +30,7 @@ public class SiteServiceImpl implements SiteService {
 	OfBannerMapper cfgBannerMapper;
 	@Autowired
 	CfgTagsMapper  cfgTagsMapper;
-	public List<OfCatalog> getCatalogs() {
+	public List<OfCatalog> storedProcedureCatalogs() {
 		List<OfCatalog> list = customOfCatalogMapper.getCatalogTree(0, null);
 		return list;
 	}

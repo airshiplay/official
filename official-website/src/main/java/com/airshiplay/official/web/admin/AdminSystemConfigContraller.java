@@ -72,7 +72,7 @@ public class AdminSystemConfigContraller extends BaseController {
 
 	@RequestMapping("/site/nav/ajax")
 	public @ResponseBody DataTable<OfCatalog> navAjax(Model model) {
-		List<OfCatalog> list = siteService.getCatalogs();
+		List<OfCatalog> list = siteService.storedProcedureCatalogs();
 		return new DataTable<OfCatalog>(list);
 	}
 
@@ -81,7 +81,7 @@ public class AdminSystemConfigContraller extends BaseController {
 		try {
 			CfgCompany company = companyService.getCompany();
 			model.addAttribute("company", company);
-			siteService.getCatalogs();
+			siteService.storedProcedureCatalogs();
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		}

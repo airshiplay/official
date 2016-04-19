@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.airshiplay.common.util.IpUtil;
-import com.airshiplay.official.mybatis.model.IpBsLb;
+import com.airshiplay.official.mybatis.model.OfIpBsLb;
 import com.airshiplay.official.service.IpBaseStationLBService;
 import com.airshiplay.official.web.model.ResultMessage;
 import com.google.protobuf.ServiceException;
@@ -28,7 +28,7 @@ public class IpBaseStationLBController {
 	}
 
 	@RequestMapping("/add")
-	public ResultMessage<Object> addRealIp(@RequestBody IpBsLb base) {
+	public ResultMessage<Object> addRealIp(@RequestBody OfIpBsLb base) {
 		try {
 
 			if (base.getIp() != null) {

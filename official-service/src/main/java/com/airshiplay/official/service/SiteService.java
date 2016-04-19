@@ -9,7 +9,7 @@ import com.github.pagehelper.PageInfo;
 import com.google.protobuf.ServiceException;
 
 public interface SiteService {
-	public List<OfCatalog> getCatalogs();
+	public List<OfCatalog> storedProcedureCatalogs();
 
 	public PageInfo<OfBanner> getBanners(int pageNum, int pageSize);
 
