@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.airshiplay.common.constants.SessionConstants;
 import com.airshiplay.common.util.IpUtil;
-import com.airshiplay.official.mybatis.model.CfgUser;
+import com.airshiplay.official.mybatis.model.OfUser;
 import com.airshiplay.official.service.UserService;
 import com.airshiplay.official.service.model.ServiceRole;
 import com.airshiplay.official.service.model.ServiceUser;
@@ -54,7 +54,7 @@ public class AdminSystemManageController extends BaseController {
 	public @ResponseBody ResultMessage<Object> mergeUser(
 			@RequestBody WebUser webUser, HttpServletRequest req) {
 		String ip = IpUtil.getIpAddr(req);
-		Long regUid = ((CfgUser) req.getSession().getAttribute(
+		Long regUid = ((OfUser) req.getSession().getAttribute(
 				SessionConstants.SESSION_USER)).getId();
 		try {
 			return new ResultMessage<Object>(userService.mergeUser(

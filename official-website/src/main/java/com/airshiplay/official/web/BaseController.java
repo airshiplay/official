@@ -16,8 +16,9 @@ public class BaseController {
 
 	@ModelAttribute
 	public void populateModel(Model model,HttpSession session) {
-		model.addAttribute("company", globalObject.getCompany());
+		model.addAttribute("webSite", globalObject.getWebSite());
 		model.addAttribute("navbar", globalObject.getNavbar());
+		model.addAttribute("baiduMapAk", globalObject.getBaiduMapAk());
 		model.addAttribute("currentUser", session.getAttribute(SessionConstants.SESSION_USER));
 	}
 

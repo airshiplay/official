@@ -8,15 +8,15 @@
 %>
 <html>
 <head>
-<title>${company.siteTitle}</title>
+<title>${webSite.siteTitle}</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-<meta name="description" content="${company.metaDescription}">
-<meta name="author" content="${company.metaAuthor}">
-<meta name="keyword" content="${company.metaKeyword}">
-<link rel="icon" href="${company.siteFavicon}">
+<meta name="description" content="${webSite.metaDescription}">
+<meta name="author" content="${webSite.metaAuthor}">
+<meta name="keyword" content="${webSite.metaKeyword}">
+<link rel="icon" href="${webSite.siteFavicon}">
 
 <!-- Bootstrap core CSS -->
 <link href="<%=contextPath%>/resources/bootstrap/css/bootstrap.min.css"

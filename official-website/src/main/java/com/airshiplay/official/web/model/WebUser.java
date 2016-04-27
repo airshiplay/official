@@ -1,6 +1,6 @@
 package com.airshiplay.official.web.model;
 
-import com.airshiplay.official.mybatis.model.CfgUser;
+import com.airshiplay.official.mybatis.model.OfUser;
 import com.airshiplay.official.service.model.ServiceUser;
 
 public class WebUser extends ServiceUser {
@@ -13,7 +13,7 @@ public class WebUser extends ServiceUser {
 		super(user);
 	}
 
-	public WebUser(CfgUser user) {
+	public WebUser(OfUser user) {
 		super(user);
 	}
 

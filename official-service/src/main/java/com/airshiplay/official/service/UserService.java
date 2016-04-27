@@ -2,9 +2,9 @@ package com.airshiplay.official.service;
 
 import java.util.List;
 
-import com.airshiplay.official.mybatis.model.CfgAuthority;
-import com.airshiplay.official.mybatis.model.CfgRole;
-import com.airshiplay.official.mybatis.model.CfgUser;
+import com.airshiplay.official.mybatis.model.OfAuthority;
+import com.airshiplay.official.mybatis.model.OfRole;
+import com.airshiplay.official.mybatis.model.OfUser;
 import com.airshiplay.official.service.model.ServiceRole;
 import com.airshiplay.official.service.model.ServiceUser;
 import com.github.pagehelper.PageInfo;
@@ -22,37 +22,37 @@ public interface UserService {
 	 * @return
 	 * @throws ServiceException
 	 */
-	public CfgUser createUser(Long regUid, String username, String mobile,
+	public OfUser createUser(Long regUid, String username, String mobile,
 			String email, String regIp, String password)
 			throws ServiceException;
 
 	public ServiceUser loginUser(String username, String password, String ip, String display)
 			throws ServiceException;
 
-	public CfgUser updateUser(CfgUser u) throws ServiceException;
+	public OfUser updateUser(OfUser u) throws ServiceException;
 
-	public CfgUser resetPassword(String username, String password)
+	public OfUser resetPassword(String username, String password)
 			throws ServiceException;
 
-	public CfgRole createRole(String roleName, String desc)
+	public OfRole createRole(String roleName, String desc)
 			throws ServiceException;
 
-	public CfgRole updateRole(Long id, String roleName, String desc)
+	public OfRole updateRole(Long id, String roleName, String desc)
 			throws ServiceException;
 
-	public CfgAuthority createAuthority(String authorityName, String desc)
+	public OfAuthority createAuthority(String authorityName, String desc)
 			throws ServiceException;
 
-	public PageInfo<CfgAuthority> getAuthoritys(int pageNum, int pageSize);
+	public PageInfo<OfAuthority> getAuthoritys(int pageNum, int pageSize);
 
 	public PageInfo<ServiceUser> getUsers(int pageNum, int pageSize);
 
 	public PageInfo<ServiceRole> getRoles(int pageNum, int pageSize);
 
-	public List<CfgRole> getRoles();
+	public List<OfRole> getRoles();
 
 	public ServiceUser mergeUser(Long id, String username, String email,
 			String mobile, String nickname, String password,
-			List<CfgRole> roles, String ip, Long regUid)
+			List<OfRole> roles, String ip, Long regUid)
 			throws ServiceException;
 }

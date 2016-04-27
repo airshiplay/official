@@ -60,7 +60,7 @@
 
     <div class="main_container">
 
-<jsp:include page="../template/admin/navbar.jsp"/> 
+<jsp:include page="../admin/template/navbar.jsp"/> 
       <!-- /top navigation -->
 
       <!-- page content -->
@@ -126,7 +126,7 @@
               </div>
               <!-- footer content -->
               <footer>
-               <jsp:include page="../template/admin/footer.jsp"/> 
+               <jsp:include page="../admin/template/footer.jsp"/> 
               </footer>
               <!-- /footer content -->
 

@@ -9,23 +9,23 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.airshiplay.official.mybatis.mapper.CfgAccessTokenMapper;
-import com.airshiplay.official.mybatis.mapper.CfgAuthorityMapper;
-import com.airshiplay.official.mybatis.mapper.CfgRoleMapper;
-import com.airshiplay.official.mybatis.mapper.CfgUserMapper;
-import com.airshiplay.official.mybatis.mapper.CfgUserRoleMapper;
-import com.airshiplay.official.mybatis.mapper.custom.CustomCfgAuthorityMapper;
-import com.airshiplay.official.mybatis.mapper.custom.CustomCfgRoleMapper;
-import com.airshiplay.official.mybatis.model.CfgAccessToken;
-import com.airshiplay.official.mybatis.model.CfgAccessTokenExample;
-import com.airshiplay.official.mybatis.model.CfgAuthority;
-import com.airshiplay.official.mybatis.model.CfgAuthorityExample;
-import com.airshiplay.official.mybatis.model.CfgRole;
-import com.airshiplay.official.mybatis.model.CfgRoleExample;
-import com.airshiplay.official.mybatis.model.CfgUser;
-import com.airshiplay.official.mybatis.model.CfgUserExample;
-import com.airshiplay.official.mybatis.model.CfgUserRole;
-import com.airshiplay.official.mybatis.model.CfgUserRoleExample;
+import com.airshiplay.official.mybatis.mapper.OfAccessTokenMapper;
+import com.airshiplay.official.mybatis.mapper.OfAuthorityMapper;
+import com.airshiplay.official.mybatis.mapper.OfRoleMapper;
+import com.airshiplay.official.mybatis.mapper.OfUserMapper;
+import com.airshiplay.official.mybatis.mapper.OfUserRoleMapper;
+import com.airshiplay.official.mybatis.mapper.custom.CustomOfAuthorityMapper;
+import com.airshiplay.official.mybatis.mapper.custom.CustomOfRoleMapper;
+import com.airshiplay.official.mybatis.model.OfAccessToken;
+import com.airshiplay.official.mybatis.model.OfAccessTokenExample;
+import com.airshiplay.official.mybatis.model.OfAuthority;
+import com.airshiplay.official.mybatis.model.OfAuthorityExample;
+import com.airshiplay.official.mybatis.model.OfRole;
+import com.airshiplay.official.mybatis.model.OfRoleExample;
+import com.airshiplay.official.mybatis.model.OfUser;
+import com.airshiplay.official.mybatis.model.OfUserExample;
+import com.airshiplay.official.mybatis.model.OfUserRole;
+import com.airshiplay.official.mybatis.model.OfUserRoleExample;
 import com.airshiplay.official.service.UserService;
 import com.airshiplay.official.service.model.ServiceAccessToken;
 import com.airshiplay.official.service.model.ServiceRole;
@@ -38,32 +38,32 @@ import com.google.protobuf.ServiceException;
 @Service("userService")
 public class UserServiceImpl implements UserService {
 	@Autowired
-	CfgUserMapper cfgUserMapper;
+	OfUserMapper OfUserMapper;
 	@Autowired
-	CfgRoleMapper cfgRoleMapper;
+	OfRoleMapper OfRoleMapper;
 	@Autowired
-	CfgAuthorityMapper cfgAuthorityMapper;
+	OfAuthorityMapper OfAuthorityMapper;
 	@Autowired
-	CustomCfgRoleMapper customCfgRoleMapper;
+	CustomOfRoleMapper customOfRoleMapper;
 	@Autowired
-	CustomCfgAuthorityMapper customCfgAuthorityMapper;
+	CustomOfAuthorityMapper customOfAuthorityMapper;
 	@Autowired
-	CfgUserRoleMapper cfgUserRoleMapper;
+	OfUserRoleMapper OfUserRoleMapper;
 	@Autowired
-	CfgAccessTokenMapper cfgAccessTokenMapper;
+	OfAccessTokenMapper OfAccessTokenMapper;
 
 	@Override
-	public CfgUser createUser(Long regUid, String username, String mobile,
+	public OfUser createUser(Long regUid, String username, String mobile,
 			String email, String regIp, String password)
 			throws ServiceException {
 
-		CfgUserExample example = new CfgUserExample();
+		OfUserExample example = new OfUserExample();
 		example.createCriteria().andUsernameEqualTo(username);
-		if (cfgUserMapper.selectByExample(example).size() > 0) {
+		if (OfUserMapper.selectByExample(example).size() > 0) {
 			throw new ServiceException("该用户已存在");
 		}
 
-		CfgUser u = new CfgUser();
+		OfUser u = new OfUser();
 		u.setCreateTime(new Date());
 		u.setEmail(email);
 		u.setMobile(mobile);
@@ -75,17 +75,17 @@ public class UserServiceImpl implements UserService {
 		u.setSalt(salt);
 		u.setPassword(org.apache.commons.codec.digest.DigestUtils
 				.md5Hex(password + salt));
-		cfgUserMapper.insert(u);
+		OfUserMapper.insert(u);
 		return u;
 	}
 
 	@Override
 	public ServiceUser loginUser(String username, String password, String ip,
 			String display) throws ServiceException {
-		CfgUserExample example = new CfgUserExample();
+		OfUserExample example = new OfUserExample();
 		example.createCriteria().andUsernameEqualTo(username);
-		List<CfgUser> list = cfgUserMapper.selectByExample(example);
-		CfgUser user = null;
+		List<OfUser> list = OfUserMapper.selectByExample(example);
+		OfUser user = null;
 		if (list.isEmpty()) {
 			throw new ServiceException("用户不存在");
 		} else {
@@ -95,39 +95,39 @@ public class UserServiceImpl implements UserService {
 							+ user.getSalt()))) {
 				user.setLatestLoginTime(new Date());
 				user.setLatestLoginIp(ip);
-				cfgUserMapper.updateByPrimaryKeySelective(user);
+				OfUserMapper.updateByPrimaryKeySelective(user);
 			} else {
 				throw new ServiceException("密码错误");
 			}
 		}
 		user.setPassword(null);
 		user.setSalt(null);
-		CfgAccessTokenExample exam = new CfgAccessTokenExample();
+		OfAccessTokenExample exam = new OfAccessTokenExample();
 		exam.createCriteria().andUidEqualTo(user.getId());
-		List<CfgAccessToken> listAcc = cfgAccessTokenMapper
+		List<OfAccessToken> listAcc = OfAccessTokenMapper
 				.selectByExample(exam);
-		CfgAccessToken acccessToken;
+		OfAccessToken acccessToken;
 		if (listAcc.isEmpty()) {
 			acccessToken = generatorAccessToken(user.getId(), display);
-			cfgAccessTokenMapper.insert(acccessToken);
+			OfAccessTokenMapper.insert(acccessToken);
 		} else {
 			acccessToken = listAcc.get(0);
 			if ((acccessToken.getExpires().getTime()) < new Date().getTime()) {
 				acccessToken.setStatus(1);
-				cfgAccessTokenMapper.updateByPrimaryKey(acccessToken);
+				OfAccessTokenMapper.updateByPrimaryKey(acccessToken);
 				acccessToken = generatorAccessToken(user.getId(), display);
-				cfgAccessTokenMapper.insert(acccessToken);
+				OfAccessTokenMapper.insert(acccessToken);
 			}
 		}
-		CfgUserRoleExample examp = new CfgUserRoleExample();
+		OfUserRoleExample examp = new OfUserRoleExample();
 		examp.createCriteria().andUidEqualTo(user.getId()).andStatusEqualTo(2);
-		List<CfgRole> roles = customCfgRoleMapper.getRolesByUid(user.getId());
+		List<OfRole> roles = customOfRoleMapper.getRolesByUid(user.getId());
 		return new ServiceUser(user).setAccessToken(acccessToken).setRoles(
 				roles);
 	}
 
-	private CfgAccessToken generatorAccessToken(Long uid, String display) {
-		CfgAccessToken acccessToken = new CfgAccessToken();
+	private OfAccessToken generatorAccessToken(Long uid, String display) {
+		OfAccessToken acccessToken = new OfAccessToken();
 		acccessToken.setAccessToken(RandomStringUtils.randomAlphanumeric(64));
 		acccessToken.setUid(uid);
 		java.util.Calendar c = Calendar.getInstance();
@@ -140,18 +140,18 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public CfgUser updateUser(CfgUser u) {
-		cfgUserMapper.updateByPrimaryKeySelective(u);
+	public OfUser updateUser(OfUser u) {
+		OfUserMapper.updateByPrimaryKeySelective(u);
 		return null;
 	}
 
 	@Override
-	public CfgUser resetPassword(String username, String password)
+	public OfUser resetPassword(String username, String password)
 			throws ServiceException {
-		CfgUserExample example = new CfgUserExample();
+		OfUserExample example = new OfUserExample();
 		example.createCriteria().andUsernameEqualTo(username);
-		List<CfgUser> list = cfgUserMapper.selectByExample(example);
-		CfgUser user = null;
+		List<OfUser> list = OfUserMapper.selectByExample(example);
+		OfUser user = null;
 		if (list.isEmpty()) {
 			throw new ServiceException("用户不存在");
 		} else {
@@ -160,7 +160,7 @@ public class UserServiceImpl implements UserService {
 			user.setSalt(salt);
 			user.setPassword(org.apache.commons.codec.digest.DigestUtils
 					.md5Hex(password + salt));
-			cfgUserMapper.updateByPrimaryKey(user);
+			OfUserMapper.updateByPrimaryKey(user);
 		}
 		user.setPassword(null);
 		user.setSalt(null);
@@ -168,100 +168,100 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public CfgRole createRole(String roleName, String desc)
+	public OfRole createRole(String roleName, String desc)
 			throws ServiceException {
-		CfgRole record = new CfgRole();
+		OfRole record = new OfRole();
 		record.setCreateTime(new Date());
 		record.setRoleName(roleName);
 		record.setRoleDesc(desc);
-		cfgRoleMapper.insert(record);
+		OfRoleMapper.insert(record);
 		return record;
 	}
 
 	@Override
-	public CfgRole updateRole(Long id, String roleName, String desc)
+	public OfRole updateRole(Long id, String roleName, String desc)
 			throws ServiceException {
-		CfgRole role = cfgRoleMapper.selectByPrimaryKey(id);
+		OfRole role = OfRoleMapper.selectByPrimaryKey(id);
 		role.setRoleDesc(desc);
 		role.setRoleName(roleName);
-		cfgRoleMapper.updateByPrimaryKey(role);
+		OfRoleMapper.updateByPrimaryKey(role);
 		return role;
 	}
 
 	@Override
-	public CfgAuthority createAuthority(String authorityName, String desc)
+	public OfAuthority createAuthority(String authorityName, String desc)
 			throws ServiceException {
-		CfgAuthority record = new CfgAuthority();
+		OfAuthority record = new OfAuthority();
 		record.setCreateTime(new Date());
 		record.setAuthorityName(authorityName);
 		record.setAuthorityDesc(desc);
-		cfgAuthorityMapper.insert(record);
+		OfAuthorityMapper.insert(record);
 		return record;
 	}
 
 	@Override
-	public PageInfo<CfgAuthority> getAuthoritys(int pageNum, int pageSize) {
+	public PageInfo<OfAuthority> getAuthoritys(int pageNum, int pageSize) {
 		PageHelper.startPage(pageNum, pageSize);
-		return new PageInfo<CfgAuthority>(
-				cfgAuthorityMapper.selectByExample(new CfgAuthorityExample()));
+		return new PageInfo<OfAuthority>(
+				OfAuthorityMapper.selectByExample(new OfAuthorityExample()));
 	}
 
 	@Override
 	public PageInfo<ServiceUser> getUsers(int pageNum, int pageSize) {
 		PageHelper.startPage(pageNum, pageSize);
-		List<CfgUser> list = cfgUserMapper
-				.selectByExample(new CfgUserExample());
+		List<OfUser> list = OfUserMapper
+				.selectByExample(new OfUserExample());
 		Page<ServiceUser> result = new Page<ServiceUser>();
-		for (CfgUser user : list) {
+		for (OfUser user : list) {
 			ServiceUser ur = new ServiceUser(user);
-			List<CfgRole> roles = customCfgRoleMapper.getRolesByUid(user
+			List<OfRole> roles = customOfRoleMapper.getRolesByUid(user
 					.getId());
 			ur.setRoles(roles);
 			result.add(ur);
 		}
-		result.setPageNum(((Page<CfgUser>) list).getPageNum());
-		result.setPageSize(((Page<CfgUser>) list).getPageSize());
-		result.setTotal(((Page<CfgUser>) list).getTotal());
+		result.setPageNum(((Page<OfUser>) list).getPageNum());
+		result.setPageSize(((Page<OfUser>) list).getPageSize());
+		result.setTotal(((Page<OfUser>) list).getTotal());
 		return new PageInfo<ServiceUser>(result);
 	}
 
 	@Override
 	public PageInfo<ServiceRole> getRoles(int pageNum, int pageSize) {
 		PageHelper.startPage(pageNum, pageSize);
-		List<CfgRole> list = cfgRoleMapper
-				.selectByExample(new CfgRoleExample());
+		List<OfRole> list = OfRoleMapper
+				.selectByExample(new OfRoleExample());
 		Page<ServiceRole> result = new Page<ServiceRole>();
-		for (CfgRole role : list) {
+		for (OfRole role : list) {
 			ServiceRole ur = new ServiceRole(role);
-			List<CfgAuthority> authorities = customCfgAuthorityMapper
+			List<OfAuthority> authorities = customOfAuthorityMapper
 					.getAuthoritiesByRoleId(role.getId());
 			ur.setAuthorities(authorities);
 			result.add(ur);
 		}
-		result.setPageNum(((Page<CfgRole>) list).getPageNum());
-		result.setPageSize(((Page<CfgRole>) list).getPageSize());
-		result.setTotal(((Page<CfgRole>) list).getTotal());
+		result.setPageNum(((Page<OfRole>) list).getPageNum());
+		result.setPageSize(((Page<OfRole>) list).getPageSize());
+		result.setTotal(((Page<OfRole>) list).getTotal());
 		return new PageInfo<ServiceRole>(result);
 	}
 
 	@Override
-	public List<CfgRole> getRoles() {
-		List<CfgRole> list = cfgRoleMapper
-				.selectByExample(new CfgRoleExample());
+	public List<OfRole> getRoles() {
+		List<OfRole> list = OfRoleMapper
+				.selectByExample(new OfRoleExample());
 		return list;
 	}
 
 	@Override
 	public ServiceUser mergeUser(Long id, String username, String email,
 			String mobile, String nickname, String password,
-			List<CfgRole> roles, String regIp, Long regUid)
+			List<OfRole> roles, String regIp, Long regUid)
 			throws ServiceException {
 		if (id == null) {
-			CfgUserExample example = new CfgUserExample();
+			OfUserExample example = new OfUserExample();
 			example.createCriteria().andUsernameEqualTo(username);
-			List<CfgUser> findUsers = cfgUserMapper.selectByExample(example);
+			List<OfUser> findUsers = OfUserMapper.selectByExample(example);
 			if (findUsers.isEmpty()) {
-				CfgUser record = new CfgUser();
+				OfUser record = new OfUser();
 				record.setCreateTime(new Date());
 				record.setEmail(email);
 				record.setMobile(mobile);
@@ -273,14 +273,14 @@ public class UserServiceImpl implements UserService {
 				record.setSalt(salt);
 				record.setPassword(org.apache.commons.codec.digest.DigestUtils
 						.md5Hex(password + salt));
-				cfgUserMapper.insert(record);
-				for (CfgRole role : roles) {
-					CfgUserRole cfgUserRole = new CfgUserRole();
-					cfgUserRole.setUid(record.getId());
-					cfgUserRole.setRoleId(role.getId());
-					cfgUserRole.setCreateTime(new Date());
-					cfgUserRole.setStatus(2);
-					cfgUserRoleMapper.insert(cfgUserRole);
+				OfUserMapper.insert(record);
+				for (OfRole role : roles) {
+					OfUserRole OfUserRole = new OfUserRole();
+					OfUserRole.setUid(record.getId());
+					OfUserRole.setRoleId(role.getId());
+					OfUserRole.setCreateTime(new Date());
+					OfUserRole.setStatus(2);
+					OfUserRoleMapper.insert(OfUserRole);
 				}
 				return new ServiceUser(record).setRoles(roles);
 			} else {
@@ -288,7 +288,7 @@ public class UserServiceImpl implements UserService {
 			}
 
 		} else {
-			CfgUser findUsers = cfgUserMapper.selectByPrimaryKey(id);
+			OfUser findUsers = OfUserMapper.selectByPrimaryKey(id);
 			if (findUsers == null || !findUsers.getUsername().equals(username)) {
 				throw new ServiceException("用户名不存在");
 			} else {
@@ -303,20 +303,20 @@ public class UserServiceImpl implements UserService {
 							.setPassword(org.apache.commons.codec.digest.DigestUtils
 									.md5Hex(password + salt));
 				}
-				cfgUserMapper.updateByPrimaryKey(findUsers);
-				CfgUserRoleExample example = new CfgUserRoleExample();
+				OfUserMapper.updateByPrimaryKey(findUsers);
+				OfUserRoleExample example = new OfUserRoleExample();
 				example.createCriteria().andUidEqualTo(findUsers.getId());
 				// .andStatusEqualTo(2);
-				CfgUserRole record = new CfgUserRole();
+				OfUserRole record = new OfUserRole();
 				record.setStatus(1);
-				cfgUserRoleMapper.updateByExampleSelective(record, example);
-				for (CfgRole role : roles) {
-					CfgUserRole cfgUserRole = new CfgUserRole();
-					cfgUserRole.setUid(findUsers.getId());
-					cfgUserRole.setRoleId(role.getId());
-					cfgUserRole.setCreateTime(new Date());
-					cfgUserRole.setStatus(2);
-					cfgUserRoleMapper.insert(cfgUserRole);
+				OfUserRoleMapper.updateByExampleSelective(record, example);
+				for (OfRole role : roles) {
+					OfUserRole OfUserRole = new OfUserRole();
+					OfUserRole.setUid(findUsers.getId());
+					OfUserRole.setRoleId(role.getId());
+					OfUserRole.setCreateTime(new Date());
+					OfUserRole.setStatus(2);
+					OfUserRoleMapper.insert(OfUserRole);
 				}
 				return new ServiceUser(findUsers);
 			}

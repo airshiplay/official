@@ -5,12 +5,12 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 
-import com.airshiplay.official.mybatis.model.CfgAccessToken;
-import com.airshiplay.official.mybatis.model.CfgRole;
-import com.airshiplay.official.mybatis.model.CfgUser;
+import com.airshiplay.official.mybatis.model.OfAccessToken;
+import com.airshiplay.official.mybatis.model.OfRole;
+import com.airshiplay.official.mybatis.model.OfUser;
 
-public class ServiceUser extends CfgUser {
-	private List<CfgRole> roles;
+public class ServiceUser extends OfUser {
+	private List<OfRole> roles;
 	private String accessToken;
 	private Date expires;
 	private int expiresIn;
@@ -18,15 +18,15 @@ public class ServiceUser extends CfgUser {
 	public ServiceUser() {
 	}
 
-	public ServiceUser(CfgUser user) {
+	public ServiceUser(OfUser user) {
 		BeanUtils.copyProperties(user, this);
 	}
 
-	public List<CfgRole> getRoles() {
+	public List<OfRole> getRoles() {
 		return roles;
 	}
 
-	public ServiceUser setRoles(List<CfgRole> roles) {
+	public ServiceUser setRoles(List<OfRole> roles) {
 		this.roles = roles;
 		return this;
 	}
@@ -57,7 +57,7 @@ public class ServiceUser extends CfgUser {
 		return accessToken;
 	}
 
-	public ServiceUser setAccessToken(CfgAccessToken accessToken) {
+	public ServiceUser setAccessToken(OfAccessToken accessToken) {
 		this.accessToken = accessToken.getAccessToken();
 		this.expires = accessToken.getExpires();
 		return this;

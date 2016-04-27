@@ -17,7 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.airshiplay.common.constants.SessionConstants;
 import com.airshiplay.common.util.IpUtil;
-import com.airshiplay.official.mybatis.model.CfgUser;
 import com.airshiplay.official.service.UserService;
 import com.airshiplay.official.service.model.ServiceUser;
 import com.airshiplay.official.web.BaseController;
@@ -68,7 +67,6 @@ public class AdminLoginController extends BaseController {
 	@RequestMapping(value = "/doLogin", method = RequestMethod.POST)
 	public ModelAndView login(String username, String password, String captcha,
 			HttpServletRequest request) {
-		Boolean result = Boolean.FALSE;
 		HttpSession session = request.getSession();
 		Boolean isResponseCorrect = imageCaptchaService.validateResponseForID(
 				request.getSession().getId(), captcha);
