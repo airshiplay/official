@@ -2,12 +2,12 @@ package com.airshiplay.official.service.model;
 
 import org.springframework.beans.BeanUtils;
 
-import com.airshiplay.official.mybatis.model.CfgAccessToken;
+import com.airshiplay.official.mybatis.model.OfAccessToken;
 
-public class ServiceAccessToken extends CfgAccessToken {
+public class ServiceAccessToken extends OfAccessToken {
 
-	public ServiceAccessToken(CfgAccessToken cfgAccessToken) {
-		BeanUtils.copyProperties(cfgAccessToken, this);
+	public ServiceAccessToken(OfAccessToken OfAccessToken) {
+		BeanUtils.copyProperties(OfAccessToken, this);
 	}
 
 	// access_token接口调用凭证超时时间，单位（秒）

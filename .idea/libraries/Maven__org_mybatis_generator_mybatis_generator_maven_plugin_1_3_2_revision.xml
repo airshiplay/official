@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.mybatis.generator:mybatis-generator-maven-plugin:1.3.2-revision">
+    <CLASSES>
+      <root url="jar:///Developer/javatools/apache-maven-repo/org/mybatis/generator/mybatis-generator-maven-plugin/1.3.2-revision/mybatis-generator-maven-plugin-1.3.2-revision.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar:///Developer/javatools/apache-maven-repo/org/mybatis/generator/mybatis-generator-maven-plugin/1.3.2-revision/mybatis-generator-maven-plugin-1.3.2-revision-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar:///Developer/javatools/apache-maven-repo/org/mybatis/generator/mybatis-generator-maven-plugin/1.3.2-revision/mybatis-generator-maven-plugin-1.3.2-revision-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

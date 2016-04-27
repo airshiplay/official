@@ -108,8 +108,9 @@
 		<property name="viewResolvers">
 			<list>
 				<bean
-					class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+					class="com.airshiplay.common.web.OfficialViewResolver">
 					<property name="prefix" value="/WEB-INF/jsp/" />
+					<property name="style" value="dellstyle"></property>
 					<property name="suffix" value=".jsp" />
 				</bean>
 			</list>

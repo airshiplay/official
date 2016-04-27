@@ -68,10 +68,15 @@
              <button id="login_id" type="button" class="btn btn-default" data-loading-text="Loading..."  onclick="loginUser()" >Log in</button>
               <!-- <a class="btn btn-default submit" href="index.html">Log in</a> -->
               <a class="reset_pass" href="#">Lost your password?</a>
-               <a href="/thirdaccount/qq/login" onclick='toLogin()'>QQ</a>
-             
+              
             </div>
-            
+            <div>
+             <a href="/thirdaccount/qq/login" onclick='toLogin()'>
+			<img alt="" src="<%=contextPath%>/resources/images/qq_bt_blue_76X24.png">
+				</a>
+             <a href="/thirdaccount/wechat/login">
+               <img alt="" src="<%=contextPath%>/resources/images/icon24_wx_button.png"></a>
+            </div>
             <div class="clearfix"></div>
             <div class="separator">
 

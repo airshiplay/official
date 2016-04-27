@@ -53,7 +53,7 @@
 
     <div class="main_container">
 
-      <jsp:include page="../template/admin/navbar.jsp"/> 
+      <jsp:include page="template/navbar.jsp"/> 
       <!-- page content -->
       <div class="right_col" role="main">
 
@@ -796,7 +796,7 @@
         </div>
 
         <!-- footer content -->
-		<jsp:include page="../template/admin/footer.jsp"/> 
+		<jsp:include page="template/footer.jsp"/> 
         <!-- /footer content -->
       </div>
       <!-- /page content -->

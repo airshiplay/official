@@ -10,13 +10,13 @@
 <html lang="en">
 
 <head>
-  <title>${company.siteTitle}后台管理平台</title>
+  <title>${webSite.siteTitle}后台管理平台</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <!-- Meta, title, CSS, favicons, etc. -->
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" href="${company.siteFavicon}">
+  <link rel="icon" href="${webSite.siteFavicon}">
   <!-- Bootstrap core CSS -->
 
   <link href="<%=contextPath%>/resources/admin/css/bootstrap.min.css" rel="stylesheet">
@@ -55,7 +55,7 @@
 
     <div class="main_container">
 
-      <jsp:include page="../template/admin/navbar.jsp"/> 
+      <jsp:include page="../admin/template/navbar.jsp"/> 
       <!-- page content -->
       <div class="right_col" role="main">
         <div class="">
@@ -128,7 +128,7 @@
                 </div>
               </div>
               <!-- footer content -->
-             <jsp:include page="../template/admin/footer.jsp"/> 
+             <jsp:include page="../admin/template/footer.jsp"/> 
               <!-- /footer content -->
 
             </div>
@@ -178,46 +178,8 @@
 
         <!-- pace -->
         <script src="<%=contextPath%>/resources/admin/js/pace/pace.min.js"></script>
-        <script type="text/javascript">
-          var contextPath ="<%=contextPath%>";
-          $(document).ready(function() {
-            $('#datatable').dataTable({
-            	"processing": true,
-                "serverSide": true,
-                "ordering":false,
-                "ajax" : "role/list/ajax",
-                "language": { "url": contextPath+"/resources/admin/js/datatables/language/zh_CN.lang" } ,
-                "columns": [
-                  {"data": "id", "bSortable": false},
-                  {"data": "roleName"},
-                  {"data": "createTime"},
-                  {"data": "authority",render : function(data, type, row) {
-						var result="";
-						for (var i = 0; i < row.authorities.length; i++) {
-							if(i!=0)
-								result = result +",";
-							result = result + row.authorities[i].authorityName;
-						}
-						return result;
-					}}
-                ],
-                "columnDefs": [
-                  {
-                    "targets": [4],
-                    "data": "id",
-                    "render": function(data, type, full) {
-                    	var view="<a href=# class=\"btn btn-primary btn-xs\"><i class=\"fa fa-folder\"></i> View </a>";
-                    	var edit="<a href=# class=\"btn btn-info btn-xs\"><i class=\"fa fa-pencil\"></i> Edit </a>";
-                    	var del="<a href=# class=\"btn btn-danger btn-xs\"><i class=\"fa fa-trash-o\"></i> Delete </a>";
-                    	return view+edit+del;
-                      //return "<a href='/update?id=" + data + "'>Update</a>";
-                    }
-                  }
-                ]
-            });
-          });
-        </script>
-
+        <script src="<%=contextPath%>/resources/admin/js/official/official-common.js"></script>
+        <script src="<%=contextPath%>/resources/admin/js/official/official-role.js"></script>
 
 </body>
 

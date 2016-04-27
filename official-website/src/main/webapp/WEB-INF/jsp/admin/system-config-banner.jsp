@@ -10,7 +10,7 @@
 <html lang="en">
 
 <head>
-  <title>${company.siteTitle}后台管理平台</title>
+  <title>${webSite.siteTitle}后台管理平台</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <!-- Meta, title, CSS, favicons, etc. -->
   <meta charset="utf-8">
@@ -55,7 +55,7 @@
 
     <div class="main_container">
 
-      <jsp:include page="../template/admin/navbar.jsp"/> 
+      <jsp:include page="../admin/template/navbar.jsp"/> 
       <!-- page content -->
       <div class="right_col" role="main">
         <div class="">
@@ -129,7 +129,7 @@
                 </div>
               </div>
               <!-- footer content -->
-             <jsp:include page="../template/admin/footer.jsp"/> 
+             <jsp:include page="../admin/template/footer.jsp"/> 
               <!-- /footer content -->
 
             </div>

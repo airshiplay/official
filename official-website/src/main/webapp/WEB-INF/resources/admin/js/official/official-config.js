@@ -6,4 +6,4 @@ var baseDomain = '.airshiplay.com';
 var newMetricsRegisterUsers = false;
 var newMetricsChatmessages = true;
 var showLinkBigDataAll = true;
-var contextPath ="";
+var contextPath =""; /** </offical-website> */;

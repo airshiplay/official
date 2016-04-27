@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.airshiplay.official.mybatis.mapper.custom.CustomOfUserQqMapper">
+	<resultMap id="BaseResultMap"
+		type="com.airshiplay.official.mybatis.model.OfUserQq"
+		extends="com.airshiplay.official.mybatis.mapper.OfUserQqMapper.BaseResultMap">
+	</resultMap>
+
+	<select id="getUser" parameterType="string" resultType="com.airshiplay.official.mybatis.model.OfUser">
+		SELECT
+		*FROM of_user u,of_user_qq uqq
+		WHERE u.id=uqq.uid AND uqq.openid=#{openid} AND uqq.status=2
+	</select>
+</mapper>
