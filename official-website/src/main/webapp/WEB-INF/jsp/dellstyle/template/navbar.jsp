@@ -6,7 +6,10 @@
 	String fullUrl = request.getScheme() + "://"
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ contextPath;
+<<<<<<< HEAD
 	request.getRequestURI();
+=======
+>>>>>>> da40ddad45f4884ddb338b4ca2b72658d1839d3f
 	String catalogActiveIndex = request
 			.getParameter("catalog_active_index");
 %>
@@ -35,6 +38,7 @@
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
+<<<<<<< HEAD
 				<li><a href="<%=contextPath%>/">Home</a></li>
 				<c:forEach items="${navbar}" var="nav">
 					<c:choose>
@@ -55,6 +59,14 @@
 										</c:forEach>
 									</ul></li>
 							</c:if>
+=======
+				<li class="active"><a href="<%=contextPath%>">Home</a></li>
+				<c:forEach items="${navbar}" var="nav">
+					<c:choose>
+						<c:when test="${nav.level==1}">
+							<li><a href="<%=contextPath%>/${nav.urlPath}">${nav.catalogName }
+							</a></li>
+>>>>>>> da40ddad45f4884ddb338b4ca2b72658d1839d3f
 						</c:when>
 						<c:otherwise>
 						</c:otherwise>

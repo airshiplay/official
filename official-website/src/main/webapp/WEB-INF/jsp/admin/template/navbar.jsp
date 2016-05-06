@@ -60,12 +60,19 @@
                     <li><a href="tables.html">产品管理</a>
                     </li>
                     <li><a href="tables_dynamic.html">新闻管理</a>
+<<<<<<< HEAD:official-website/src/main/webapp/WEB-INF/jsp/admin/template/navbar.jsp
                     </li>
                     <li><a href="tables_dynamic.html">加盟管理</a>
                     </li>
                     <li><a href="tables_dynamic.html">应用管理</a>
                     </li>
                     <li><a href="tables_dynamic.html">公司管理</a>
+=======
+                    </li>
+                    <li><a href="tables_dynamic.html">加盟管理</a>
+                    </li>
+                    <li><a href="tables_dynamic.html">应用管理</a>
+>>>>>>> da40ddad45f4884ddb338b4ca2b72658d1839d3f:official-website/src/main/webapp/WEB-INF/jsp/admin/template/navbar.jsp
                     </li>
                     <li><a href="tables_dynamic.html">公司管理</a>
                     </li>
@@ -96,10 +103,15 @@
                     <li><a href="<%=contextPath%>/admin/config/tags">标签配置</a>
                     </li>
                     <li><a href="form_upload.html">FTP配置</a>
+<<<<<<< HEAD:official-website/src/main/webapp/WEB-INF/jsp/admin/template/navbar.jsp
                     </li>
                     <li><a href="form_buttons.html">地图配置</a>
                     </li>
                     <li><a href="<%=contextPath%>/admin/config/page">页面配置</a>
+=======
+                    </li>
+                    <li><a href="form_buttons.html">地图配置</a>
+>>>>>>> da40ddad45f4884ddb338b4ca2b72658d1839d3f:official-website/src/main/webapp/WEB-INF/jsp/admin/template/navbar.jsp
                     </li>
                   </ul>
                 </li>

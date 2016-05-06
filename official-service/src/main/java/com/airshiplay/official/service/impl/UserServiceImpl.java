@@ -37,7 +37,11 @@ import com.google.protobuf.ServiceException;
 @Service("userService")
 public class UserServiceImpl implements UserService {
 	@Autowired
+<<<<<<< HEAD
 	OfUserMapper ofUserMapper;
+=======
+	OfUserMapper OfUserMapper;
+>>>>>>> da40ddad45f4884ddb338b4ca2b72658d1839d3f
 	@Autowired
 	OfRoleMapper OfRoleMapper;
 	@Autowired
@@ -58,7 +62,11 @@ public class UserServiceImpl implements UserService {
 
 		OfUserExample example = new OfUserExample();
 		example.createCriteria().andUsernameEqualTo(username);
+<<<<<<< HEAD
 		if (ofUserMapper.selectByExample(example).size() > 0) {
+=======
+		if (OfUserMapper.selectByExample(example).size() > 0) {
+>>>>>>> da40ddad45f4884ddb338b4ca2b72658d1839d3f
 			throw new ServiceException("该用户已存在");
 		}
 
@@ -74,7 +82,11 @@ public class UserServiceImpl implements UserService {
 		u.setSalt(salt);
 		u.setPassword(org.apache.commons.codec.digest.DigestUtils
 				.md5Hex(password + salt));
+<<<<<<< HEAD
 		ofUserMapper.insert(u);
+=======
+		OfUserMapper.insert(u);
+>>>>>>> da40ddad45f4884ddb338b4ca2b72658d1839d3f
 		return u;
 	}
 
@@ -83,7 +95,11 @@ public class UserServiceImpl implements UserService {
 			String display) throws ServiceException {
 		OfUserExample example = new OfUserExample();
 		example.createCriteria().andUsernameEqualTo(username);
+<<<<<<< HEAD
 		List<OfUser> list = ofUserMapper.selectByExample(example);
+=======
+		List<OfUser> list = OfUserMapper.selectByExample(example);
+>>>>>>> da40ddad45f4884ddb338b4ca2b72658d1839d3f
 		OfUser user = null;
 		if (list.isEmpty()) {
 			throw new ServiceException("用户不存在");
@@ -94,7 +110,11 @@ public class UserServiceImpl implements UserService {
 							+ user.getSalt()))) {
 				user.setLatestLoginTime(new Date());
 				user.setLatestLoginIp(ip);
+<<<<<<< HEAD
 				ofUserMapper.updateByPrimaryKeySelective(user);
+=======
+				OfUserMapper.updateByPrimaryKeySelective(user);
+>>>>>>> da40ddad45f4884ddb338b4ca2b72658d1839d3f
 			} else {
 				throw new ServiceException("密码错误");
 			}
@@ -103,7 +123,12 @@ public class UserServiceImpl implements UserService {
 		user.setSalt(null);
 		OfAccessTokenExample exam = new OfAccessTokenExample();
 		exam.createCriteria().andUidEqualTo(user.getId());
+<<<<<<< HEAD
 		List<OfAccessToken> listAcc = OfAccessTokenMapper.selectByExample(exam);
+=======
+		List<OfAccessToken> listAcc = OfAccessTokenMapper
+				.selectByExample(exam);
+>>>>>>> da40ddad45f4884ddb338b4ca2b72658d1839d3f
 		OfAccessToken acccessToken;
 		if (listAcc.isEmpty()) {
 			acccessToken = generatorAccessToken(user.getId(), display);
@@ -139,7 +164,11 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public OfUser updateUser(OfUser u) {
+<<<<<<< HEAD
 		ofUserMapper.updateByPrimaryKeySelective(u);
+=======
+		OfUserMapper.updateByPrimaryKeySelective(u);
+>>>>>>> da40ddad45f4884ddb338b4ca2b72658d1839d3f
 		return null;
 	}
 
@@ -148,7 +177,11 @@ public class UserServiceImpl implements UserService {
 			throws ServiceException {
 		OfUserExample example = new OfUserExample();
 		example.createCriteria().andUsernameEqualTo(username);
+<<<<<<< HEAD
 		List<OfUser> list = ofUserMapper.selectByExample(example);
+=======
+		List<OfUser> list = OfUserMapper.selectByExample(example);
+>>>>>>> da40ddad45f4884ddb338b4ca2b72658d1839d3f
 		OfUser user = null;
 		if (list.isEmpty()) {
 			throw new ServiceException("用户不存在");
@@ -158,7 +191,11 @@ public class UserServiceImpl implements UserService {
 			user.setSalt(salt);
 			user.setPassword(org.apache.commons.codec.digest.DigestUtils
 					.md5Hex(password + salt));
+<<<<<<< HEAD
 			ofUserMapper.updateByPrimaryKey(user);
+=======
+			OfUserMapper.updateByPrimaryKey(user);
+>>>>>>> da40ddad45f4884ddb338b4ca2b72658d1839d3f
 		}
 		user.setPassword(null);
 		user.setSalt(null);
@@ -207,11 +244,21 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public PageInfo<ServiceUser> getUsers(int pageNum, int pageSize) {
 		PageHelper.startPage(pageNum, pageSize);
+<<<<<<< HEAD
 		List<OfUser> list = ofUserMapper.selectByExample(new OfUserExample());
 		Page<ServiceUser> result = new Page<ServiceUser>();
 		for (OfUser user : list) {
 			ServiceUser ur = new ServiceUser(user);
 			List<OfRole> roles = customOfRoleMapper.getRolesByUid(user.getId());
+=======
+		List<OfUser> list = OfUserMapper
+				.selectByExample(new OfUserExample());
+		Page<ServiceUser> result = new Page<ServiceUser>();
+		for (OfUser user : list) {
+			ServiceUser ur = new ServiceUser(user);
+			List<OfRole> roles = customOfRoleMapper.getRolesByUid(user
+					.getId());
+>>>>>>> da40ddad45f4884ddb338b4ca2b72658d1839d3f
 			ur.setRoles(roles);
 			result.add(ur);
 		}
@@ -224,7 +271,12 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public PageInfo<ServiceRole> getRoles(int pageNum, int pageSize) {
 		PageHelper.startPage(pageNum, pageSize);
+<<<<<<< HEAD
 		List<OfRole> list = OfRoleMapper.selectByExample(new OfRoleExample());
+=======
+		List<OfRole> list = OfRoleMapper
+				.selectByExample(new OfRoleExample());
+>>>>>>> da40ddad45f4884ddb338b4ca2b72658d1839d3f
 		Page<ServiceRole> result = new Page<ServiceRole>();
 		for (OfRole role : list) {
 			ServiceRole ur = new ServiceRole(role);
@@ -241,7 +293,12 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<OfRole> getRoles() {
+<<<<<<< HEAD
 		List<OfRole> list = OfRoleMapper.selectByExample(new OfRoleExample());
+=======
+		List<OfRole> list = OfRoleMapper
+				.selectByExample(new OfRoleExample());
+>>>>>>> da40ddad45f4884ddb338b4ca2b72658d1839d3f
 		return list;
 	}
 
@@ -253,7 +310,11 @@ public class UserServiceImpl implements UserService {
 		if (id == null) {
 			OfUserExample example = new OfUserExample();
 			example.createCriteria().andUsernameEqualTo(username);
+<<<<<<< HEAD
 			List<OfUser> findUsers = ofUserMapper.selectByExample(example);
+=======
+			List<OfUser> findUsers = OfUserMapper.selectByExample(example);
+>>>>>>> da40ddad45f4884ddb338b4ca2b72658d1839d3f
 			if (findUsers.isEmpty()) {
 				OfUser record = new OfUser();
 				record.setCreateTime(new Date());
@@ -267,7 +328,11 @@ public class UserServiceImpl implements UserService {
 				record.setSalt(salt);
 				record.setPassword(org.apache.commons.codec.digest.DigestUtils
 						.md5Hex(password + salt));
+<<<<<<< HEAD
 				ofUserMapper.insert(record);
+=======
+				OfUserMapper.insert(record);
+>>>>>>> da40ddad45f4884ddb338b4ca2b72658d1839d3f
 				for (OfRole role : roles) {
 					OfUserRole OfUserRole = new OfUserRole();
 					OfUserRole.setUid(record.getId());
@@ -282,7 +347,11 @@ public class UserServiceImpl implements UserService {
 			}
 
 		} else {
+<<<<<<< HEAD
 			OfUser findUsers = ofUserMapper.selectByPrimaryKey(id);
+=======
+			OfUser findUsers = OfUserMapper.selectByPrimaryKey(id);
+>>>>>>> da40ddad45f4884ddb338b4ca2b72658d1839d3f
 			if (findUsers == null || !findUsers.getUsername().equals(username)) {
 				throw new ServiceException("用户名不存在");
 			} else {
@@ -297,7 +366,11 @@ public class UserServiceImpl implements UserService {
 							.setPassword(org.apache.commons.codec.digest.DigestUtils
 									.md5Hex(password + salt));
 				}
+<<<<<<< HEAD
 				ofUserMapper.updateByPrimaryKey(findUsers);
+=======
+				OfUserMapper.updateByPrimaryKey(findUsers);
+>>>>>>> da40ddad45f4884ddb338b4ca2b72658d1839d3f
 				OfUserRoleExample example = new OfUserRoleExample();
 				example.createCriteria().andUidEqualTo(findUsers.getId());
 				// .andStatusEqualTo(2);

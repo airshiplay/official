@@ -357,11 +357,18 @@
                       </div>
                     </div>
                     <div class="form-group">
+<<<<<<< HEAD
                       <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">网站favicon（*.ico）</label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
                       	<div id="my-dropzone" class="form-control col-md-7 col-xs-12" style="padding-top:0px;padding-bottom:0px;">
                         	<img id="site-favicon" type="text" src="${company.siteFavicon}" style="height:32px"/>
                         	<span>请拖动图片到此处</span>
+=======
+                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">网站favicon</label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                      	<div id="my-dropzone" class="form-control col-md-7 col-xs-12" style="padding-top:0px;padding-bottom:0px;">
+                        	<img id="site-favicon" type="text" src="${company.siteFavicon}" style="height:32px"/>
+>>>>>>> da40ddad45f4884ddb338b4ca2b72658d1839d3f
                         	<input type="hidden"  name="siteFavicon" value="${company.siteFavicon}"/>
                         </div>
                       </div>
