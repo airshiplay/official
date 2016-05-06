@@ -1,4 +1,4 @@
-package com.airshiplay.official.web.admin;
+package com.airshiplay.official.web.admin.config;
 
 import java.util.List;
 

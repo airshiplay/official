@@ -67,6 +67,8 @@
                     </li>
                     <li><a href="tables_dynamic.html">公司管理</a>
                     </li>
+                    <li><a href="tables_dynamic.html">公司管理</a>
+                    </li>
                   </ul>
                 </li>
                  <li><a><i class="fa fa-desktop"></i>微信管理<span class="fa fa-chevron-down"></span></a>
@@ -96,6 +98,8 @@
                     <li><a href="form_upload.html">FTP配置</a>
                     </li>
                     <li><a href="form_buttons.html">地图配置</a>
+                    </li>
+                    <li><a href="<%=contextPath%>/admin/config/page">页面配置</a>
                     </li>
                   </ul>
                 </li>

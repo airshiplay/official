@@ -55,4 +55,5 @@ public interface UserService {
 			String mobile, String nickname, String password,
 			List<OfRole> roles, String ip, Long regUid)
 			throws ServiceException;
+	public OfUser findUserByUsername(String username);
 }

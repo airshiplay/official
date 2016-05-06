@@ -140,3 +140,13 @@ var OfficialCommon = function() {
 		}
 	};
 }();
+
+//Sidebar Menu active class
+$(function () {
+    var url = window.location;
+    $('#navbar a[href="' + url.pathname + '"]').parent('li').addClass('active');
+    //$('#navbar a').filter(function () {
+   //     return this.href == url;
+   // }).parent('li')
+   // .addClass('active');//.parent('ul').slideDown().parent().addClass('active');
+});

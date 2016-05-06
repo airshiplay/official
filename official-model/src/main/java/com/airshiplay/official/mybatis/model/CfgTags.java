@@ -9,7 +9,7 @@ public class CfgTags implements Serializable {
     private Long id;
 
     /**
-     * 1、用户标签；2、
+     * 1、用户标签；2、文章标签；3、微信标签；4、
      * <p> 
      * database column <code>cfg_tags.tag_type</code>
      */
@@ -58,18 +58,18 @@ public class CfgTags implements Serializable {
     }
 
     /**
-     * 获取1、用户标签；2、
+     * 获取1、用户标签；2、文章标签；3、微信标签；4、
      *
-     * @return tag_type - 1、用户标签；2、
+     * @return tag_type - 1、用户标签；2、文章标签；3、微信标签；4、
      */
     public Integer getTagType() {
         return tagType;
     }
 
     /**
-     * 设置1、用户标签；2、
+     * 设置1、用户标签；2、文章标签；3、微信标签；4、
      *
-     * @param tagType 1、用户标签；2、
+     * @param tagType 1、用户标签；2、文章标签；3、微信标签；4、
      */
     public void setTagType(Integer tagType) {
         this.tagType = tagType;

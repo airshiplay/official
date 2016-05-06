@@ -4,6 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,14 +26,14 @@ import com.airshiplay.official.web.model.ReqLogin;
 import com.airshiplay.official.web.model.ResultMessage;
 import com.airshiplay.official.web.model.WebUser;
 import com.google.protobuf.ServiceException;
-import com.octo.captcha.service.image.ImageCaptchaService;
+//import com.octo.captcha.service.image.ImageCaptchaService;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminLoginController extends BaseController {
 	private static final Logger logger = LoggerFactory.getLogger(AdminLoginController.class);
-	@Autowired
-	private ImageCaptchaService imageCaptchaService;
+//	@Autowired
+//	private ImageCaptchaService imageCaptchaService;
 	@Autowired
 	UserService userService;
 
@@ -46,10 +48,13 @@ public class AdminLoginController extends BaseController {
 		String ip = IpUtil.getIpAddr(request);
 		ServiceUser user;
 		try {
+			SecurityUtils.getSubject().login(new UsernamePasswordToken(login.getUsername(), login.getPassword()));
 			user = userService.loginUser(login.getUsername(), login.getPassword(), ip,login.getDisplay());
 			HttpSession session = request.getSession();
 			session.setAttribute("online", true);
 			session.setAttribute(SessionConstants.SESSION_USER, user);
+			 SecurityUtils.getSubject().getPrincipal();
+			 SecurityUtils.getSubject().getPrincipals();
 			Object location = session
 					.getAttribute(SessionConstants.SESSION_LATEST_URL);
 			if (location != null && !location.equals("")) {
@@ -61,6 +66,9 @@ public class AdminLoginController extends BaseController {
 		} catch (ServiceException e) {
 			logger.error(e.getMessage(), e);
 			return ResultMessage.fail(e.getMessage());
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+			return ResultMessage.fail(e.getMessage());
 		}
 	}
 
@@ -68,8 +76,9 @@ public class AdminLoginController extends BaseController {
 	public ModelAndView login(String username, String password, String captcha,
 			HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		Boolean isResponseCorrect = imageCaptchaService.validateResponseForID(
-				request.getSession().getId(), captcha);
+boolean isResponseCorrect=false;
+		//		Boolean isResponseCorrect = imageCaptchaService.validateResponseForID(
+//				request.getSession().getId(), captcha);
 		if (isResponseCorrect) {
 			// 继续校验用户名密码等..
 		}

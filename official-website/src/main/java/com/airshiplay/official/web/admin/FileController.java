@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
@@ -28,9 +29,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.airshiplay.common.constants.SessionConstants;
 import com.airshiplay.official.config.ConfigInfo;
 import com.airshiplay.official.web.model.ResultMessage;
-import com.octo.captcha.service.image.ImageCaptchaService;
+import com.google.code.kaptcha.Producer;
+import com.google.code.kaptcha.util.Config;
 
 @Controller
 @RequestMapping("/file")
@@ -39,8 +42,7 @@ public class FileController {
 	@Autowired
 	ConfigInfo configInfo;
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-	@Autowired
-	private ImageCaptchaService imageCaptchaService;
+	private Producer kaptchaProducer;
 
 	@RequestMapping(value = "/upload", produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody Object uploadfile(
@@ -51,7 +53,8 @@ public class FileController {
 		String objectKey = request.getParameter("objectkey");
 		List<String> list = new ArrayList<String>();
 		for (MultipartFile file : files) {
-			if (file.isEmpty()) {request.getFileMap();
+			if (file.isEmpty()) {
+				request.getFileMap();
 				System.out.println("文件未上传");
 			} else {
 				String fileDir = configInfo.getFileSaveDir().getFile()
@@ -81,15 +84,19 @@ public class FileController {
 			HttpServletResponse response) {
 		try {
 			ByteArrayOutputStream jpegOutputStream = new ByteArrayOutputStream();
-			String captchaId = request.getSession().getId();
-			BufferedImage challenge = imageCaptchaService
-					.getImageChallengeForID(captchaId, request.getLocale());
+			if (this.kaptchaProducer == null) {
+				Config config = new Config(new Properties());
+				this.kaptchaProducer = config.getProducerImpl();
+			}
+			String c = kaptchaProducer.createText();
+			request.getSession(true).setAttribute(
+					SessionConstants.SESSION_CAPTCHA, c);
+			BufferedImage challenge = kaptchaProducer.createImage(c);
 
 			response.setHeader("Cache-Control", "no-store");
 			response.setHeader("Pragma", "no-cache");
 			response.setDateHeader("Expires", 0L);
 			response.setContentType("image/jpeg");
-
 			ImageIO.write(challenge, "jpeg", jpegOutputStream);
 			byte[] captchaChallengeAsJpeg = jpegOutputStream.toByteArray();
 

@@ -1,4 +1,4 @@
-package com.airshiplay.official.web.admin;
+package com.airshiplay.official.web.admin.manager;
 
 import javax.servlet.http.HttpServletRequest;
 

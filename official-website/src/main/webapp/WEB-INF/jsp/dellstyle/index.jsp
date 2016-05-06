@@ -89,6 +89,8 @@
 	<script
 		src="<%=contextPath%>/resources/bootstrap/js/ie10-viewport-bug-workaround.js"></script>
 	
+	<script type="text/javascript"
+		src="<%=contextPath%>/resources/admin/js/official/official-common.js"></script>
 
 	<script type="text/javascript">
 		$('.carousel').carousel()

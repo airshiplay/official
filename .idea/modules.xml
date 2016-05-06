@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/official.iml" filepath="$PROJECT_DIR$/official.iml" />
+      <module fileurl="file://$PROJECT_DIR$/official-common/official-common.iml" filepath="$PROJECT_DIR$/official-common/official-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/official-model/official-model.iml" filepath="$PROJECT_DIR$/official-model/official-model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/official-service/official-service.iml" filepath="$PROJECT_DIR$/official-service/official-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/official-website/official-website.iml" filepath="$PROJECT_DIR$/official-website/official-website.iml" />
+    </modules>
+  </component>
+</project>
