@@ -89,11 +89,8 @@
 	<script
 		src="<%=contextPath%>/resources/bootstrap/js/ie10-viewport-bug-workaround.js"></script>
 	
-<<<<<<< HEAD
 	<script type="text/javascript"
 		src="<%=contextPath%>/resources/admin/js/official/official-common.js"></script>
-=======
->>>>>>> da40ddad45f4884ddb338b4ca2b72658d1839d3f
 
 	<script type="text/javascript">
 		$('.carousel').carousel()

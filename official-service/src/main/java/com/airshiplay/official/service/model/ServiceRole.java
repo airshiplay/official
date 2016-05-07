@@ -4,21 +4,21 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 
-import com.airshiplay.official.mybatis.model.OfAuthority;
+import com.airshiplay.official.mybatis.model.OfPermission;
 import com.airshiplay.official.mybatis.model.OfRole;
 
 public class ServiceRole extends OfRole {
-	private List<OfAuthority> authorities;
+	private List<OfPermission> authorities;
 
 	public ServiceRole(OfRole role) {
 		BeanUtils.copyProperties(role, this);
 	}
 
-	public List<OfAuthority> getAuthorities() {
+	public List<OfPermission> getAuthorities() {
 		return authorities;
 	}
 
-	public void setAuthorities(List<OfAuthority> authorities) {
+	public void setAuthorities(List<OfPermission> authorities) {
 		this.authorities = authorities;
 	}
 

@@ -2,7 +2,7 @@ package com.airshiplay.official.service;
 
 import java.util.List;
 
-import com.airshiplay.official.mybatis.model.OfAuthority;
+import com.airshiplay.official.mybatis.model.OfPermission;
 import com.airshiplay.official.mybatis.model.OfRole;
 import com.airshiplay.official.mybatis.model.OfUser;
 import com.airshiplay.official.service.model.ServiceRole;
@@ -40,10 +40,10 @@ public interface UserService {
 	public OfRole updateRole(Long id, String roleName, String desc)
 			throws ServiceException;
 
-	public OfAuthority createAuthority(String authorityName, String desc)
+	public OfPermission createAuthority(String authorityName, String desc)
 			throws ServiceException;
 
-	public PageInfo<OfAuthority> getAuthoritys(int pageNum, int pageSize);
+	public PageInfo<OfPermission> getAuthoritys(int pageNum, int pageSize);
 
 	public PageInfo<ServiceUser> getUsers(int pageNum, int pageSize);
 
