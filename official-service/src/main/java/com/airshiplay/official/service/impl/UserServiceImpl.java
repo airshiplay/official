@@ -14,7 +14,7 @@ import com.airshiplay.official.mybatis.mapper.OfPermissionMapper;
 import com.airshiplay.official.mybatis.mapper.OfRoleMapper;
 import com.airshiplay.official.mybatis.mapper.OfUserMapper;
 import com.airshiplay.official.mybatis.mapper.OfUserRoleMapper;
-import com.airshiplay.official.mybatis.mapper.custom.CustomOfAuthorityMapper;
+import com.airshiplay.official.mybatis.mapper.custom.CustomOfPermissionMapper;
 import com.airshiplay.official.mybatis.mapper.custom.CustomOfRoleMapper;
 import com.airshiplay.official.mybatis.model.OfAccessToken;
 import com.airshiplay.official.mybatis.model.OfAccessTokenExample;
@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	CustomOfRoleMapper customOfRoleMapper;
 	@Autowired
-	CustomOfAuthorityMapper customOfAuthorityMapper;
+	CustomOfPermissionMapper customOfAuthorityMapper;
 	@Autowired
 	OfUserRoleMapper OfUserRoleMapper;
 	@Autowired
@@ -191,8 +191,8 @@ public class UserServiceImpl implements UserService {
 			throws ServiceException {
 		OfPermission record = new OfPermission();
 		record.setCreateTime(new Date());
-		record.setAuthorityName(authorityName);
-		record.setAuthorityDesc(desc);
+		record.setName(authorityName);
+		record.setDesc(desc);
 		OfAuthorityMapper.insert(record);
 		return record;
 	}

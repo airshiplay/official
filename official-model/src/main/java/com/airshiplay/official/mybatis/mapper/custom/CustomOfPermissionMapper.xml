@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper
-	namespace="com.airshiplay.official.mybatis.mapper.custom.CustomOfAuthorityMapper">
+	namespace="com.airshiplay.official.mybatis.mapper.custom.CustomOfPermissionMapper">
 	<resultMap id="BaseResultMap"
-		type="com.airshiplay.official.mybatis.model.OfAuthority"
-		extends="com.airshiplay.official.mybatis.mapper.OfAuthorityMapper.BaseResultMap">
+		type="com.airshiplay.official.mybatis.model.OfPermission"
+		extends="com.airshiplay.official.mybatis.mapper.OfPermissionMapper.BaseResultMap">
 	</resultMap>
 
 	<select id="getAuthoritiesByRoleId" parameterType="long"
 		resultMap="BaseResultMap">
-		SELECT *FROM of_authority auth
-		LEFT JOIN of_role_authority rauth ON rauth.authority_id=auth.id
+		SELECT *FROM of_permission auth
+		LEFT JOIN of_role_permission rauth ON rauth.authority_id=auth.id
 		WHERE rauth.role_id=#{roleId}
 	</select>
 

@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.airshiplay.official.mybatis.model.OfPermission;
 
-public interface CustomOfAuthorityMapper {
+public interface CustomOfPermissionMapper {
 
 	public List<OfPermission> getAuthoritiesByRoleId(Long roleId);
 

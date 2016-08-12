@@ -39,4 +39,5 @@
 	<import resource="mybatis.xml" />
 	<import resource="transaction.xml"/>
 	<import resource="ftp/ftpd-typical.xml" />
+	<import resource="disconf.xml"/>
 </beans>
